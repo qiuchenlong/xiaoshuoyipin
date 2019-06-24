@@ -1623,46 +1623,34 @@ public function upchapter()
 }
 
 
-//章节内容
- public  function text(){
-        
-      $Model = M('');
-
-       $xiaoid=I('id');
-
-       
-
-
+    //章节内容
+    public  function text(){
+        $Model = M('');
+        $xiaoid=I('id');
         if(IS_POST){
-         
-         $chaxiaoshuo=M('jieqi_article_chapter')->field('chapterid')->where(['articleid'=>I('id')])->select();
-                  if ($chaxiaoshuo) {
-                    foreach ($chaxiaoshuo as  $v) {
-                      $dwhere[]=$v['chapterid'];
-                    }
-                    $del=M('jieqi_article_chapter')->where(['chapterid'=>['in',$dwhere]])->delete();
-                  }
-
-                  
-
-            set_time_limit(0);
-                 //上传图片
-                $upload = new \Think\Upload();// 实例化上传类
-                $upload->maxSize   =     553145728 ;// 设置附件上传大小
-                $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg','txt','docx');// 设置附件上传类型
-                $upload->rootPath  =     'Public/text/'; // 设置附件上传根目录
-                $upload->savePath  =     ''; // 设置附件上传（子）目录
-                 // 上传文件 
-                $info   =   $upload->upload();
-                 // var_dump($info);die;
-                if(!$info) {// 上传错误提示错误信息
-                    $this->error($upload->getError()); die;
-                }else{// 上传成功
-                    // $this->success('上传成功！'); 
-                    $b='text/'.$info['images']['savename'];
+            $chaxiaoshuo=M('jieqi_article_chapter')->field('chapterid')->where(['articleid'=>I('id')])->select();
+            if ($chaxiaoshuo) {
+                foreach ($chaxiaoshuo as  $v) {
+                    $dwhere[]=$v['chapterid'];
                 }
-
-
+                $del=M('jieqi_article_chapter')->where(['chapterid'=>['in',$dwhere]])->delete();
+            }
+            set_time_limit(0);
+            //上传图片
+            $upload = new \Think\Upload();// 实例化上传类
+            $upload->maxSize   =     553145728 ;// 设置附件上传大小
+            $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg','txt','docx');// 设置附件上传类型
+            $upload->rootPath  =     'Public/text/'; // 设置附件上传根目录
+            $upload->savePath  =     ''; // 设置附件上传（子）目录
+             // 上传文件
+            $info   =   $upload->upload();
+             // var_dump($info);die;
+            if(!$info) {// 上传错误提示错误信息
+                $this->error($upload->getError()); die;
+            }else{// 上传成功
+                // $this->success('上传成功！');
+                $b='text/'.$info['images']['savename'];
+            }
             $file_path ="Public/".$b;
             if(file_exists($file_path)){
                 $fp = fopen($file_path,"r");
@@ -1670,27 +1658,18 @@ public function upchapter()
                 $buffer = 1024;//每次读取 1024 字节
                 while(!feof($fp)){//循环读取，直至读取完整个文件
                     $str .= fread($fp,$buffer);
-                } 
-
-
+                }
                 //将编码转换utf-8
-                if(!empty($str) ){    
-                        $fileType = mb_detect_encoding($str, array('UTF-8','GBK','LATIN1','BIG5')) ;   
-                if( $fileType != 'UTF-8'){   
-                        $data = mb_convert_encoding($str ,'utf-8' , $fileType);   
-                        }   
-                 }   
-
-                
-                // $oop=iconv("gb2312", "utf-8", $str);    
-                // var_dump($data);die;
-                // $str = str_replace("\r\n","<br />",$str);
+                if(!empty($str) ){
+                    $fileType = mb_detect_encoding($str, array('UTF-8','GBK','LATIN1','BIG5')) ;
+                    if( $fileType != 'UTF-8'){
+                        $data = mb_convert_encoding($str ,'utf-8' , $fileType);
+                    }
+                 }
                 $pc=ltrim($data,"#");
                 $arr=explode("#",$pc);
-                  // var_dump($arr);die;
                 foreach ($arr as $k => $v) {
                     $xiao=explode("\r\n",$v);
-                   
                     if($xiao>0){
                         $us['articleid']=I('id');
                         $xx=M('jieqi_article_article')->where($us)->find();
@@ -1700,7 +1679,6 @@ public function upchapter()
                             // var_dump($un);die;
                              unlink($un);
                         }
-
                         $gg['articleid']=I('id');
                         $gg['text']=$b;
                         M('jieqi_article_article')->save($gg);
@@ -1720,68 +1698,45 @@ public function upchapter()
                             $x['did']=I('did');
                             $x['lastupdate']=date('Y-m-d H:i:s');
                             $xiaoshuo=M('jieqi_article_chapter')->add($x);
-                            
                         }
-           
-                       
-                       
-                        
-                       
                     }
                 }
-
-                        if($xiaoshuo>0){
-
-                            //更新书本的信息
-                            $yy['articleid']=I('id');
-                            $xxx=M('jieqi_article_chapter')->where($yy)->order('chapterid desc')->select();
-
-                             foreach ($xxx as $kk => $o){
-                                $dax[]=$o['size'];
-                                $han=fopen("Public/text/".$kk.time().".text","w");
-                                fwrite($han,$o['attachment']);
-                                fclose($han);
-                                $diz['texts']="Public/text/".$kk.time().".text";
-                                $zzz['chapterid']=$o['chapterid'];
-                                
-                                $jiesu=M('jieqi_article_chapter')->where($zzz)->order('chapterid desc')->save($diz);
-                                 // var_dump($jiesu);die;
-                            }
-                            
-
-                            // var_dump($diz);die;
-                            $sumx=array_sum($dax);
-                            $geng['lastchapter']=$xxx[0]['chaptername'];
-                            $geng['articleid']=I('id');
-                            $geng['size']=$sumx;    
-                            $geng['lastupdate']=date('Y-m-d H:i:s');
-                             $us['articleid']=I('id');
-                            M('jieqi_article_article')->where($us)->save($geng);
-
-                            // var_dump($xxx);die;
-                             foreach ($xxx as $ke => $va){
-                               
-                           
-                               $tx['chapterid']=$ke;
-                               $tx['texts']=$d;
-                                $txx['chapterid']=$ke;
-                               M('jieqi_article_chapter')->where($txx)->save($tx); 
-                            } 
-                              
-                             echo '<script>alert("添加成功");window.parent.location.reload()</script>';die;
-
-                             
-                            //生成text
-                             // var_dump($xxx);die;
-                           
-                        }else{
-                             echo '<script>alert("所提交的章节内容没变化,更新失败");window.parent.location.reload()</script>';
-                        }
+                if($xiaoshuo>0){
+                    //更新书本的信息
+                    $yy['articleid']=I('id');
+                    $xxx=M('jieqi_article_chapter')->where($yy)->order('chapterid desc')->select();
+                    foreach ($xxx as $kk => $o){
+                        $dax[]=$o['size'];
+                        $han=fopen("Public/text/".$kk.time().".text","w");
+                        fwrite($han,$o['attachment']);
+                        fclose($han);
+                        $diz['texts']="Public/text/".$kk.time().".text";
+                        $zzz['chapterid']=$o['chapterid'];
+                        $jiesu=M('jieqi_article_chapter')->where($zzz)->order('chapterid desc')->save($diz);
+                    }
+                    $sumx=array_sum($dax);
+                    $geng['lastchapter']=$xxx[0]['chaptername'];
+                    $geng['articleid']=I('id');
+                    $geng['size']=$sumx;
+                    $geng['lastupdate']=date('Y-m-d H:i:s');
+                    $us['articleid']=I('id');
+                    M('jieqi_article_article')->where($us)->save($geng);
+                    /*foreach ($xxx as $ke => $va){
+                        $tx['chapterid'] = $ke;
+                        $tx['texts'] = $file_path;
+                        $txx['chapterid'] = $ke;
+                        M('jieqi_article_chapter')->where($txx)->save($tx);
+                    }*/
+                     echo '<script>alert("添加成功");window.parent.location.reload()</script>';die;
+                    //生成text
+                     // var_dump($xxx);die;
+                }else{
+                     echo '<script>alert("所提交的章节内容没变化,更新失败");window.parent.location.reload()</script>';
+                }
             }
         }
-    
-   $this->display();
-}
+       $this->display();
+    }
 
 
 //文案
