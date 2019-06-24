@@ -1623,7 +1623,10 @@ public function upchapter()
 }
 
 
-    //章节内容
+    /**
+     * 章节内容
+     * 将章节存入对应的文章，然后进行拆分成文件
+     */
     public  function text(){
         $Model = M('');
         $xiaoid=I('id');
