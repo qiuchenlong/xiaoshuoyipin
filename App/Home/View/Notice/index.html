@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>活动公告</title>
+    <link rel="stylesheet" href="__PUBLIC__/src/css/api.css" />
+    <link rel="stylesheet" href="__PUBLIC__/src/css/index.css">
+    <link rel="stylesheet" href="__PUBLIC__/src/css/icon/iconfont.css"><!--图标字体-->
+    <script src="__PUBLIC__/src/library/zepto.js"></script><!--页面js-->
+    <script src="__PUBLIC__/src/js/global.js"></script>
+</head>
+<body style="background: #f1f1f1;">
+<header>
+    <div class="h-massage_base"></div>
+    <div class="header_message">
+        <a class="iconfont icon-xiangshangbiaoshi-copy" href="javascript:history.back(-1);"></a>
+        <h2>活动公告</h2>
+        <a href="javascript:;" style="width: 0.3rem;    height: 0.3rem;"></a>
+    </div>
+</header>
+<!-- <div class="content" onClick="location.href='/books/index.php/Home/index/dtail.html'"> -->
+<section class="m-notice" style="background:#f1f1f1;padding-top: 0.18rem">
+    <div class="m-message">
+        <!--<div class="hd">
+            <h2 class="left">总裁不正经，甜妻撩上瘾</h2>
+            <div class="date">06-13 00:00</div>
+        </div>-->
+        <div class="bd" style="padding: 0.28rem 0 0 0;">
+            <img src="__PUBLIC__/src/images/img-z.png" alt="">
+            <div class="hd" style="    line-height: 2;padding: 0 0.5em;">
+                <h2>总裁不正经，甜妻撩上瘾</h2>
+                <div class="date">06-13 00:00</div>
+            </div>
+        </div>
+    </div>
+    <div class="m-message">
+        <!--<div class="hd">
+            <h2 class="left">总裁不正经，甜妻撩上瘾</h2>
+            <div class="date">06-13 00:00</div>
+        </div>-->
+        <div class="bd" style="padding: 0.28rem 0 0 0;">
+            <img src="__PUBLIC__/src/images/img-z.png" alt="">
+            <div class="hd" style="    line-height: 2;padding: 0 0.5em;">
+                <h2>总裁不正经，甜妻撩上瘾</h2>
+                <div class="date">06-13 00:00</div>
+            </div>
+        </div>
+    </div>
+    <div class="m-message">
+        <!--<div class="hd">
+            <h2 class="left">总裁不正经，甜妻撩上瘾</h2>
+            <div class="date">06-13 00:00</div>
+        </div>-->
+        <div class="bd" style="padding: 0.28rem 0 0 0;">
+            <img src="__PUBLIC__/src/images/img-z.png" alt="">
+            <div class="hd" style="    line-height: 2;padding: 0 0.5em;">
+                <h2>总裁不正经，甜妻撩上瘾</h2>
+                <div class="date">06-13 00:00</div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+</body>
+<script>
+    function parseData(res) {
+        return typeof(res) == 'string' ? JSON.parse(res) : res;
+    }
+    $.get('http://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/gonggao', function(ret) {
+        var res = parseData(ret);
+        var arr = parseData(ret).arr.map(function(item, index) {
+            return `<div class="m-message" onclick="location.href='<{:U('Notice/Dtail')}>?id=' + ${item.id}">
+        <div class="bd" style="padding: 0.28rem 0 0 0;">
+            <img src="${item.images}" alt="">
+            <div class="hd" style="line-height: 2;padding: 0 0.5em;">
+                <h2>${item.title}</h2>
+                <div class="date">${item.time}</div>
+            </div>
+        </div>
+    </div>`;
+        });
+        let str = arr.join('');
+        $('.m-notice').html(str);
+    });
+</script>
+</html>

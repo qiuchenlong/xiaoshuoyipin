@@ -1,0 +1,64 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>小说管理</title>  
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+  <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 小说管理 <span class="c-gray en">&gt;</span> 每日分享 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+<div class="page-container"> 
+	<form class="form form-horizontal" method="post" action="" enctype="multipart/form-data">  
+  <h4></span>每日分享：</label></h4>
+  <div class="row cl">
+    <label class="form-label col-xs-4 col-sm-2"><span class="c-red"></span>分享送代金券数量：</label> 
+      <div class="formControls col-xs-8 col-sm-9">
+        <input class="input-text" type="text" placeholder="" id="" name="gcount" value="<{$gcount}>">
+      </div>
+  </div>
+  <div class="row cl">
+    <label class="form-label col-xs-4 col-sm-2"><span class="c-red"></span>每日分享上限：</label> 
+      <div class="formControls col-xs-8 col-sm-9">
+        <input class="input-text" type="text" placeholder="" id="" name="max" value="<{$max}>">
+      </div>
+  </div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+				<!-- <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
+			<!-- 	<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button> -->
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+ $("#sel").change(function(){
+        var opt=$("#sel").val();
+        // alert(opt);
+        window.location.href = "/xiangmu/xiaoshuotaiwang/index.php/Admin/Xiaoshuo/xiaoshou.html?id="+opt;
+ });
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+
+</body>
+</html>

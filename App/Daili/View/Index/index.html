@@ -1,0 +1,108 @@
+<include file='Index/meta'/>
+<!-- 头部模版开始 -->
+<title>小说-管理系统</title>   
+<style type="text/css">
+	
+.footer {
+    position: absolute; /*相对于父元素contanier定位*/
+    width: 100%;
+    bottom: 0;/*始终距离它的父元素的底部为0px.则是处于父元素的最底*/
+}
+
+.xixi{
+	font-style:italic;
+	background-color:#F2DEDE!important;
+	font-size:20px;
+	line-height:10px;
+	font-weight:600; 
+}
+
+
+</style>
+</head>  
+<body> 
+<include file="Index/header" /> 
+<!-- 头部模版结束 -->
+
+<!-- menu模版调用 -->
+<include file="Index/leftmenu" /> 
+<!-- menu模版调用 -->
+ 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="<{:U('Index/index')}>" class="maincolor">首页</a> 
+		<span class="c-999 en">&gt;</span>
+		<span class="c-666">我的桌面</span> 
+		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="Hui-article"> 
+		<article class="cl pd-20">
+			<p class="f-20 text-success">欢迎使用小说管理
+				<span class="f-14">v2.3</span> 
+				后台模版！</p>
+			<p>登录次数：<{$message.login_count}></p>
+			<p>上次登录IP：<{$message.last_ip}> &nbsp;&nbsp;&nbsp;&nbsp;  上次登录时间：<{$message.last_time}></p> 
+			<table class="table table-border table-bordered table-bg">
+				<thead>
+					<tr>
+						<th colspan="7" scope="col">信息统计</th>
+			</tr>
+					<tr class="text-c">
+						<th>统计</th>
+						<th>下单总额</th>
+						<!-- <th>发红总额</th>
+						 <th>领红总额</th> 
+ -->						<!-- <th>商品总量</th> -->
+			</tr>
+		</thead>
+			<tbody id="changetr">
+					
+					<tr class="text-c success">
+						<td>今日</td> 
+						<td><{$ri}></td>
+						<!-- <td><{$pageview.today_pageview}></td>
+						 <td><{$order.today_order}></td> -->
+						<!--<td><{$goods.today_goods}></td>  -->
+			  </tr>
+					
+					<tr class="text-c success">
+						<td>本月</td>  
+						<td><{$yue}></td>
+						<!--  <td><{$pageview.month_pageview}></td>
+						<td><{$order.month_order}></td> -->
+						<!--<td><{$goods.month_goods}></td>  -->
+			</tr>
+		</tbody>
+	</table>
+			
+</article>
+		<footer class="footer"> 
+			<p><br> 本后台系统由<a href="http://www.h-ui.net/" target="_blank" title="放飞科技邮箱公司">放飞科技邮箱公司</a>提供技术支持</p> 
+</footer> 
+</div>
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.page.js"></script> 
+<!--/_footer /作为公共模版分离出去-->
+ 
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+$("#changetr .text-c").mouseover(function(){
+	calss = $(this).attr('class');   
+	// alert(1);
+   $(this).removeClass().addClass("text-c xixi");
+   $(this).children('td').addClass('xixi');  
+
+}).mouseout(function(){  
+	$(this).removeClass().addClass(calss);    
+	$(this).children('td').removeClass();
+});
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+
+
+</body>
+</html>

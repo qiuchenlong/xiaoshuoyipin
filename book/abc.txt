@@ -1,0 +1,6 @@
+infotype:component_verify_ticket
+authorizerappid:
+infotype:authorized
+authorizerappid:wx9353c5086b180283
+infotype:unauthorized
+authorizerappid:wx9353c5086b180283

@@ -1,0 +1,311 @@
+<!DOCTYPE html>		
+<html ng-app="myApp">	
+<head>		
+	<meta charset="utf-8">		
+	<title>frame</title>		
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>		
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">		
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />		
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />		
+		
+	<style>		
+		html, body {width: 100%;min-height: 100%;background: #ffffff;}		
+		.h80 {height: 80px;}		
+		.h40 {height: 40px;}		
+		.h20 {height: 20px;}		
+    	.h10 {height: 10px;background: #e5e5e5;}		
+		.h1 {height: 1px;margin-left: 15px;background: #e5e5e5;}		
+		.fr {float: right;}		
+		.fl {float: left;}		
+		.hightitem {background-color: #fff;}		
+		.inwrap {margin: 0 10px;}		
+		
+		/* 2X2样式 */		
+		.row {display: -webkit-box;display: -webkit-flex;display: flex;}		
+		.col {-webkit-box-flex:1; -webkit-flex:1; flex:1;position: relative;}		
+		.col img {position: absolute; right: 0; width: 80px; top: 0;}		
+		.col .matrixcell {display: table-cell;vertical-align: middle; padding-left: 10px;}		
+		.col .matrixcell .title {margin-bottom: 10px;}		
+		.matrix {display: table;height: inherit;}		
+		
+		/* 1. 2X2 */		
+		.flipcard {height: 30px; line-height: 30px; text-align: center; margin: 5px 5px 3px 5px; color: #000; background-color: #fff; font-size: 14px;}		
+		.darktitle {height: 20px;line-height: 20px; margin-top:10px;margin-left: 15px;font-size: 13px; 
+		border-left:3px solid #cccccc;
+		 padding-left:5px;color: #666;}		
+		
+		/* 2. 三列 */		
+		.scratch02 .word {margin-top: 10px;margin-left: 10px;}		
+		.scratch02 .word .title{font-size: 14px;}		
+		.scratch02 .word .info{font-size: 12px;color: #666;}		
+		.scratch02 img {position: relative;width: 60px; height: 50px;}		
+		.showposter {text-align: center;margin-top: 5px;padding-bottom: 10px;}		
+		
+		/* 列表 */		
+		.classify {height: 60px;line-height: 60px; width:90%; margin-left:5%;background-color: #fff;position: relative;border-bottom: 1px solid #f3f3f3;}		
+		.classify .sublogo {width: 30px;margin-top: 15px;margin-left: 15px;float: left;}		
+		.classify .arrow {position: absolute;vertical-align: top;right: 15px;top:20px;height: 13px;}		
+		.classify .info {line-height: 20px; float: left; height: 60px;margin-left: 10px;}		
+		.classify .info .title {font-size: 14px; color: #999999; margin-top: 10px;}		
+		.classify .info .subtitle {font-size: 12px; height:20px;
+		line-height:20px; overflow:hidden;
+		 color: #ccc; margin-top: 5px;}		
+		.subclass {display: none;}		
+		.subclass .flipcard {margin:0;}		
+		.brb {border-right: 1px solid #e0e0e0;border-bottom: 1px solid #e0e0e0;}		
+		.bb {border-bottom: 1px solid #e0e0e0;}		
+		
+		.top{
+    		height:40px;
+    		background:#ffffff;
+    		top: -5px;
+    	}
+
+    	.search{
+    		float:left;
+    		width:90%;
+    		margin-top:5px;
+    		margin-left:5%;
+    	}
+    	.searchInput{
+    		width:100%;
+    		background:url(../image/zui_search_ico.png)  no-repeat 10px #ffffff;
+    		background-size:12px;
+    		background-position:30%;
+    		height:25px !important;
+    		line-height:25px;
+    		font-size:12px !important;
+    		border:none;
+    		border:1px solid #f3f3f3;
+    		border-radius:30px;
+    		outline: none;
+    		color:#666666;
+    		text-align: center;
+    	}
+		
+	</style>		
+</head>		
+<body ng-controller="DataController">
+
+	<div class="top">
+		<div class="search" onclick="search()">
+			<div class="searchInput" >搜索书名/作者</div>
+		</div>
+	</div>
+	
+	<!-- 2 列表 -->				
+	<div class="darktitle">男频系列</div>		
+	<div class="classify" tapmode ng-click="expandList(b)" ng-repeat="b in fenlei1" >		
+		<img src="{{imgurl + b.imgurl}}"  alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">{{b.shortname}}</div>		
+			<div class="subtitle"><lb ng-repeat="s in b.list1" >{{s.shortname}}&nbsp;|</lb></div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<!--<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	-->
+	
+	
+		
+	<!-- 2 列表 -->				
+	<div class="darktitle">女频系列</div>		
+	<div class="classify" tapmode ng-click="expandList(s)" ng-repeat="s in fenlei2" >		
+		<img src="{{imgurl + s.imgurl}}"  alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">{{s.shortname}}</div>		
+			<div class="subtitle"><lb ng-repeat="sc in s.list2" >{{sc.shortname}}&nbsp;|</lb></div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<!--<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>-->
+	
+	<!-- 2 列表 -->				
+	<div class="darktitle">出版商系列</div>	
+	<div class="classify" tapmode ng-click="expandList(d)" ng-repeat="d in fenlei3" >		
+		<img src="{{imgurl + d.imgurl}}"  alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">{{d.shortname}}</div>		
+			<div class="subtitle"><lb ng-repeat="sd in d.list3" >{{sd.shortname}}&nbsp;|</lb></div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>		
+	<!--<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	
+	<div class="classify" tapmode onclick="expandList()">		
+		<img src="../image/girl@2x.png" alt="" class="sublogo">		
+		<div class="info">		
+			<div class="title">现代都市</div>		
+			<div class="subtitle">都市生活&nbsp;|&nbsp;热血暧昧&nbsp;|&nbsp;都市异能&nbsp;|&nbsp;娱乐明星</div>		
+		</div>		
+		<img src="../image/ic_arrow_down_black.png" alt="" class="arrow" >		
+	</div>	-->
+	
+			
+</body>		
+<script type="text/javascript" src="../script/api.js"></script>	
+<script type="text/javascript" src="../script/jquery-2.1.4.js"></script>
+<script src="../script/swiper.min.js"></script>
+<script src="../script/angular.min.js"></script>
+<script src="../script/ev.js"></script>	
+<script>
+
+function expandList()
+{	
+	  api.openWin({
+	       name: 'win_headerfenlei',
+	       url: 'win_header.html',
+	       pageParam:{
+               frm_name:'fenlei_detail',
+               frm_url:'fenlei.html',
+               title:'现代都市',
+              
+	       }
+        });	
+        
+        }
+        
+        function search()
+        {
+           api.openWin({
+			       name: 'win_headerfdsaf',
+			       url: 'frame0/seek_win.html',
+			      
+		        });
+        }
+        
+        	var userid=0;
+	apiready = function(){
+userid=$api.getStorage('user_id')||1;
+    	EventT.emit("apiready");
+        
+	};
+	
+        var app = angular.module("myApp", []);
+	app.controller("DataController",["$scope",function($scope){
+		
+		$scope.fenlei1 = [];
+		$scope.fenlei2 = [];
+		$scope.fenlei3 = [];
+		$scope.imgurl = imageUrl;
+		
+		
+		EventT.on("apiready",function(){
+			$api.post(phpurl+'Home/Book/sort',function(ret){
+				if(ret.code == 200){
+//				alert($api.jsonToStr(ret.result));
+					$scope.fenlei1=ret.result.book_sort_list1;
+					$scope.fenlei2=ret.result.book_sort_list2;
+					$scope.fenlei3=ret.result.book_sort_list3;
+					$scope.$apply();
+				}
+			})
+		})
+		
+		$scope.expandList=function(dates)
+		{
+		var title=dates.shortname;
+		var sortid=dates.sortid;
+
+   api.openWin({
+	       name: 'win_headerfenlei',
+	       url: 'win_header.html',
+	       pageParam:{
+               frm_name:'fenlei_detail',
+               frm_url:'fenlei.html',
+               title:title,
+               data:
+               {
+               sortid:sortid
+               }
+              
+	       }
+        });	
+		     
+		
+
+		
+		}
+		
+		
+		
+	}])
+	
+
+</script>		
+</html>		

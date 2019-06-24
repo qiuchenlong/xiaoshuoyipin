@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	  <title>邀请</title>
+<!--    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" id="css" href="../../css/theme.css" />-->
+   <link rel="stylesheet" id="css" href="__PUBLIC__/src/css/options.css" />
+   <link rel="stylesheet" href="__PUBLIC__/src/css/index.css">   
+    <link rel="stylesheet" href="__PUBLIC__/src/css/icon/iconfont.css">
+		<!-- <script type="text/javascript" src="../../src/library/zepto.js"></script>-->
+	</head>
+	<body id="invite">
+<!-- <header  style=" position: fixed; top: 0px;">
+    <div class="u-hd_f">
+        <a class="iconfont  icon-xiangshangbiaoshi-copy" href="discover.html"></a>
+        <span>团队</span>
+        <span></span>
+    </div>
+    <div class="u-hd_fbase"></div>
+</header> -->
+
+
+        <div class="page_2">
+        	<div class="row nav">
+                <div>账号</div>
+        		
+        		<div>时间</div>
+        		
+        		<span class="border"></span>
+        	</div>
+            <foreach name="arr" item='v'>
+        	<div class="row first">
+        		
+        		<div><{$v.phone}></div>
+        		<div><{$v.addtime}></div>
+        	</div>
+        	</foreach>
+        	
+        </div>
+        <div class="page_3">
+        	<a href="yaoqing.html" class="btn">邀请好友</a>
+        </div>
+	</body>
+	<script type="text/javascript" src="__PUBLIC__/script/api.js"></script>
+	<script type="text/javascript">
+        $(function($) {
+            $('.invite_nav').on('click', function(event) {
+                var str = $(this);
+                str.addClass('active').siblings().removeClass('active');
+            });
+        });
+	</script>
+</html>

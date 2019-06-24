@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/api.css" />
+    <link rel="stylesheet" href="../src/css/index.css">
+    <link rel="stylesheet" href="../src/css/swiper-4.2.2.min.css"><!--轮播css-->
+    <link rel="stylesheet" href="../src/css/icon/iconfont.css">
+    <script src="../src/library/zepto.js"></script><!--页面js-->
+    <script src="../src/library/swiper-4.2.2.min.js"></script><!--页面js-->
+    <script src="../src/js/global.js"></script>
+</head>
+<body>
+<div class="m-discover" style="margin-bottom: 10px;">
+    <div class="touxiang">
+        <img src="../src/images/xianhua.jpg" alt="">
+        <span>name123456</span>
+    </div>
+    <div class="under">
+        <div class="left">
+            <div class="pmgressbar">
+                <div class="pmgressbar_bg"></div>
+            </div>
+            <p class="pmgressbar_p">已签到<span>1</span>天，签满<span>7</span>天抽大奖</p>
+        </div>
+        <div class="right">
+            <p class="js-discover">签到</p>
+            <p class="js-finish">已签到</p>
+        </div>  
+    </div>
+    
+</div>
+<div class="content">
+    <ul class="m-user_list"">
+        <a href="frame1/chong_zhi.html">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont"><img src="../src/images/yaoqing.png"></i>
+                    <p class="h4">
+                        <span>金币余额<b style=" position:relative;color: #B93221;margin-left:9px;">$：20:00</b></span>
+                    </p>
+                </div>
+                <div class="right">充值
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont"><img src="../src/images/yaoqing.png"></i>
+                    <p class="h4">
+                        <span>代金券余额<b style=" position:relative;color: #B93221;margin-left:9px;">$：20:00</b></span>
+                    </p>
+                </div>
+                <div class="right">领取
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a>
+        <a href="invite.html">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont"><img src="../src/images/yaoqing.png"></i>
+                    <p class="h4">
+                        <span>我的人脉</span>
+                    </p>
+                </div>
+                <div class="right">查看
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a>
+        <a href="yaoqing.html">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont"><img src="../src/images/woyao.png"></i>
+                    <p class="h4">
+                        <span>我要推荐</span>
+                    </p>
+                </div>
+                <div class="right">邀请
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a>
+        <a href="shouyi.html">
+            <li class="li">
+                <div class="left">
+                   <i class="iconfont"><img src="../src/images/yaoqing.png"></i>
+                    <p class="h4">
+                        <span>我的收益</span>
+                    </p>
+                </div>
+                <div class="right">查看
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a>
+        <a href="review.html">
+            <li class="li">
+                <div class="left">
+                   <i class="iconfont"><img src="../src/images/shuping.png"></i>
+                    <p class="h4">
+                        <span>书评广场</span>
+                    </p>
+                </div>
+                <div class="right">去评
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a>
+       <!--   <a href="BookSelection.html">
+            <li class="li">
+                <div class="left">
+                   <i class="iconfont"><img src="../src/images/shudan.png"></i>
+                    <p class="h4">
+                        <span>书单</span>
+                    </p>
+                </div>
+                <div class="right">go
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a> -->
+    </ul>
+</div>
+<footer class="footer">
+    <div class="base"></div>
+    <div class="menu">
+        <a class="footer_a" href="frame1.html">
+            <i class="iconfont icon-shujia"></i>
+            <span>书架</span>
+        </a>
+        <a class="footer_a" href="frame0.html"> <i class="iconfont icon-xing"></i> <span>精选</span> </a>
+        <a class="footer_a" href="stack.html"> <i class="iconfont icon-caidan1"></i> <span>书库</span> </a>
+        <a class="footer_a current" href="discover.html">
+            <i class="iconfont icon-faxian-copy"></i>
+            <span>发现</span>
+        </a>
+    </div>
+</footer>
+<script type="text/javascript">
+    $(function($) {
+        $('.js-discover').on('click',function(e) {
+            $('.js-discover').hide();
+            $('.js-finish').show();
+        })
+        // $('.js-finish').on('click', function(e) {
+        //     $('.js-finish').hide();
+        //     $('.js-discover').show();
+        // })
+    })
+</script>
+</body>
+</html>

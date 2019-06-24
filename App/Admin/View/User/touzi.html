@@ -1,0 +1,83 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>投资列表</title>  
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+	<div class="Hui-article">
+		<article class="cl pd-20"> 
+			<div class="text-c"> 
+		<!-- <form action="<{:U(index)}>" method="post">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入用户名"  name="id">
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索用户</button>
+		</form> -->
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <i ></i> </a> <!--  </a><a href="<{:U('add')}>"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a> </span> --> <span class="r">共有数据：<strong><{$shu}></strong> 条</span>   <span >总投资：<strong><{$sum}></strong> 元</span></div>
+			
+			
+			<div class="mt-0">  
+				<table class="table table-border table-bordered table-bg table-hover table-sort" width="100%">
+					<thead>
+						<tr class="text-c"> 
+							
+							<th width="100">ID</th>
+							<th width="100">用户</th>
+							<th width="100">项目</th>
+							<th width="100">推荐首页</th>
+							<th width="100">投资金额</th>
+							
+							<th width="100">时间</th>
+							
+							 
+						</tr> 
+						<foreach name="arr" item="v">
+						<tr class="text-c"> 
+							<td width="100"><{$v.id}></td>
+							<td width="100"><{$v.user_id}></td>
+							<td width="100"><{$v.xiangmu_id}></td>
+							<td width="100"><if condition="$v.tuijian eq 0">下架&nbsp;&nbsp;
+							<a href="<{:U('touzi')}>?id=<{$_GET.id}>&tuijian=1&tid=<{$v.id}>" ><button>推荐</button></a>
+							<else/>推荐&nbsp;&nbsp;<a href="<{:U('touzi')}>?id=<{$_GET.id}>&tuijian=0&tid=<{$v.id}>"><button>下架</button></a>
+							</if>
+							</td>
+							<td width="100"><{$v.touzi}></td>
+							
+							<td width="100"><{$v.time}></td>
+						</tr> 
+					</foreach>
+					</thead> 
+					<tfoot>
+						
+					</tfoot>
+				</table>
+				<{$btn}>
+			</div>
+		</article>
+	</div> 
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+ 
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

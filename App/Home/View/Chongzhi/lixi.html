@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>分红收益</title>
+    <meta name="keywords" content="KEYWORDS..." />
+    <meta name="description" content="DESCRIPTION..." />
+    <meta name="author" content="DeathGhost" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link rel="icon" href="__PUBLIC__/images/icon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="__PUBLIC__/images/icon/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="__PUBLIC__/images/icon/apple-touch-icon-120x120-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="196x196" href="__PUBLIC__/images/icon/apple-touch-icon-196x196-precomposed.png">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <style>
+        .tou_xiang{
+            width: 30px; height: 30px;
+            border-radius: 50%; vertical-align: middle;
+        }
+        .r_jiantou{
+            width: 20px; height: auto;
+        }
+        .three .zuo,
+        .three .you{
+            width: 49.8%;
+            text-align: center;
+        }
+        .three .zuo p.tit,
+        .three .you p.tit{
+            width: 100%;
+            text-align: center;
+            font-size: .3rem;
+            color: #8c8c8c;
+            margin-top: 3%;
+        }
+        .three .zuo img,
+        .three .you img{
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        .three .zuo p.fu-tit,
+        .three .you p.fu-tit{
+            font-size: .6rem; color: #f75710;
+            text-align: center;
+        }
+        .three .line{
+            height: 1.7rem;
+            border-right: 1px solid #f3f3f3;
+            margin-top: .5rem;
+        }
+        .productList span{
+            width: 3rem;
+            text-align: center;
+        }
+    </style>
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script>
+        $(document).ready(function() {
+            //飞入动画，具体根据实际情况调整
+            $('.addToCart').click(function() {
+                $('.hoverCart a').html(parseInt($('.hoverCart a').html()) + 1);
+                /*测试+1*/
+                var shopOffset = $('.hoverCart').offset();
+                var cloneDiv = $(this).parent().siblings('.goodsPic').clone();
+                var proOffset = $(this).parent().siblings('.goodsPic').offset();
+                cloneDiv.css({'position' : 'absolute', 'top' : proOffset.top, 'left' : proOffset.left});
+                $(this).parent().siblings('.goodsPic').parent().append(cloneDiv);
+                cloneDiv.animate({
+                    width   : 0,
+                    height  : 0,
+                    left    : shopOffset.left,
+                    top     : shopOffset.top,
+                    opacity : 1,
+                }, 'slow');
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="h_base"></div>
+<header>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>分红收益</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<section class="productList" style=" background:#f1faf9; padding:5px;">
+    <div class="three" style="    display: flex;align-items: center;">
+        <div class="zuo" onclick="location.href = ''">
+            <p class="fu-tit">¥<{$s.money}></p>
+            <p class="tit">可用余额</p>
+        </div>
+        <span class="fl line"></span>
+        <div class="zuo" onclick="location.href = '<{:U('Chongzhi/lixi')}>'">
+            <p class="fu-tit">¥<{$shouyi}></p>
+            <p class="tit">分红收益</p>
+        </div>
+        <!-- <span class="fl line"></span>
+        <div class="you clearfloat fl" onclick="location.href = '<{:U('hehuoren/index')}>'">
+          <p class="tit">团队收益</p>
+          <img src="__PUBLIC__/img/10.png">
+          <p class="fu-tit">¥<?php if(!empty($st)){echo '<{$t}>';}else{ echo 0;}    ?></p>
+        </div> -->
+    </div>
+</section>
+<!-- <section class="productList" style=" background:#ffffff;padding:5px;">
+  <ul>
+   <li>
+    我邀请的好友
+   </li>
+    <foreach name="arr" item="v">
+     <li >
+   <img src="__PUBLIC__/img/21.png" class="tou_xiang"/> <{$v.xiaji_id}>
+    <span class="right_l">
+
+	</span>
+   </li>
+ </foreach>
+
+
+  </ul>
+<a class="more_btn">加载更多</a>
+</section> -->
+<section class="productList" style=" background:#fff;padding:5px; margin-top:20px;">
+    <ul>
+        <li style="    font-weight: bold;">
+            <span>日期</span>
+            <span class="right_l">分红</span>
+        </li>
+        <foreach name="arr" item="v">
+            <li>
+                <span><{$v.time}></span>
+                <span class="right_l hong_ziti"><{$v.shouyi}></span>
+            </li>
+        </foreach>
+    </ul>
+     <a class="more_btn">加载更多</a>
+</section>
+<!--footer star-->
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s">
+            <a href="<{:U('index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s active">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+</body>
+</html>

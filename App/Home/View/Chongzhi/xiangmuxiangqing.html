@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>合伙人</title>
+    <meta name="keywords" content="KEYWORDS..." />
+    <meta name="description" content="DESCRIPTION..." />
+    <meta name="author" content="DeathGhost" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/icon/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/icon/apple-touch-icon-120x120-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="196x196" href="images/icon/apple-touch-icon-196x196-precomposed.png">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <style>
+        .tou_xiang{
+            width: 30px; height: 30px;
+            border-radius: 50%; vertical-align: middle;
+        }
+        .r_jiantou{
+            width: 20px; height: auto;
+        }
+        .alltop{
+            width: 100%;
+            /*padding: 0 3%;*/
+            background: url('__PUBLIC__/images/topbg.jpg');
+            background-size: 100% 100%;
+            height: 1.5rem;
+            line-height: 1.5rem;
+        }
+        .tabHost{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        .fill{
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            //飞入动画，具体根据实际情况调整
+            $('.addToCart').click(function() {
+                $('.hoverCart a').html(parseInt($('.hoverCart a').html()) + 1);
+                /*测试+1*/
+                var shopOffset = $('.hoverCart').offset();
+                var cloneDiv = $(this).parent().siblings('.goodsPic').clone();
+                var proOffset = $(this).parent().siblings('.goodsPic').offset();
+                cloneDiv.css({'position' : 'absolute', 'top' : proOffset.top, 'left' : proOffset.left});
+                $(this).parent().siblings('.goodsPic').parent().append(cloneDiv);
+                cloneDiv.animate({
+                    width   : 0,
+                    height  : 0,
+                    left    : shopOffset.left,
+                    top     : shopOffset.top,
+                    opacity : 1,
+                }, 'slow');
+            });
+        });
+    </script>
+    <script src="../../../../Public/js/jquery.min.js"></script>
+</head>
+<body>
+<!-- <header style="background: #ffffff; font-size: 14px; color: #f9cc19; text-align: center; overflow: hidden;">
+
+
+</header> -->
+<header>
+    <!--<div class="h_base"></div>-->
+    <div class="tabHost">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span><{$v.xiangmu}></span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<!--<div class="alltop"></div>-->
+<div class="h_base"></div>
+</div>
+<section class="productList" style=" background:#fff; padding:5px;">
+    <!--<p style=" margin: 10px 0 0 20px; font-size: 22px; height: 40px; line-height: 40px; width: 100%; text-align: center;">-->
+        <!--<{$v.xiangmu}>-->
+    <!--</p>-->
+    <div class="zsy">
+        <p class="nmb"><{$z}></p>
+        <if condition="$v.edu eq 1">
+        <p style="font-size: 0.4rem;">总收益</p>
+        <else/><p style="font-size: 0.4rem;">项目投资情况</p>
+        </if>
+         <if condition="$v.edu eq 1">
+            <else/>
+        <p class="pmgressbar0">
+            <span class="pmgressbar1" style="width: <{$bai}>%" data-w="<{$bai}>%">
+                <span class="psz"><{$bai}>%</span>
+            </span>
+        </p>
+        </if>
+        <if condition="$v.edu eq 1">
+             <else/>
+        <p class="flex">
+            <span>总额：<em><{$v.zonge}>元</em></span>
+            <span>已投：<em><{$v.yitouzi}>元</em></span>
+        </p>
+         </if>
+    </div>
+    <div class="wdbtn clearfloat" style="position: relative;">
+        <button type="submit" class="chongzhi" onclick="location.href = '<{$a}>?xiangmu_id=<{$v.xiangmu_id}>'">我要投</button>
+        <button type="submit" class="chongzhi fill" onclick="location.href = '<{$a}>?xiangmu_id=<{$v.xiangmu_id}>'" style="background: #999;">
+            <{$v.xianshi}>
+        </button>
+    </div>
+</section>
+<section class="productList" style=" background:#fff;padding:5px;">
+    <ul>
+        <li>
+            <{$v.jieshao}>
+        </li>
+    </ul>
+    <!--<center><font color="blue" size="6"><{$v.xianshi}></font></center>-->
+    <!--<br>-->
+    <!--<a class="more_btn" style="color: 20px;width:80%; color: red;">总收益￥：<{$z}></a>-->
+</section>
+<section class="productList" style=" background:#fff;padding:5px; margin-top:20px;">
+    <ul>
+        <li>
+            <span class="tr">日期</span><span class="right_l tr">收益</span>
+        </li>
+        <foreach name="arr" item="v">
+            <li>
+                <span class="tr"><{$v.time}></span><span class="right_l tr"><font color="red"><{$v.zongshouyi}></font></span>
+            </li>
+        </foreach>
+    </ul>
+    <a class="more_btn">加载更多</a>
+</section>
+<!--footer star-->
+<div class="h_base"></div>
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s active">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p style="text-align: center;">首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p style="text-align: center;">收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p style="text-align: center;">我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+</body>
+<script>
+    var w = $('.pmgressbar1').attr('data-w');
+    if (w == "100%") {
+        $('.pmgressbar1').css("border-radius", "6px");
+    }
+    else if(w <= "13%"){
+        $('.psz').css("right", "-5em");
+    }
+</script>
+</html>

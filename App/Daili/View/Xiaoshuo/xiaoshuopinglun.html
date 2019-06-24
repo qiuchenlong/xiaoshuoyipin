@@ -1,0 +1,167 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>小说管理</title>  
+<style>
+
+td {
+
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+
+}
+table{
+	table-layout: fixed;
+}
+
+</style>
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 频道管理 <span class="c-gray en">&gt;</span> 小说标签 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+
+	<div class="Hui-article">
+		<article class="cl pd-20"> 
+			<div class="text-c"> 
+		<form action="<{:U('xiaoshuopinglun')}>" method="post">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入评论内容"  name="id">
+		<input type="hidden"  value="<{$_GET.id}>" name="aid">
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索评论内容</button>
+		</form>
+	</div> 
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <i ></i> </a></a><a href="<{:U('exex')}>?id=<{$_GET.id}>"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加评论</a> </span> <span class="r">共有数据：<strong><{$shu}></strong> 条</span> </div>
+			
+			
+			<div class="mt-0">  
+				<table class="table table-border table-bordered table-bg table-hover table-sort" width="100%">
+					<thead>
+						<tr class="text-c"> 
+							
+							<th width="10">ID</th>
+							<th width="50">小说</th>
+							<th width="50">评论内容</th>
+							<th width="50">评分</th>
+							<th width="50">点赞</th>
+							<th width="50">读者</th>
+							
+							
+							
+							
+							<if condition="$_SESSION.guanli neq null">
+							<th width="30">操作</th>
+						<!-- <?php echo plsch1();?> -->
+						</tr> 
+						<foreach name="arr" item="v">
+						<tr class="text-c"> 
+							<!-- <td width="100"><{$v.sortid}></td> -->
+							
+							<td width="20"><{$v.id}></td>
+							<td width="20"><{$v.shuname}></td>
+							<td width="100">
+								
+								<{$v.content}>
+							</td>
+							<td width="20"><{$v.xing}>星</td>
+							<td width="20"><{$v.likes}>人</td>
+							<td width="50"><{$v.uname}></td>
+							
+							<if condition="$_SESSION.guanli neq null">
+							<td width="30"><!-- <a href="<{:U('zhangjie')}>?id=<{$v.articleid}>"><button>添加章节</button></a> -->
+							
+							 <a  onclick="del('<{$v.id}>','<{$_GET.id}>') "
+ title="删除" class="ml-5"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							</if>
+							<!-- <?php echo plsch2($v['id']);?> -->
+						</tr> 
+					</foreach>
+					</thead> 
+					<tfoot>
+						
+					</tfoot>
+				</table>
+				<div style="text-align: center;"><{$btn}></div>
+			</div>
+		</article>
+	</div> 
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+ 
+</script>
+
+<script>
+
+	function member_xuanze(title,url,w,h){
+    $.get(url); //执行控制器中的编辑操作
+	layer_show(title,url,w,h);
+}
+
+function del(id,get){
+	var con;
+	con=confirm("确定删除评论吗?"); //在页面上弹出对话框
+	if(con==true){
+		location.href="<{:U('xiaoshuopinglundel')}>?id="+id+"&get="+get+"";
+	}
+}
+
+	function picture_add(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url,
+            shade: 0.6,
+		    area:['68%','80%'] 
+        });
+        // layer.full(index);
+    }
+    //全选
+                function ckAll(){
+                    var flag=document.getElementById("allChecks").checked;
+                    var cks=document.getElementsByName("check");
+                    for(var i=0;i<cks.length;i++){
+                        cks[i].checked=flag;
+                    }
+                }
+
+                //批量删除
+                function delAllProduct(){
+                    if(!confirm("确定批量删除评论吗？")){
+                        return ;
+                }
+                var cks=document.getElementsByName("check");
+                var str="";
+                //拼接所有的图书id
+                for(var i=0;i<cks.length;i++){
+                    if(cks[i].checked){
+                         str+=cks[i].value+".";
+                    }
+                }
+            //去掉字符串末尾的‘&’
+                str=str.substring(0, str.length-1);
+            // alert(str);
+            // location.href="${pageContext.request.contextPath}/servlet/delAllBooksServlet?"+str;
+                location.href="<{:U(pidel)}>?id="+str+"";}
+   
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

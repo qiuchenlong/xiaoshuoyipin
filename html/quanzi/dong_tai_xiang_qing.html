@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp" class="htmlWeiLei">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hello APP</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" href="quan_zi.css" />
+		<style>
+			/*分享的css*/
+			.quan_zi {
+				background: #fff
+			}
+			.quan_zi  .wei_bu .xin_xi, .quan_zi  .wei_bu .zan {
+				margin-right: 8px;
+				font-size: 12px;
+				float: none;
+				color: rgb(96,96,96);
+			}
+			.quan_zi  .wei_bu .xin_xi > .iconfont, .quan_zi  .wei_bu .zan > .iconfont {
+				font-size: 14px;
+				margin-right: 4px;
+				position: relative;
+				top: -2px;
+				vertical-align: middle;
+			}
+			.quan_zi  .wei_bu .xin_xi > .iconfont {
+				font-size: 12px;
+				top: -1px;
+			}
+			.quan_zi  .ju_bao {
+				font-size: 12px;
+				float: right;
+			}
+			.zan_lie_biao {
+				background-color: #fff;
+				height: 40px;
+				line-height: 40px;
+				font-size: 14px;
+				padding: 5px 10px;
+				color: #666;
+			}
+			.zan_lie_biao > i {
+				width: 40px;
+				text-align: center;
+			}
+			.zan_lie_biao div {
+				padding: 4px;
+				height: 35px;
+				overflow: hidden;
+			}
+			.zan_lie_biao img {
+				width: 29px;
+				height: 29px;
+				border: 2px solid #fff;
+				overflow: hidden;
+				display: inline;
+				word-spacing: 10px;
+				letter-spacing: 20px;
+				border-radius: 50%;
+				position: relative;
+				vertical-align: top;
+			}
+			.ping_lun_lie_biao {
+				margin-top: 10px;
+				background: #fff;
+				color: #333;
+				border-top: 1px solid #eee;
+			}
+			.ping_lun_lie_biao .ping_lun_biao_ti {
+				line-height: 40px;
+				height: 36px;
+				border-bottom: 1px solid #eee;
+				padding: 0 10px;
+				font-size: 13px;
+				color: #333;
+			}
+			.ping_lun_lie_biao li {
+				padding: 10px;
+				border-bottom: 1px solid #eee;
+			}
+			.tou_xiang .shi_jian {
+				font-size: 10px;
+				line-height: 20px;
+			}
+			.ping_lun_lie_biao .ni_rong {
+				line-height: 20px;
+				font-size: 12px;
+				word-break: break-all;
+				color: #666;
+			}
+			.ping_lun_lie_biao .ni_rong p {
+				padding: 5px;
+				padding-bottom: 3px;
+				margin-bottom: 3px;
+				font-size: 13px;
+				line-height: 20px;
+				word-break: break-all;
+				background-color: #eee;
+				border-radius: 3px;
+			}
+			.ping_lun_lie_biao .zan {
+				font-size: 14px;
+				color: #666;
+				margin-top: 10px;
+			}
+			.ping_lun_lie_biao .zan .icon-zan {
+				margin-right: 5px;
+			}
+			html, body {
+				height: 100%;
+			}
+			#main {
+				overflow: scroll;
+				box-sizing: border-box;
+				padding-bottom: 50px;
+				overflow-scrolling :touch;
+				-webkit-overflow-scrolling :touch;
+			}
+			.footer {
+				position: fixed;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 50px;
+				z-index: 54;
+				padding-right: 120px;
+				box-sizing: border-box;
+				background: #fff;
+				border-top: 1px solid #EBEBEB;
+			}
+			.footer #content {
+				height: 34px;
+				margin: 8px;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 5px;
+				padding-left: 25px;
+				border-radius: 3px;
+				border: 1px solid #aaa;
+				overflow: hidden;
+			}
+			.footer button {
+				width: 100px;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				text-align: center;
+				line-height: 52px;
+				height: 50px;
+				color: #333;
+				font-size: 15px;
+			}
+			.quan_zi .tou_xiang {
+				margin-left: 0px;
+				margin-right: 0px;
+			}
+			.quan_zi .ni_rong {
+				padding-left: 0px;
+				padding-right: 0px;
+				word-break: break-all;
+			}
+			.quan_zi .ming_zi {
+				line-height: 16px;
+				padding: 0px;
+				word-break: break-all;
+			}
+			.quan_zi .shi_jian {
+				margin-top: 0px;
+				font-size: 10px;
+			}
+			.quan_zi_xiang_qing .tou_xiang {
+				margin: 0 15px;
+			}
+			/*#body{
+			 top:
+			 }*/
+			#content {
+				background: url(../../image/pen.png) no-repeat;
+				background-position: 5px center;
+				background-size: 18px;
+				padding-left: 25px;
+			}
+			#contents {
+				color: #989898;
+				font-size: 14px;
+				margin: 8px 10px;
+				word-break: break-all;
+			}
+			
+			
+			.ios #main{
+				max-height:100%;
+				height: 100%;
+				min-height:100%;
+			}
+			
+			.ios .footer {
+				position:absolute;
+			}
+			
+			
+		</style>
+	</head>
+	<body  class="" >
+		<main id="main">
+			<ul class="quan_zi quan_zi_xiang_qing">
+				<li>
+					<div class="tou_xiang flex-wrap">
+						<div class="flex-con" style="height:50px;">
+							<span class="img-w-c tou_xiang_img"> <img  src="{{Imgurl+Obj.sumbheadimg}}" alt=""> </span>
+							<h3 class="ming_zi">22432</h3>
+							<p class="ni_rong">
+								2018-21-21
+							</p>
+						</div>
+					
+					</div>
+					<p id="contents" style="">
+						<span class="len_jie" >#123124#</span>
+						我去二无群热 <span class="len_jie" style="margin:0px 2px"  ></span>
+					</p>
+					<div class="tu_pin">
+					
+						<div class="img-w-c">
+						<img src="../../image/kind-book@2x.png" alt="">
+						</div>
+						<div class="img-w-c">
+						<img src="../../image/kind-book@2x.png" alt="">
+						</div>
+					</div>
+
+					<div class="wei_bu">
+						<span class="zan" ng-if="Obj.isdan==0" ng-click="zan(Obj.circletalk_id)"> <i class="iconfont icon-zan"></i>21 </span>
+						<span class="zan apptxtcolor" ng-if="Obj.isdan==1" ng-click="zan1()"> <i class="iconfont icon-zan apptxtcolor"></i>123</span>
+						<span class="xin_xi"><i class="iconfont icon-xinxi"></i>12</span>
+						<span class="ju_bao" onclick="jubao()">举报</span>
+					</div>
+				</li>
+			</ul>
+			<div class="zan_lie_biao flex-wrap ">
+				
+				<div class="flex-con">
+					<!--<img src="{{Imgurl+item.sumbheadimg}}" alt="" ng-repeat="item in likeList track by $index">-->
+					<img src="../../image/to.png" alt="">
+					<img src="../../image/to.png" alt="">
+					<img src="../../image/to.png" alt="">
+					<img src="../../image/to.png" alt="">
+				</div>
+				
+			</div>
+			<div class="ping_lun_lie_biao">
+				<p class="ping_lun_biao_ti">
+					全部评论(12)
+				</p>
+				<ul class="quan_zi">
+					
+					<li>
+						<div class="tou_xiang flex-wrap">
+							<div class="flex-con" style="height:50px;">
+								<span class="img-w-c tou_xiang_img"> <img  src="../../image/frame0/goods_4.png" alt=""> </span>
+								<h3 class="ming_zi">名字</h3>
+								<p class="shi_jian">
+									分享内容
+								</p>
+							</div>
+							<span class="zan"><i class="iconfont icon-zan"></i>545</span>
+						</div>
+						<div class="ni_rong">
+							<p>
+								分享内容分享内容分享内容分享内容
+							</p>
+							分享内容分享内容分享内容分享内容分享内容分享内容分享内容分享内容分享内容分享内容分享内容分享内容分享内容分享内容
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="bottom_loadmore"></div>
+		</main>
+		<footer class="footer">
+			<input type="text"   ng-blur="Blu()" ng-click="Foc()" placeholder="说点什么吧" id="content">
+			<button class="appbackground submit" ng-click="fabu()">
+				发&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;送
+			</button>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../script/jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="../../script/jqthumb.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script src="../../script/angular.min.js"></script>
+	<script src="../../script/ev.js"></script>
+	
+</html>

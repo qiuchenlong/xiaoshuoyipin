@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>详情</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script type="text/javascript">
+        function stops() {
+            return false;
+        }
+        document.oncontextmenu = stops;
+    </script>
+    <style type="text/css">
+        p img{ width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>项目讲堂</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<div class="detail clearfloat">
+    <div class="one clearfloat">
+        <!--<div>
+            <span></span>
+            <img src="__PUBLIC__/images/<{$zhishi.images}>" class="wenzhang_img" />
+        </div>-->
+        <div class="xia clearfloat box-s">
+            <p class="bt">
+                <{$zhishi.title}>
+            </p>
+            <p class="time"><{$zhishi.time}></p>
+            <p class="nr">
+                <{$zhishi.content}>
+            </p>
+        </div>
+    </div>
+    <!--xgtouzi star-->
+    <div class="xgtouzi xgtouzitwo clearfloat">
+        <div class="top clearfloat">
+            <img src="__PUBLIC__/img/55.png" />
+        </div>
+        <div class="middle clearfloat">
+            <img src="__PUBLIC__/img/16.png" />
+            <img src="__PUBLIC__/img/18.png" />
+        </div>
+        <div class="bottom clearfloat">
+            长按识别二维码
+        </div>
+        <!-- 		    	<div class="list clearfloat">
+                            <a href="detail.html#">发布计划</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="detail.html#">新手课堂</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="detail.html#">关于我们</a>
+                        </div> -->
+    </div>
+    <!--xgtouzi end-->
+    <!--footer star-->
+    <div class="footer clearfloat">
+        <ul>
+            <li class="fl box-s active">
+                <a href="<{:U('Index/index')}>">
+                    <span class="icon1"></span>
+                    <p>首页</p>
+                </a>
+            </li>
+            <li class="fl box-s">
+                <a href="<{:U('Shouyi/index')}>">
+                    <span class="icon2"></span>
+                    <p>收益</p>
+                </a>
+            </li>
+            <li class="fl box-s">
+                <a href="<{:U('User/index')}>">
+                    <span class="icon3"></span>
+                    <p>我的</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--footer end-->
+</div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>小程序测试</title>
+    <style>
+    	body , html {
+    		background:#fff; 
+    	}
+    	.xin_xi_lie_biao li {
+			line-height: 50px;
+			position: relative;
+			padding: 0 15px;
+			padding-left: 115px;
+			border-bottom: 1px solid #eee;
+    	}
+
+    	.xin_xi_lie_biao li span {
+    		position: absolute;
+    		left: 15px;
+			color:#aaa;
+    	}
+
+    	.xin_xi_lie_biao li input {
+    		width: 85%;
+    		height: 100%;
+    		box-sizing: border-box;
+    	}
+
+    	.yan_zhang_ma input {
+    		padding-right: 68px;
+    	}
+		.yan_zhang_ma {
+			position: relative;
+		}
+    	.yan_zhang_ma button {
+    		position: absolute;
+    		right: 15px;
+    		top:10px;
+    		padding:8px 15px;
+    		border-radius: 3px;
+    		background: rgb(118,141,255);
+    		color:#333;
+    		font-size:16px;
+    	}
+
+    	.yan_zhang_tu input {
+    		padding-right: 120px;
+
+    	}
+
+    	.yan_zhang_tu  {
+    		position: relative;
+    	}
+
+    	.yan_zhang_tu>img {
+    		position: absolute;
+    		width: 100px;
+    		height: auto;
+    		right:15px;
+    		top:8px;
+    		border-radius: 3px;
+    	}
+
+    	.xuan_ze .icon-iconfontfanhuiyou {
+			float: right;
+			color:#999;
+    	}
+	
+    	.xuan_ze_lei_xing {
+			position: fixed;
+			z-index: 10;
+			left:0;
+			top:0;
+			bottom:0;
+			right:0;
+            display: none;
+    	}
+
+    	.xuan_ze_lei_xing .bg {
+    		position: absolute;
+			left:0;
+			top:0;
+			bottom:0;
+			right:0;
+			background:rgba(0,0,0,0.5);
+    	}
+
+    	.xuan_ze_lei_xing>ul {
+    		width: 60%;
+    		position: absolute;
+    		left:20%;
+    		top:50%;
+    		max-height: 60%;
+    		overflow-y:auto; 
+    		transform: translateY(-50%);
+    		-webkit-transform: translateY(-50%);
+    		background:#fff;
+    		border-radius: 5px;
+    	}
+
+    	.xuan_ze_lei_xing>ul>li {
+    		line-height: 45px;
+    		text-align: center;
+    		border-bottom: 1px solid #eee;
+    	}
+    	.xie_yi,
+    	.footer{
+    		line-height:40px; 
+    		text-align:center;
+    		color:#fff;
+    		position:fixed;
+    		bottom:0;
+    		left:0;
+    		width:100%; 
+    	}
+    	.xie_yi { 
+    		bottom:40px;
+    		line-height: 50px;
+    		text-align: center;
+    		color:#999;
+    		font-size: 12px;
+    	}
+
+    	.xie_yi .icon-xuanzhong {
+    		
+    		position: relative;
+    		top: 1px;
+    		height: 20px;
+    		width: 20px;
+			
+    		display: inline-block;
+			background:url(images/notsel.png) no-repeat center;
+			vertical-align:text-bottom;
+			margin-bottom:-1px;
+			background-size:20px;
+    	}
+		
+		.xie_yi .icon-xuanzhong.active{
+			background:url(images/sel.png) no-repeat;
+			background-size:20px;
+		}
+    	
+    	html{
+    		height:100%; 
+    		
+    	}
+    	
+    	body  {
+    		padding-bottom:120px;
+    	}
+    </style>
+</head>
+
+<body> 
+    <div id="ct"> 
+		<a href="{:U('Home/Index/getPre_auth_code')}" target="_blank">已注册过微信小程序</a> 
+	</div> 
+</body>
+
+
+</html>

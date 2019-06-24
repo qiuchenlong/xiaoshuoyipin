@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>股东合伙人</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/zepto.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script src="__PUBLIC__/js/rem.js"></script>
+</head>
+<body>
+<div class="h_base"></div>
+<header>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>股东合伙人</span>
+        <i style="width: 0.7rem"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<section class="content">
+    <div class="deposit_hd">
+        <h3 class="h3">每日分红收入<span style="color:#ccc;">(元)</span></h3>
+        <div class="u-flex_center">
+            <p class="f_c"></p>
+            <p class="smb">0</p>
+            <p class="f_c">
+                <span>放款人数</span>
+                <span style="margin-top: 0.2rem;"><em>0</em>人</span>
+            </p>
+        </div>
+        <div class="u-flex_around f-m35">
+            <p class="f_c">
+                <span>入股金额</span>
+                <span style="margin-top: 0.2rem;"><em>0</em>元</span>
+                <em class="line"></em>
+            </p>
+            <p class="f_c">
+                <span>入股期限</span>
+                <span style="margin-top: 0.2rem;"><em>0</em>人</span>
+                <i class="line"></i>
+            </p>
+        </div>
+        <div class="u-flex_around" style="justify-content: space-evenly;padding: 0.25rem 0;">
+            <a class="f_c" href="<{:U('Chongzhi/lixi')}>" style="    width: 6.5em;">
+                <span>收入明细</span>
+                <span style="margin-top: 0.2rem;color:#ccc;">累计收入0元</span>
+            </a>
+            <i class="line2"></i>
+            <p class="f_c">
+                <a class="btn" href="<{:U('Tixian/index')}>">提现</a>
+            </p>
+        </div>
+    </div>
+    <div class="deposit_ft">
+        <h3 class="h3">收入计算器</h3>
+        <p>入股金额</p>
+        <p class="pmgressbar0">
+            <span class="pmgressbar1" id="pgb_money">￥</span>
+        </p>
+        <p class="u-flex_btw">
+            <span class="pgb_span">1000 元</span>
+            <span><em class="expenditure">30000</em> 元</span>
+            <span class="pgb_span">100000 元</span>
+        </p>
+        <div class="counter">
+            <h6 class="h6">预估每月收入<span class="smb">900</span>元</h6>
+            <p class="ps">*实际收入根据平台收益分配比率不同而上下浮动</p>
+        </div>
+        <a class="btm" href="javascript:;">下一步</a>
+    </div>
+    <div class="deposit_ft">
+        <h3 class="h3" style="padding-bottom: 1rem;">
+            <span>充值金额</span>
+            <input class="input" type="number">
+        </h3>
+        <p>选择期限</p>
+        <p class="pmgressbar0">
+            <span class="pmgressbar1">￥</span>
+        </p>
+        <p class="u-flex_btw">
+            <span class="pgb_span">3个月</span>
+            <span class="pgb_span">60个月</span>
+        </p>
+        <p style="padding: 0.3rem 0 1rem;    text-align: center;">你已选择 <em class="expires">36</em>个月</p>
+        <a class="btm" href="javascript:;">充值</a>
+    </div>
+</section>
+<!--footer star-->
+<div class="h_base"></div>
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s">
+            <a href="<{:U('index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s active">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+</body>
+<script>
+    $(function() {
+        // var disX = ev.targetTouches[0].pageX - $(this).position().left;
+        $('#pgb_money').on('touchmove', function(ev) {
+            $(this).css({
+                left : ev.targetTouches[0].pageX - ev.targetTouches[0].pageX - $('#pgb_money').position().left + 'px',
+            });
+        });
+        $('#pgb_money').on('touchend', function() {
+            $(this).off('touchstart', 'touchmove');
+        });
+    })
+</script>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>提现</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <style type="text/css">
+        .erweima{ width: 4.2rem; height: 4.2rem; position: absolute; margin-left: 0px; }
+    </style>
+</head>
+<body>
+<!--<div class="Withdraw_hd">
+    <div class="left">
+        <a >图</a>
+        <span>收款方式</span>
+    </div>
+    <div class="right">
+        <a href="javascript:;"></a>
+    </div>
+</div>-->
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>收益提现</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<form action="<{:U('txhou')}>" method="post" enctype="multipart/form-data">
+    <div class="txian clearfloat">
+        <div class="content clearfloat box-s">
+            <div class="top clearfloat">
+                <div class="zuo clearfloat fl">
+                    提现金额
+                </div>
+                <div class="zhong" style="display: flex;font-size: 1rem;align-items: center;">
+                    <span style="padding: 0 6px 0 0.5rem;    font-size: 0.6rem;">¥</span>
+                    <input type="number" name="tixian" class="input" value=""/>
+                </div>
+                <!--<div class="you clearfloat fr">
+                    <{$y.shouyi}> / <{$y.money}>
+                </div>-->
+            </div>
+            <div class="top" style="display: flex;align-items: flex-end;">
+                <div class="zuo">
+                    账户名
+                </div>
+                <div class="zhong" style="width: 67%;padding-left: 1rem;">
+                    <input type="text" name="zhanghu" class="input" style="font-size:0.6rem;"/>
+                </div>
+                <!--<div class="you clearfloat fr">
+                </div>-->
+            </div>
+            <!--原-->
+            <!--<div class="top clearfloat">
+                <div class="zhong clearfloat fl" style="width: 100%;">
+                    <input class="inputs" type="radio" value="0" name="zhifu" checked>微信
+                    <input type="radio" value="1" class="inputs" name="zhifu">支付宝
+                </div>
+            </div>-->
+            <div class="withdraw_ul js-weixin">
+                <p class="h_h4">提现方式</p>
+                <label class="w_li">
+                    <div class="left">
+                        <img class="tx_icon" src="__PUBLIC__/img/icon0/wx.png" alt="">
+                        <span class="h3">微信</span>
+                    </div>
+                    <input type="radio" value="1" name="zhifu" checked="checked" style="display: none;">
+                    <img class="checked" src="__PUBLIC__/img/icon0/checked.png" alt="">
+                </label>
+                <label class="w_li js-zfb">
+                    <div class="left">
+                        <img class="tx_icon" src="__PUBLIC__/img/icon0/zfb.png" alt="">
+                        <span class="h3">支付宝</span>
+                    </div>
+                    <input type="radio" value="1" name="zhifu" style="display: none;">
+                    <img class="checked" style="display: none;" src="__PUBLIC__/img/icon0/checked.png" alt="">
+                </label>
+            </div>
+          <!--   <div class="top clearfloat" style="height: inherit;">
+                <div style="width: 100%;padding-bottom: 0.3rem;border-bottom: 1px solid #e6e6e6;">
+                    <img src="__PUBLIC__/img/icon0/tixian.png" class="erweima" id="pic_master_img"  /><input
+                        type="file" name="images" style="opacity: 0; height: 4.2rem; width: 4.2rem;"
+                        onchange="file(this)">
+                </div>
+                <div style="font-size: 0.4rem;color: #666;width: 4.2rem;text-align: center;padding: 0.5rem 0;">
+                    点击上传收益二维码
+                </div>
+            </div> -->
+            <!--<div>
+             &nbsp;&nbsp;<input type="radio" name="lei" value="0" checked> <font size="5">收益</font>&nbsp;&nbsp;&nbsp;
+
+            <input type="radio" name="lei" value="1"><font size="5">本金(按预定时间)</font>
+            </div>-->
+            <!--<div class="top clearfloat">
+                <div class="zuo clearfloat fl">
+                    <img src="__PUBLIC__/img/wx.png"/>
+                </div>
+                <div class="zhong clearfloat fl">
+                    <input type="text" name="bankname" id="" value="" placeholder="账户全称" />
+                </div>
+            </div>
+                <div class="top clearfloat">
+                <div class="zuo clearfloat fl">
+                    <img src="__PUBLIC__/img/wx.png"/>
+                </div>
+                <div class="zhong clearfloat fl">
+                    <input type="text" name="banknum" id="" value="" placeholder="银行账号" />
+                </div>
+            </div> -->
+            <!--<div class="wdbtn wdbtntwo clearfloat">
+                <button type="submit" class="chongzhi fl">提交</button>
+            </div>-->
+            <!--<p class="tit pt5">
+                <img src="__PUBLIC__/img/tishi.png">
+                <span class="shu fl">1、</span>
+                <span class="zi fl">
+                  提现本金免费,提现收益收取20%的管理费;
+                </span>
+                <span class="shu fl">2、</span>
+                <span class="zi fl">
+					需要人工确认您的提现账户资金将于1-7个工作日到达你的账户;
+				</span>
+            </p>-->
+            <!-- <p class="tit pt5">
+                <span class="shu fl">2、</span>
+                <span class="zi fl">
+                    邀请奖励金额不能立即提现，可作为保证金使用，计划结束后可提现;
+                </span>
+            </p>
+            <p class="tit pt5">
+                <span class="shu fl">3、</span>
+                <span class="zi fl">
+                    正在执行中的计划，保证金与收益在计划结束后可提现;
+                </span>
+            </p> -->
+        </div>
+        <div class="tx_radio">
+            <label>
+                <input type="radio" name="lei" value="0" checked="checked">
+                <i class="iconfont icon-radioactive current"></i>
+                <span>收益T+1到账</span>
+            </label>
+            <label>
+                <input type="radio" name="lei" value="1">
+                <i class="iconfont icon-radioactive"></i>
+                <span>本金T+5到账</span>
+            </label>
+        </div>
+        <div class="wdbtn wdbtntwo clearfloat">
+            <button type="submit" class="chongzhi fl">提交</button>
+        </div>
+    </div>
+
+</form>
+<!--footer star-->
+<div class="h_base"></div>
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s active">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+<script type="text/javascript" src="__PUBLIC__/js/withdraw.js"></script>
+<script type="text/javascript">
+ function file(el) {//this
+        for (var i = 0; i < el.files.length; i++) {
+            $('#pic_master_img').attr('src',window.URL.createObjectURL(el.files[i]));
+        }
+    }
+    $(function($) {
+        $('input[name="zhifu"]').change(function() {
+            $('.checked').hide();
+            $(this).nextAll('.checked').show();
+        });
+        $('input[name="lei"]').change(function() {
+            $('.iconfont').removeClass('current');
+            $(this).nextAll('.iconfont').addClass('current');
+        });
+    })
+</script>
+
+</body>
+</html>

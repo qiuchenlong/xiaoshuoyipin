@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="__PUBLIC__/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__PUBLIC__/css/api.css" />
+    <link rel="stylesheet" href="__PUBLIC__/src/css/index.css">
+    <link rel="stylesheet" href="__PUBLIC__/src/css/swiper-4.2.2.min.css"><!--轮播css-->
+    <link rel="stylesheet" href="__PUBLIC__/src/css/icon/iconfont.css">
+    <!--<link rel="stylesheet" href="//at.alicdn.com/t/font_703623_2dm7bumx8ey.css">-->
+    <script src="__PUBLIC__/src/library/zepto.js"></script><!--页面js-->
+    <script src="__PUBLIC__/src/library/swiper-4.2.2.min.js"></script><!--页面js-->
+    <script src="__PUBLIC__/src/js/global.js"></script>
+    <style>
+        body{background: #f1f1f1;}
+        .content > * + *{
+            margin-top: 0.2rem;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .footer .base{
+            background: #f1f1f1;
+        }
+        .m-user_ul .iconfont{
+            font-size: 0.40rem;
+            color: #ccc;
+        }
+        .m-discover{background: #fff;}
+    </style>
+</head>
+<body>
+<section class="content">
+    <div class="user_info">
+    	<div>
+	        <img class="user_headimg" style="display: block;"src="__PUBLIC__/images/<{$faxian.images}>" alt="" >
+	        <a href="<{:U('Login/login_frame')}>?tuichu=1">退出登录</a>
+    	</div>
+        <div class="right">
+            <p class="user_id">ID：<{$faxian.name}></p>
+            <p class="flex">
+                <!--<span class="vip">VIP</span>-->
+                <span class="notvip">代金券数量：<{$faxian.gcount}></span>
+                <span class="user_money">书币余额：<{$faxian.egold}></span>
+            </p>
+        </div>
+    </div>
+    <div class="m-discover" style="margin-bottom: 10px;">
+        <!--<div class="touxiang">
+            <img src="http://www.youdingb.com/xiangmu/xiaoshuoyipin/Public/<{$faxian.images}>" alt="">
+            <span><{$faxian.name}></span>
+        </div>-->
+        <div class="under">
+            <div class="left">
+                <div class="pmgressbar">
+                    <div class="pmgressbar_bg"></div>
+                </div>
+                <p class="pmgressbar_p">已签到<span><{$faxian.qiandao}></span>天，签满<span>7</span>送金币</p>
+            </div>
+            <div class="right">
+                <if condition="$faxian.yiqian neq '201' ">
+                    <p class="js-discover">签到</p>
+                </if>
+                <else>
+                    <p class="js-finish">已签到</p>
+                </else>
+            </div>
+        </div>
+    </div>
+    <ul class="m-user_ul">
+        <!--<a href="javascript:;">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-libao"></i>
+                    <p class="h4">
+                        <span>签到送书币</span>
+                    </p>
+                </div>
+            </li>
+        </a>-->
+        <a href="<{:U('User/chong_zhi')}>?id=<{$_SESSION.user_id}>">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-chongzhi1"></i>
+                    <p class="h4">
+                        <span>书币充值</span>
+                    </p>
+                </div>
+                <i class="iconfont icon-signboard_right"></i>
+            </li>
+        </a>
+        <a href="review.html">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-faxian-copy"></i>
+                    <p class="h4">
+                        <span>书评广场</span>
+                    </p>
+                </div>
+                <i class="iconfont icon-signboard_right"></i>
+            </li>
+        </a>
+        <a href="javascript:;">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-bangding"></i>
+                    <p class="h4">
+                        <span>手机绑定</span>
+                    </p>
+                </div>
+                <div class="right">
+                    <span><{$faxian.name}></span>
+                    <i class="iconfont icon-signboard_right"></i>
+                </div>
+            </li>
+        </a>
+    </ul>
+    <!--<ul class="m-user_ul">
+        &lt;!&ndash;VIP会员&ndash;&gt;
+        <a href="javascript:;">
+            <li class="li">
+                <img src="__PUBLIC__/src/images/yaoqing.png" alt="">
+                <div>
+                    <h5 class="h5">开通VIP会员</h5>
+                    <p>365天每天1元畅读所有小说</p>
+                </div>
+                <i class="iconfont icon-signboard_right"></i>
+            </li>
+        </a>
+    </ul>-->
+    <ul class="m-user_ul">
+        <a href="<{:U('User/qb')}>">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-jilu"></i>
+                    <p class="h4">
+                        <span>消费记录</span>
+                    </p>
+                </div>
+                <i class="iconfont icon-signboard_right"></i>
+            </li>
+        </a>
+        <a href="<{:U('User/recharge')}>">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-wendangku"></i>
+                    <p class="h4">
+                        <span>充值记录</span>
+                    </p>
+                </div>
+                <i class="iconfont icon-signboard_right"></i>
+            </li>
+        </a>
+        <a href="<{:U('User/readHistory')}>">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-shujia"></i>
+                    <p class="h4">
+                        <span>阅读记录</span>
+                    </p>
+                </div>
+                <i class="iconfont icon-signboard_right"></i>
+            </li>
+        </a>
+    </ul>
+</section>
+<footer class="footer">
+    <div class="base"></div>
+    <div class="menu">
+        <a class="footer_a" href="<{:U('Shujia/index')}>">
+            <i class="iconfont icon-yg-shujia"></i>
+            <span>书架</span>
+        </a>
+        <a class="footer_a" href="<{:U('Index/index')}>"> <i class="iconfont icon-shouye"></i> <span>首页</span> </a>
+        <a class="footer_a" href="<{:U('Shuku/index')}>"> <i class="iconfont icon-caidan"></i> <span>书库</span></a>
+        <a class="footer_a current" href="<{:U('Faxian/index')}>"><i class="iconfont icon-wode"></i><span>我的</span></a>
+    </div>
+</footer>
+</body>
+<script type="text/javascript">
+    $(function($) {
+        $('.js-discover').on('click', function(e) {
+            $('.js-discover').hide();
+            $('.js-finish').show();
+        });
+    });
+    function parseData(res) {
+        return typeof(res) == 'string' ? JSON.parse(res) : res;
+    }
+    /*base64转码 start*/
+    function Base64() {
+
+        // private property
+        _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        // public method for encoding
+        this.encode = function(input) {
+            var output = '';
+            var chr1,
+                chr2,
+                chr3,
+                enc1,
+                enc2,
+                enc3,
+                enc4;
+            var i = 0;
+            input = _utf8_encode(input);
+            while (i < input.length) {
+                chr1 = input.charCodeAt(i++);
+                chr2 = input.charCodeAt(i++);
+                chr3 = input.charCodeAt(i++);
+                enc1 = chr1 >> 2;
+                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+                enc4 = chr3 & 63;
+                if (isNaN(chr2)) {
+                    enc3 = enc4 = 64;
+                } else if (isNaN(chr3)) {
+                    enc4 = 64;
+                }
+                output = output +
+                    _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+                    _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+            }
+            return output;
+        };
+        // public method for decoding
+        this.decode = function(input) {
+            var output = '';
+            var chr1,
+                chr2,
+                chr3;
+            var enc1,
+                enc2,
+                enc3,
+                enc4;
+            var i = 0;
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, '');
+            while (i < input.length) {
+                enc1 = _keyStr.indexOf(input.charAt(i++));
+                enc2 = _keyStr.indexOf(input.charAt(i++));
+                enc3 = _keyStr.indexOf(input.charAt(i++));
+                enc4 = _keyStr.indexOf(input.charAt(i++));
+                chr1 = (enc1 << 2) | (enc2 >> 4);
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                chr3 = ((enc3 & 3) << 6) | enc4;
+                output = output + String.fromCharCode(chr1);
+                if (enc3 != 64) {
+                    output = output + String.fromCharCode(chr2);
+                }
+                if (enc4 != 64) {
+                    output = output + String.fromCharCode(chr3);
+                }
+            }
+            output = _utf8_decode(output);
+            return output;
+        };
+        // private method for UTF-8 encoding
+        _utf8_encode = function(string) {
+            string = string.replace(/\r\n/g, '\n');
+            var utftext = '';
+            for (var n = 0; n < string.length; n++) {
+                var c = string.charCodeAt(n);
+                if (c < 128) {
+                    utftext += String.fromCharCode(c);
+                } else if ((c > 127) && (c < 2048)) {
+                    utftext += String.fromCharCode((c >> 6) | 192);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                } else {
+                    utftext += String.fromCharCode((c >> 12) | 224);
+                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                }
+            }
+            return utftext;
+        };
+        // private method for UTF-8 decoding
+        _utf8_decode = function(utftext) {
+            var string = '';
+            var i = 0;
+            var c = c1 = c2 = 0;
+            while (i < utftext.length) {
+                c = utftext.charCodeAt(i);
+                if (c < 128) {
+                    string += String.fromCharCode(c);
+                    i++;
+                } else if ((c > 191) && (c < 224)) {
+                    c2 = utftext.charCodeAt(i + 1);
+                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                    i += 2;
+                } else {
+                    c2 = utftext.charCodeAt(i + 1);
+                    c3 = utftext.charCodeAt(i + 2);
+                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                    i += 3;
+                }
+            }
+            return string;
+        };
+    }
+    /*base64转码 end*/
+    //登录后调用
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+    var code = getQueryString('code');
+    var state = getQueryString('state');
+    //facebook
+    if (state == 'state123abc') {
+        //用代码交换访问口令
+        $.get('https://graph.facebook.com/v3.1/oauth/access_token?client_id=1068912489952175&redirect_uri=http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Faxian/index.html&client_secret=fc9abd1060df0cb499bd5d8e05166499&code=' + code, function(result) {
+            console.log(result);
+            var oauth = parseData(result);
+            var token = oauth.access_token;
+            /*//检查访问口令
+            $.get('https://graph.facebook.com/debug_token?input_token=' + token + '&access_token=' + token,
+                function(ret) {
+                console.log(ret);
+            });*/
+            $.get('https://graph.facebook.com/me?scope=email&fields=id,name,email,first_name,last_name,link,birthday,picture&access_token=' + token, function(ret) {
+                $.post('http://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/fxbook',
+                    {name : parseData(ret).name, uid : parseData(ret).id}, function(e) {
+                        location.href ='file:///storage/emulated/0/UZMap/wgt/A6903071794713/html/user/login_frame.html', {
+                            name : parseData(ret).name,
+                            uid  : parseData(ret).id
+                        };
+                    },
+                );
+            });
+        });
+    }
+    //line
+    else if (state == 's123') {
+        $.post('https://api.line.me/oauth2/v2.1/token', {
+            'grant_type'    : 'authorization_code',
+            'code'          : code,
+            'redirect_uri'  : 'http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Faxian/index.html',
+            'client_id'     : '1600608013',
+            'client_secret' : 'ec197cf2cb3cc726ca778a75e6c3be14',
+        }, function(ret) {
+            var b64 = new Base64();
+            var line_info = b64.decode(parseData(ret).id_token.split('.')[1]);
+            //去掉最后一位的空格符(它生成后会自动换行而形成)
+            line_info = line_info.substring(0, line_info.length - 1);
+            $.post('http://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/fxbook',
+                {name : JSON.parse(line_info).name, uid : JSON.parse(line_info).sub}, function(e) {
+                    location.href = 'file:///storage/emulated/0/UZMap/wgt/A6903071794713/html/user/login_frame.html', {
+                        name : JSON.parse(line_info).name,
+                        uid  : JSON.parse(line_info).sub,
+                    };
+                },
+            );
+        });
+    }
+</script>
+</html>

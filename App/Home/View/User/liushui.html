@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>合伙人</title>
+    <meta name="keywords" content="KEYWORDS..." />
+    <meta name="description" content="DESCRIPTION..." />
+    <meta name="author" content="DeathGhost" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link rel="icon" href="__PUBLIC__/images/icon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="__PUBLIC__/images/icon/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="__PUBLIC__/images/icon/apple-touch-icon-120x120-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="196x196" href="__PUBLIC__/images/icon/apple-touch-icon-196x196-precomposed.png">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <style>
+        html, body{background: #fff;}
+        .tou_xiang{
+            width: 30px; height: 30px;
+            border-radius: 50%; vertical-align: middle;
+        }
+        .r_jiantou{
+            width: 20px; height: auto;
+        }
+        .page{
+            position: fixed;
+            bottom: 1.5rem;
+            height: 20px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            //飞入动画，具体根据实际情况调整
+            $('.addToCart').click(function() {
+                $('.hoverCart a').html(parseInt($('.hoverCart a').html()) + 1);
+                /*测试+1*/
+                var shopOffset = $('.hoverCart').offset();
+                var cloneDiv = $(this).parent().siblings('.goodsPic').clone();
+                var proOffset = $(this).parent().siblings('.goodsPic').offset();
+                cloneDiv.css({'position' : 'absolute', 'top' : proOffset.top, 'left' : proOffset.left});
+                $(this).parent().siblings('.goodsPic').parent().append(cloneDiv);
+                cloneDiv.animate({
+                    width   : 0,
+                    height  : 0,
+                    left    : shopOffset.left,
+                    top     : shopOffset.top,
+                    opacity : 1,
+                }, 'slow');
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>流水账</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<!--header-->
+<!--<header style="background: #f3f3f3">
+
+ <h1><font size="5" color="blue">流水账</font></h1>
+</header>-->
+<div style="height:1rem;">
+</div>
+<section class="productList" style=" background:#fff;padding:5px; margin-top:20px;">
+    <ul>
+        <li>
+            <span class="left">时间</span><span>事件</span><span class="right">收益</span>
+        </li>
+        <foreach name="arr" item="m">
+            <li>
+                <span class="left hong_ziti"><font size="1"><{$m.time}></font></span>
+                <span><{$m.shijian}></span>
+                <span class="right"><font color="red"><{$m.shouyi}></font></span>
+                <!--<span class="right_l hong_ziti"> <{$m.shouyi}></span>-->
+            </li>
+        </foreach>
+    </ul>
+    <{$btn}>
+    <!-- <a class="more_btn"></a> -->
+</section>
+<!--footer star-->
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s active">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+</body>
+</html>

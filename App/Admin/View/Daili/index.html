@@ -1,0 +1,142 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>小说管理</title>  
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 频道管理 <span class="c-gray en">&gt;</span> 代理商列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+	
+	<div class="Hui-article">
+		<article class="cl pd-20"> 
+			<div class="text-c"> 
+		<form action="<{:U('index')}>" method="post">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入代理商名/手机"  name="id">
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索代理商</button>
+		</form>
+	</div> 
+	
+
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <i ></i> </a><if condition="$_SESSION.guanli neq null"><a onclick="picture_add('添加代理商','<{:U('add')}>')"   class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加代理商</a></if> </span><span class="r">共有数据：<strong><{$shu}></strong> 条</span> </div>
+			
+			
+			<div class="mt-0">  
+				<table class="table table-border table-bordered table-bg table-hover table-sort" width="100%">
+					<thead>
+						<tr class="text-c"> 
+							
+							<th width="10">ID</th>
+							<th width="50">代理商</th>
+							<th width="50">手机</th>
+							<th width="50">邮箱</th>
+							<th width="50">佣金比例</th>
+							<th width="50">结算方式</th>
+							<th width="50">支付类型</th>
+							<th width="50">支付账号</th>
+							<th width="50">支付姓名</th>
+							<th width="50">是否禁用</th>
+							
+							
+							
+							
+							<if condition="$_SESSION.guanli neq null">
+							<th width="30">操作</th>
+							</if>
+							 
+						</tr> 
+						<foreach name="arr" item="v">
+						<tr class="text-c"> 
+							<!-- <td width="100"><{$v.sortid}></td> -->
+							
+							<td width="20"><{$v.uid }></td>
+							<td width="100">
+								
+								<{$v.uname}>
+							</td>
+							<td width="30"><{$v.mobile}></td>
+							
+							<td width="30"><{$v.email}></td>   
+						
+							<td width="30"><{$v.yongjin}>%</td>
+							<if condition="$v.jiesuan eq 0">
+								<td width="30">日结</td>
+							<elseif condition="$v.jiesuan eq 1"/><td width="30">周结</td>
+							<elseif condition="$v.jiesuan eq 2"/><td width="30">月结</td>
+							</if>
+
+							<if condition="$v.zhilei eq 0">
+								<td width="30">支付宝</td>
+							<elseif condition="$v.zhilei eq 1"/><td width="30">微信</td>
+							<elseif condition="$v.zhilei eq 2"/><td width="30">银行卡</td>
+							</if>
+
+							
+							<!-- <td width="30"><{$v.zhilei}></td> -->
+							<td width="30"><{$v.zhihao}></td>
+							<td width="30"><{$v.zhiname}></td>
+							<if condition="$v.lei eq 1">
+								<td width="30">否</td>
+							<else/><td width="30"><font color="red" >是</font></td>
+							</if>
+							
+							
+							
+							<if condition="$_SESSION.guanli neq null">
+							<td width="50">
+								
+								<a title="修改" onclick="picture_add('修改','<{:U('edit')}>?id=<{$v.uid}>')"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a  onclick="del('<{$v.uid}>') " class="ml-5" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							
+							</if>
+						</tr> 
+					</foreach>
+					</thead> 
+					<tfoot>
+						
+					</tfoot>
+				</table>
+				<{$btn}>
+			</div>
+		</article>
+	</div> 
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+ 	function del(id){
+	var con;
+	con=confirm("确定删除吗?"); //在页面上弹出对话框
+	if(con==true){
+		location.href="<{:U('del')}>?id="+id+"";
+	}
+}  
+
+function picture_add(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        layer.full(index);
+    }
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

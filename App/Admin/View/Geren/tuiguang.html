@@ -1,0 +1,144 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>小说管理</title>  
+<style type="text/css">
+	.table .text-c td{
+		 color:#83879d;
+		
+	}
+	.table .text-c .wenzi{
+		 color:#83879d;
+		 text-align:left;
+		 vertical-align:right;
+	}
+</style>
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 频道管理 <span class="c-gray en">&gt;</span> 男频列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+	
+	<!-- <div class="Hui-article">
+		<article class="cl pd-20"> 
+			<div class="text-c"> 
+		<form action="<{:U('index')}>" method="post">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入代理商名/手机"  name="id">
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索代理商</button>
+		</form>
+	</div>  -->
+	
+
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <i ></i> </a><a href="<{:U('tgadd')}>"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加推广链接</a> </span><span class="r">共有数据：<strong><{$shu}></strong> 条</span> </div>
+			
+			
+			<div class="mt-0">  
+				<table class="table table-border table-bordered table-bg table-hover table-sort" width="100%">
+					<thead>
+						<tr class="text-c"> 
+							
+							<th width="1">ID</th>
+							<th width="50">推广链接</th>
+							<th width="80">入口页面</th>
+							<th width="30"> 点击</th>
+							
+							
+							
+							
+							
+							
+							<th width="20">操作</th>
+						
+							 
+						</tr> 
+						<foreach name="arr" item="v">
+						<tr class="text-c"> 
+							<!-- <td width="100"><{$v.sortid}></td> -->
+							
+							<td width="1"><{$v.id }></td>
+							<td width="180" class="wenzi">
+								<{$v.gongzhong}>(认证公众号)<br>
+								<a href="<{$v.lianjie}>"><font color="#63a2d5"><{$v.lianjie}></font></a>
+								<span style="float: right;">
+									
+									<a onclick="picture_abc('推广二维码','<{:U('Xiaoshuo/wenan')}>?id=6&zid=622&uid=75')" href="javascript:;">
+											<img src="__PUBLIC__/tuierweima/neirong.png" width="15">
+										</a>
+										<a onclick="picture_add('推广二维码','<{:U('erweima')}>?id=<{$v.id}>')" href="javascript:;">
+											<img src="__PUBLIC__/tuierweima/erweima.png"  width="18">
+										</a>
+								</span>
+
+								<br>创建时间：<{$v.time}>
+							</td>
+							<td width="80" >
+								<font color="#63a2d5" size="4"><{$v.xiaoshuo}></font><br>
+								<{$v.zhangjie}></td>
+							
+							<td width="30" ><{$v.dianji}></td>   
+						
+							
+							
+							
+							<td  width="50" >
+								
+								<a title="修改" href="<{:U('edit')}>?id=<{$v.id}>"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a  href="<{:U('del')}>?id=<{$v.id}>" class="ml-5" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							
+							
+						</tr> 
+					</foreach>
+					</thead> 
+					<tfoot>
+						
+					</tfoot>
+				</table>
+				<{$btn}>
+			</div>
+		</article>
+	</div> 
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+	 function picture_add(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url,
+            shade: 0.6,
+		    area:['60%','50%'] 
+        });
+        // layer.full(index);
+    }
+
+     function picture_abc(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url,
+            shade: 0.6,
+		    area:['30%','50%'] 
+        });
+        // layer.full(index);
+    }
+ 
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

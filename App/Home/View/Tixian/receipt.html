@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>收款方式</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script src="__PUBLIC__/js/rem.js"></script>
+</head>
+<body>
+<!--<div class="Withdraw_hd">
+    <div class="left">
+        <a >图</a>
+        <span>收款方式</span>
+    </div>
+    <div class="right">
+        <a href="javascript:;"></a>
+    </div>
+</div>-->
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>收款方式</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<ul class="receipt_ul">
+    <li class="receipt_li">
+        <div class="receipt_lt">
+            <img class="receipt_icon" src="__PUBLIC__/img/icon0/wx.png">
+            <div class="receipt_info">
+                <p>微信支付</p>
+               <!--  <p class="re_phone">1333333333333</p> -->
+            </div>
+        </div>
+        <if condition="$w eq 1">
+        <a class="js-setReceipt re_change" href="javascript:;">修 改</a>
+        <else/><a class="js-setReceipt" href="javascript:;">未设置</a>
+        </if>
+    </li>
+    <li class="receipt_li">
+        <div class="receipt_lt">
+            <img class="receipt_icon" src="__PUBLIC__/img/icon0/zfb.png">
+            <div class="receipt_info">
+                <p>支付宝</p>
+                <p class="re_phone"></p>
+            </div>
+        </div>
+         <if condition="$z eq 1">
+        <a class="js-setReceipt re_change" href="javascript:;">修 改</a>
+        <else/><a class="js-setReceipt" href="javascript:;">未设置</a>
+        </if>
+    </li>
+   <!--  <li class="receipt_li">
+        <div class="receipt_lt">
+            <img class="receipt_icon" src="__PUBLIC__/img/icon0/zfb.png">
+            <div class="receipt_info">
+                <p>银行卡</p>
+                <p class="re_phone"></p>
+            </div>
+        </div>
+        <a class="js-setReceipt" href="javascript:;">未设置</a>
+    </li> -->
+</ul>
+<!--冒泡-->
+<div class="changeReceipt">
+    <div class="re_set">
+        <h3 class="re_h3"><p style="width: 0.4rem;"></p><span class="js-set">设置收款方式</span>
+            <img src="__PUBLIC__/img/close.png"></h3>
+        <form class="re_form form_wx" action="<{:U('weixin')}>" method="post" enctype="multipart/form-data">
+            <p class="list">
+                <span>姓名</span>
+                <input type="text" placeholder="请输入你的姓名"  name="weiname" value="<{$user.weiname}>">
+            </p>
+            <p class="list">
+                <span>微信号</span>
+                <input type="text" placeholder="请输入你的账号"  name="weihao" value="<{$user.weihao}>">
+            </p>
+            <p class="list" style="justify-content: space-between;">
+                <span>收款二维码</span>
+                <!-- <input type="file" name="weiimg"  />  -->
+                <button class="re_btn">
+                    上传二维码
+                    <input class="file" type="file" name="weiimg"  />
+                </button>
+            </p>
+            <p style="padding: 0.4rem 0; text-align: center;">
+                <img class="re_img" src="__PUBLIC__/<{$user.weiimg}>" alt="">
+            </p>
+             <input class="savePush" type="submit" value="保存" >
+        </form>
+        
+            <form  class="re_form form_zfb" action="<{:U('zhifubao')}>" method="post" enctype="multipart/form-data">
+
+            <p class="list">
+                <span>姓名</span>
+                <input type="text" placeholder="请输入你的姓名" name="zhiname" value="<{$user.zhiname}>">
+            </p>
+            <p class="list">
+                <span>支付宝号</span>
+                <input type="text" placeholder="请输入你的账号" name="zhihao" value="<{$user.zhihao}>">
+            </p>
+            <p class="list" style="justify-content: space-between;">
+                <span>收款二维码</span>
+               <!-- <input type="file" name="zhiimg"  /> -->
+               <button class="re_btn">
+                    上传二维码
+                    <input class="file" type="file" name="zhiimg"  />
+                </button>
+            </p>
+            <p style="padding: 0.4rem 0; text-align: center;">
+                <img class="re_img" src="__PUBLIC__/<{$user.zhiimg}>" alt="">
+            </p>
+            <input class="savePush" type="submit" value="保存" >
+        </form>
+        <!-- <form class="re_form form_bank" action="">
+            <p class="list">
+                <span>姓名</span>
+                <input type="text" placeholder="请输入你的姓名">
+            </p>
+            <p class="list">
+                <span>银行卡号</span>
+                <input type="text" placeholder="请输入你的账号">
+            </p>
+            <p class="list" style="justify-content: space-between;">
+                <span>收款二维码</span>
+                <button class="re_btn">上传二维码</button>
+            </p>
+            <p style="padding: 0.4rem 0; text-align: center;">
+                <img class="re_img" src="__PUBLIC__/img/timg.jpg" alt="">
+            </p>
+            <button class="savePush">
+                保存
+            </button>
+        </form> -->
+    </div>
+</div>
+<!--footer star-->
+<div class="h_base"></div>
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s active">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+<script type="text/javascript" src="__PUBLIC__/js/withdraw.js"></script>
+<script type="text/javascript">
+ function file(el) {//this
+        for (var i = 0; i < el.files.length; i++) {
+            $('#pic_master_img').attr('src',window.URL.createObjectURL(el.files[i]));
+        }
+    }
+    $(function($) {
+        $('input[name="zhifu"]').change(function() {
+            $('.checked').hide();
+            $(this).nextAll('.checked').show();
+        });
+        $('input[name="lei"]').change(function() {
+            $('.iconfont').removeClass('current');
+            $(this).nextAll('.iconfont').addClass('current');
+        });
+        /*冒泡*/
+        $('.changeReceipt').on('click', function(e) {
+            $('.re_form').hide();
+            $(this).hide();
+        });
+        $('.changeReceipt .re_set').on('click', function(e) {
+            /*阻止冒泡事件*/
+            e.stopPropagation();
+        });
+        $('.re_h3 img').on('click', function(e) {
+            $('.re_form').hide();
+            $('.changeReceipt').hide();
+        });
+
+        $('.re_change').eq(0).on('click', function(e){
+            $('.js-set').text('修改收款方式');
+        });
+        $('.js-setReceipt').eq(0).on('click', function(e) {
+            $('.changeReceipt').show();
+            $('.form_wx').show();
+        });
+        $('.js-setReceipt').eq(1).on('click', function(e) {
+            $('.changeReceipt').show();
+            $('.form_zfb').show();
+        });
+        $('.js-setReceipt').eq(2).on('click', function(e) {
+            $('.changeReceipt').show();
+            $('.form_bank').show();
+        });
+    })
+</script>
+
+</body>
+</html>

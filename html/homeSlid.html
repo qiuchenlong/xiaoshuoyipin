@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/FInit.js"></script>
+    <style>
+     
+       .tishi{
+          position:absolute;
+          top:5px;
+          right:6px;
+          width:20px;
+          height:20px;
+          line-height:20px;
+          text-align: center;
+          display: block;
+          background:red;
+          color:white;
+          border-radius:50%;
+       }
+       .icon-shezhi,.icon-shousuo,.icon-shousuozhuangtai3{
+       		font-size: 25px;
+       }
+       
+       .bianj{
+           position:absolute;
+           right:10px;
+           top:0px;
+           color:#fff;
+           font-size:16px;
+       }
+       
+      
+       
+       .icon-liebiao{
+           position:absolute;
+           bottom:3px;
+           left:10px;
+           font-size:16px;
+           color:#333333;
+           
+       }
+       
+       #secHeader #search{
+           position:absolute;
+           bottom:3px;
+           right:10px;
+           font-size:22px;
+           color:#333333;
+       }
+       
+       #search1{
+           position:absolute;
+           bottom:3px;
+           right:10px;
+           font-size:15px;
+           color:#3343333;
+       }
+       
+       .quanxuan{
+           position:absolute;
+           bottom:3px;
+           left:10px;
+           font-size:16px;
+           color:#333333;
+       }
+       .appHeaderColor{
+       		background:#FFF !important;
+       }
+       
+       li{
+          list-style: none;
+       }
+      
+    </style>
+    <div id="wrap" >
+	   <!-- 第一个头部-->
+	   <div id="firstHeader" class="titlebar activebar appHeaderColor">
+	       
+	   </div>
+	   
+	   <!--第二个头部 -->
+	   <div id="secHeader" class="titlebar  appHeaderColor">
+	       <div class="topbar defaultcolor_bg " id="t_bg">
+	           <li><span class="iconfont icon-liebiao"></span>书架<span class="iconfont icon-sousuo" id="search" onclick="go_search()"></span></li>
+	       </div>
+	       
+	       <div class="topbar defaultcolor_bg " id="t_bg1" style="display:none;">
+	           <li><span class="quanxuan" style="font-size:15px;">全选</span><span id="search1">完成</span></li>
+	       </div>
+	       <!--<span class="iconfont icon-liebiao"></span>书架<span class="iconfont icon-sousuo" id="search"></span>-->
+	               
+	   </div>
+	   
+	   <!-- 第三个头部-->
+	   <div id="thridHeader" class="titlebar appHeaderColor">
+	      
+	   </div>
+	   
+	     <!-- 第4个头部-->
+	   <div id="foreHeader" class="titlebar appHeaderColor">
+	      
+	   </div>
+	
+	
+	
+		<div id="main">
+		        
+		</div>
+		
+		<div id="footer">
+	        <ul class="footer_Bg_Tx_Color">
+	          <li  onclick="switchframe('first_frame', 0)">
+	            <a class="bottom_btn activebtn"></a>
+	          </li>
+	
+	          <li  onclick="switchframe('second_frame', 1)">
+	            <a class="bottom_btn"></a>
+	          </li>
+	
+	          <li  onclick="switchframe('third_frame', 2)">
+	            <a class="bottom_btn"></a>
+	          </li>
+	          
+	          <li  onclick="switchframe('fore_frame', 3)">
+	            <a class="bottom_btn"></a>
+	          </li>
+	          
+	        </ul>
+	      </div>
+	  </div>
+</body>
+<script type="text/javascript" src="../script/home.js"></script>
+<script type="text/javascript" src="../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../script/util.js"></script>
+<script type="text/javascript">
+    $(".icon-liebiao").click(function(){
+        api.openFrame({
+	        name: 'choosebianj',
+	        url: 'frame1/tan_kuang.html',
+	        bounces: false,
+	        bgColor : 'none',
+	        vScrollBarEnabled:false,
+	        rect: {
+	            x: 0,
+	            y: 5,
+	            w: 'auto',
+	            h: 'auto'
+	        },
+	        pageParam:api.pageParam,
+	        animation : {
+				type : "movein",
+				curve : 'ease_in', //动画类型（详见动画类型常量）
+				subType : "from_top", //动画子类型（详见动画子类型常量）
+				duration : 300 //动画过渡时间，默认300毫
+			}
+	    });	
+	    
+	    api.addEventListener({
+	        name:'bbook'
+        },function(ret,err){
+            
+        	$('#t_bg').css('display','none');
+        	$('#t_bg1').css('display','block');
+        });
+        
+        $("#search1").click(function(){
+            $('#t_bg').css('display','block');
+        	$('#t_bg1').css('display','none');
+        	api.sendEvent({
+	            name:'bok'
+            });
+        })
+        
+        $('.quanxuan').click(function(){
+            api.sendEvent({
+               name:'quanxuan'
+            })
+        })
+        
+        
+    })
+    
+    function go_search(){
+    	api.openWin({
+	        name: 'seek_win1',
+	        url: 'frame0/seek_win.html',
+        });
+    }
+</script>
+</html>

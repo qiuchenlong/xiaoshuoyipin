@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>合伙人</title>
+<meta name="keywords"  content="KEYWORDS..." />
+<meta name="description" content="DESCRIPTION..." />
+<meta name="author" content="DeathGhost" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/icon/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/icon/apple-touch-icon-120x120-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196" href="images/icon/apple-touch-icon-196x196-precomposed.png">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css" />
+<style>
+.tou_xiang
+{
+width:30px; height:30px;
+border-radius:50%; vertical-align:middle;
+}
+.r_jiantou{
+width:20px; height:auto;
+
+}
+.wdbtn .chongzhi {
+  width: 100%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  height: 1rem;
+  line-height: 1rem;
+  color: #000;
+  background-color: #FAEB5A;
+  text-align: center;
+  font-size: .45rem;
+  border: 1px solid #E3D54A;
+}
+</style>
+<script src="js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+     //飞入动画，具体根据实际情况调整
+   $(".addToCart").click(function(){
+	        $(".hoverCart a").html(parseInt($(".hoverCart a").html())+1);/*测试+1*/
+            var shopOffset = $(".hoverCart").offset();
+            var cloneDiv = $(this).parent().siblings(".goodsPic").clone();
+            var proOffset = $(this).parent().siblings(".goodsPic").offset();
+            cloneDiv.css({ "position": "absolute", "top": proOffset.top, "left": proOffset.left });
+            $(this).parent().siblings(".goodsPic").parent().append(cloneDiv);
+            cloneDiv.animate({
+				width:0,
+				height:0,
+                left: shopOffset.left,
+                top: shopOffset.top,
+				opacity:1
+            },"slow");
+	   });
+});
+</script>
+</head>
+<body>
+<!--header-->
+<header style="background: #f3f3f3">
+
+ <h1><{$v.xiangmu}></h1>
+</header>
+<div style="height:1rem;">
+
+ </div>
+
+<section class="productList" style=" background:#ffffff; padding:5px;">
+    <div class="wdbtn clearfloat">
+      <button type="submit" class="chongzhi" onclick="location.href = '<{$a}>?xiangmu_id=<{$v.xiangmu_id}>'" >我要投</button>
+    </div>
+
+</section>
+<section class="productList" style=" background:#ffffff;padding:5px;">
+  <ul>
+   <li>
+    <{$v.jieshao}>
+   </li>
+   
+ 
+   
+  </ul>
+
+   <center><font color="blue" size="6"><{$v.xianshi}></font></center>
+
+   <br>
+<a class="more_btn" style="color: 20px;width:80%; color: red;">总收益￥：<{$z}></a>
+</section>
+
+<section class="productList" style=" background:#ffffff;padding:5px; margin-top:20px;">
+  <ul>
+   <li>
+    日期<span class="right_l">收益</span>
+   </li>
+      <foreach name="arr" item="v">
+     <li>
+    <span class="hong_ziti"><{$v.time}></span><span class="right_l hong_ziti"><{$v.shouyi}></span>
+   </li> 
+   
+    </foreach>
+  </ul>
+<!-- <a class="more_btn">加载更多</a> -->
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>客服</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+	<script type="text/javascript">
+function stops(){
+   return false;
+}
+document.oncontextmenu=stops;
+</script>
+</head>
+	<body>
+	<header>
+		<div class="h_base"></div>
+		<div class="tabHost  box-s">
+			<a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+			<span>修改密码</span>
+			<i class="iconfont icon-msnui-more"></i>
+			<!-- <p class="bt">知识分享</p> -->
+		</div>
+	</header>
+		<div class="kefu clearfloat">
+			<!--banner star-->
+			<div class="banner clearfloat">
+				客服
+			</div>
+			<!--banner end-->
+
+			<!--content star-->
+			<div class="content clearfloat box-s">
+				<div class="list clearfloat fl box-s">
+					<div class="zuo clearfloat fl">
+						<img src="__PUBLIC__/img/28.png"/>
+					</div>
+					<div class="you clearfloat fl">
+						<p class="bt">客服微信</p>
+						<p class="mingzi"><{$v.kfweixin}></p>
+					</div>
+				</div>
+				<div class="list clearfloat fl box-s">
+					<div class="zuo zuosan clearfloat fl">
+						<img src="__PUBLIC__/img/qq.png"/>
+					</div>
+					<div class="you clearfloat fl">
+						<p class="bt">客服QQ</p>
+						<p class="mingzi"><{$v.kfqq}></p>
+					</div>
+				</div>
+				<div class="list clearfloat fl box-s">
+					<div class="zuo clearfloat fl">
+						<img src="__PUBLIC__/img/8.png"/>
+					</div>
+					<div class="you clearfloat fl">
+						<p class="bt">电话/tel</p>
+						<p class="mingzi"><{$v.phone}></p>
+					</div>
+				</div>
+			</div>
+			<!--content end-->
+		</div>
+		<!--footer star-->
+		<div class="footer clearfloat">
+			<ul>
+				<li class="fl box-s">
+					<a href="<{:U('Index/index')}>">
+						<span class="icon1"></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fl box-s">
+					<a href="<{:U('Shouyi/index')}>">
+						<span class="icon2"></span>
+						<p>收益</p>
+					</a>
+				</li>
+				<li class="fl box-s active">
+					<a href="<{:U('User/index')}>">
+						<span class="icon3"></span>
+						<p>我的</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!--footer end-->
+	</body>
+</html>

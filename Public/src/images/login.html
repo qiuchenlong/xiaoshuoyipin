@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>登录</title>
+    <script src="__PUBLIC__/src/library/zepto.js"></script><!--页面js-->
+    <script src="__PUBLIC__/js/api.js"></script>
+    <style>
+        .loader{
+            font-size: 20px;
+            margin: 45% auto;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            position: relative;
+            text-indent: -9999em;
+            -webkit-animation: load4 1.3s infinite linear;
+            animation: load4 1.3s infinite linear;
+        }
+        @-webkit-keyframes load4{
+            0%,
+            100%{
+                box-shadow: 0em -3em 0em 0.2em #fff, 2em -2em 0 0em #fff, 3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff, -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0em #fff;
+            }
+            12.5%{
+                box-shadow: 0em -3em 0em 0em #fff, 2em -2em 0 0.2em #fff, 3em 0em 0 0em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff,
+                -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            25%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 0em #fff, 3em 0em 0 0.2em #fff, 2em 2em 0 0em #fff, 0em 3em 0 -0.5em #fff,
+                -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            37.5%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 0em #fff, 2em 2em 0 0.2em #fff, 0em 3em 0 0em #fff,
+                -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            50%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 -0.5em #fff, 2em 2em 0 0em #fff, 0em 3em 0 0.2em #fff, -2em 2em 0 0em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            62.5%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 0em #fff, -2em 2em 0 0.2em #fff, -3em 0em 0 0em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            75%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff, -2em 2em 0 0em #fff, -3em 0em 0 0.2em #fff, -2em -2em 0 0em #fff;
+            }
+            87.5%{
+                box-shadow: 0em -3em 0em 0em #fff, 2em -2em 0 -0.5em #fff, 3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff, -2em 2em 0 0em #fff, -3em 0em 0 0em #fff, -2em -2em 0 0.2em #fff;
+            }
+        }
+        @keyframes load4{
+            0%,
+            100%{
+                box-shadow: 0em -3em 0em 0.2em #fff, 2em -2em 0 0em #fff, 3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff, -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0em #fff;
+            }
+            12.5%{
+                box-shadow: 0em -3em 0em 0em #fff, 2em -2em 0 0.2em #fff, 3em 0em 0 0em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff,
+                -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            25%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 0em #fff, 3em 0em 0 0.2em #fff, 2em 2em 0 0em #fff, 0em 3em 0 -0.5em #fff,
+                -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            37.5%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 0em #fff, 2em 2em 0 0.2em #fff, 0em 3em 0 0em #fff,
+                -2em 2em 0 -0.5em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            50%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 -0.5em #fff, 2em 2em 0 0em #fff, 0em 3em 0 0.2em #fff, -2em 2em 0 0em #fff, -3em 0em 0 -0.5em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            62.5%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 0em #fff, -2em 2em 0 0.2em #fff, -3em 0em 0 0em #fff, -2em -2em 0 -0.5em #fff;
+            }
+            75%{
+                box-shadow: 0em -3em 0em -0.5em #fff, 2em -2em 0 -0.5em #fff,
+                3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff, -2em 2em 0 0em #fff, -3em 0em 0 0.2em #fff, -2em -2em 0 0em #fff;
+            }
+            87.5%{
+                box-shadow: 0em -3em 0em 0em #fff, 2em -2em 0 -0.5em #fff, 3em 0em 0 -0.5em #fff, 2em 2em 0 -0.5em #fff, 0em 3em 0 -0.5em #fff, -2em 2em 0 0em #fff, -3em 0em 0 0em #fff, -2em -2em 0 0.2em #fff;
+            }
+        }
+        .cont_ab{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="cont_ab">
+    <div class="loader">加载中...</div>
+    <p>登录中，请耐心等待</p>
+</div>
+<!-- <section class="formLogo">
+ <h2>&#35;</h2>
+</section> -->
+<!--<form action="<{:U('login')}>" method="post">
+            &lt;!&ndash;   <center>请先登录</center> &ndash;&gt;
+<ul class="formarea">
+
+ <li style=" margin-top:200px;">
+  <label class="lit">账号：</label>
+  <input type="text" placeholder="手机号码" name="phone" class="textbox"/>
+ </li>
+ <li>
+  <label class="lit">密码：</label>
+  <input type="password" placeholder="登陆密码" name="pwd" class="textbox"/>
+ </li>
+
+ <li class="liLink">
+ &lt;!&ndash;  <a href="forget.html" class="fl">忘记密码？</a> &ndash;&gt;
+  &lt;!&ndash; <a href="<{:U('Yaoqing/qrcode')}>?id=wawa123" class="fl">《用户协议》</a> &ndash;&gt;
+  &lt;!&ndash; <a href="zhuce.html" class="fr">立即注册</a> &ndash;&gt;
+ </li>
+
+  <input type="submit"  class="tijiao" id="button" value="立即登陆"/>
+ </li>
+</ul>
+</form>
+<div style="height:1.2rem;"></div>-->
+<!-- <nav>
+ <a href="index.html" class="homeIcon">首页</a>
+ <a href="category.html" class="categoryIcon">分类</a>
+ <a href="cart.html" class="cartIcon">购物车</a>
+ <a href="user.html" class="userIcon">我的</a>
+</nav> -->
+<!--<script>
+  document.oncontextmenu=new Function("event.returnValue=false;");
+  document.onselectstart=new Function("event.returnValue=false;");
+</script>-->
+<script>
+    function parseData(res) {
+        return typeof(res) == 'string' ? JSON.parse(res) : res;
+    }
+    /*base64转码 start*/
+    function Base64() {
+
+        // private property
+        _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        // public method for encoding
+        this.encode = function(input) {
+            var output = '';
+            var chr1,
+                chr2,
+                chr3,
+                enc1,
+                enc2,
+                enc3,
+                enc4;
+            var i = 0;
+            input = _utf8_encode(input);
+            while (i < input.length) {
+                chr1 = input.charCodeAt(i++);
+                chr2 = input.charCodeAt(i++);
+                chr3 = input.charCodeAt(i++);
+                enc1 = chr1 >> 2;
+                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+                enc4 = chr3 & 63;
+                if (isNaN(chr2)) {
+                    enc3 = enc4 = 64;
+                } else if (isNaN(chr3)) {
+                    enc4 = 64;
+                }
+                output = output +
+                    _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+                    _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+            }
+            return output;
+        };
+        // public method for decoding
+        this.decode = function(input) {
+            var output = '';
+            var chr1,
+                chr2,
+                chr3;
+            var enc1,
+                enc2,
+                enc3,
+                enc4;
+            var i = 0;
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, '');
+            while (i < input.length) {
+                enc1 = _keyStr.indexOf(input.charAt(i++));
+                enc2 = _keyStr.indexOf(input.charAt(i++));
+                enc3 = _keyStr.indexOf(input.charAt(i++));
+                enc4 = _keyStr.indexOf(input.charAt(i++));
+                chr1 = (enc1 << 2) | (enc2 >> 4);
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                chr3 = ((enc3 & 3) << 6) | enc4;
+                output = output + String.fromCharCode(chr1);
+                if (enc3 != 64) {
+                    output = output + String.fromCharCode(chr2);
+                }
+                if (enc4 != 64) {
+                    output = output + String.fromCharCode(chr3);
+                }
+            }
+            output = _utf8_decode(output);
+            return output;
+        };
+        // private method for UTF-8 encoding
+        _utf8_encode = function(string) {
+            string = string.replace(/\r\n/g, '\n');
+            var utftext = '';
+            for (var n = 0; n < string.length; n++) {
+                var c = string.charCodeAt(n);
+                if (c < 128) {
+                    utftext += String.fromCharCode(c);
+                } else if ((c > 127) && (c < 2048)) {
+                    utftext += String.fromCharCode((c >> 6) | 192);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                } else {
+                    utftext += String.fromCharCode((c >> 12) | 224);
+                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                }
+            }
+            return utftext;
+        };
+        // private method for UTF-8 decoding
+        _utf8_decode = function(utftext) {
+            var string = '';
+            var i = 0;
+            var c = c1 = c2 = 0;
+            while (i < utftext.length) {
+                c = utftext.charCodeAt(i);
+                if (c < 128) {
+                    string += String.fromCharCode(c);
+                    i++;
+                } else if ((c > 191) && (c < 224)) {
+                    c2 = utftext.charCodeAt(i + 1);
+                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                    i += 2;
+                } else {
+                    c2 = utftext.charCodeAt(i + 1);
+                    c3 = utftext.charCodeAt(i + 2);
+                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                    i += 3;
+                }
+            }
+            return string;
+        };
+    }
+    /*base64转码 end*/
+    //登录后调用
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+    var code = getQueryString('code');
+    var state = getQueryString('state');
+    //facebook
+    if (state == 'state123abc') {
+        //用代码交换访问口令
+        $.get('https://graph.facebook.com/v3.1/oauth/access_token?client_id=1068912489952175&redirect_uri=https://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login.html&client_secret=fc9abd1060df0cb499bd5d8e05166499&code=' + code, function(result) {
+            console.log(result);
+            var oauth = parseData(result);
+            var token = oauth.access_token;
+            /*!//检查访问口令
+            $.get('https://graph.facebook.com/debug_token?input_token=' + token + '&access_token=' + token,
+                function(ret) {
+                console.log(ret);
+            });*/
+            $.get('https://graph.facebook.com/me?scope=email&fields=id,name,email,first_name,last_name,link,birthday,picture&access_token=' + token, function(ret) {
+                $.post('https://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/fxbook', {//设置上线
+                    name : parseData(ret).name,
+                    uid  : parseData(ret).id,
+                }, function(res) {
+                    if (parseData(res).code == 200 || parseData(res).code == 210) {
+                        api.toast({
+                            msg : '登录成功',
+                        });
+                        $api.setStorage('user_id', parseData(res).paw.uid);
+                        $api.setStorage('user', parseData(res).paw);
+                        $api.send('usershua', {cid : 1});
+                        setTimeout(function() {
+                            /*api.openSlidLayout({
+                                type          : 'left',
+                                fixedPane     : {
+                                    name : 'wo_111',
+                                    url  : '../wo.html',
+                                },
+                                slidPane      : {
+                                    name : 'homeSlid_111',
+                                    url  : '../homeSlid.html',
+                                },
+                                slidPaneStyle : {
+                                    leftEdge : window.innerWidth * 0.2,
+                                },
+                            }, function(ret, err) {
+                            });*/
+                            api.closeToWin({
+                                name : 'login_win',
+                            });
+                            api.closeWin({});
+                        }, 800);
+                    }
+                    else if (parseData(res).code == 220) {
+                        api.toast({
+                            msg : JSON.parse(res).msg,
+                        });
+                    }
+                    else {
+                        api.toast({
+                            msg : '网络出错~',
+                        });
+                    }
+                });
+                /*var jsfun = 'setData("' + parseData(ret).id + '","' + parseData(ret).name + '")';
+                api.execScript({
+                    name      : 'login_win',
+                    frameName : 'login_frame',
+                    script    : jsfun,
+                });
+                api.closeWin({});*/
+                /*$.get('https://pv.sohu.com/cityjson?ie=utf-8', function(e) {
+                    var cip = returnCitySN.cip
+                    $.get('https://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/fxbook?name=Yoyi%20Liu&uid=Uc9e5424aad78ab26833&ip=192.168.0.100',
+                        {
+                            name : parseData(ret).name,
+                            uid  : parseData(ret).id,
+                            ip   : cip
+                        }, function(res) {
+                            api.closeWin({})
+                        });
+                });*/
+            });
+        });
+    }
+    //line
+    else if (state == 's123') {
+        $.get('https://api.line.me/oauth2/v2.1/token', {
+            'grant_type'    : 'authorization_code',
+            'code'          : code,
+            'redirect_uri'  : 'https://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login.html',
+            'client_id'     : '1600608013',
+            'client_secret' : 'ec197cf2cb3cc726ca778a75e6c3be14',
+        }, function(ret) {
+            var b64 = new Base64();
+            var line_info = b64.decode(parseData(ret).id_token.split('.')[1]);
+            //去掉最后一位的空格符(它生成后会自动换行而形成)
+            line_info = line_info.substring(0, line_info.length - 1);
+            $.get('https://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/fxbook',
+                {name : JSON.parse(line_info).name, uid : JSON.parse(line_info).sub}, function(e) {
+                    /*location.href = 'file:///storage/emulated/0/UZMap/wgt/A6903071794713/html/user/login_frame.html',{
+                        name : JSON.parse(line_info).name,
+                        uid  : JSON.parse(line_info).sub
+                    }*/
+                    var jsfun = 'setData("' + JSON.parse(line_info).name + '","' + JSON.parse(line_info).sub + '")';
+                    api.execScript({
+                        name      : 'login_win',
+                        frameName : 'login_frame',
+                        script    : jsfun,
+                    });
+                    api.openWin({
+                        name : 'login_win1655',
+                        url  : 'login_win.html',
+                    });
+                },
+            );
+        });
+    }
+    else if (state == 'line') {
+        window.location.href = 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1600608013&redirect_uri=https://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login_frame.html&state=s123&scope=openid%20profile';
+    }
+</script>
+<!--<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript">
+    console.log(returnCitySN["cip"] + ',' + returnCitySN["cname"])
+</script>-->
+</body>
+</html>

@@ -1,0 +1,118 @@
+﻿<aside class="Hui-aside"> 
+	<div class="menu_dropdown bk_2"> 
+		<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 小说管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd <if condition='CONTROLLER_NAME eq "Xiaoshuo"'>style="display:block"</if> >
+				<ul>
+					
+					<li <if condition='(ACTION_NAME eq "xiaoshuo") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/xiaoshuo')}>" title="小说列表">小说列表</a></li>
+					<li <if condition='(ACTION_NAME eq "pinglun") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/pinglun')}>" title="评论管理">评论管理</a></li>
+					
+					
+
+					<!-- <li <if condition='(ACTION_NAME eq "tuisong") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/tuisong')}>" title="首页小说">首页小说</a></li> -->
+					<li <if condition='(ACTION_NAME eq "orders") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/orders')}>" title="小说订单">小说订单</a></li>
+					<!-- <li <if condition='(ACTION_NAME eq "index") and (CONTROLLER_NAME eq "Index")'>class="current"</if>><a href="<{:U('Index/index')}>" title="订单统计">订单统计</a></li> -->
+					<li <if condition='(ACTION_NAME eq "xiaoshou") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/xiaoshou')}>" title="小说销售情况">小说销售情况</a></li>
+					<!-- <li <if condition='(ACTION_NAME eq "tuijian") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/tuijian')}>" title="推荐管理">推荐管理</a></li>
+					<li <if condition='(ACTION_NAME eq "jingxuan") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/jingxuan')}>" title="精选管理">精选管理</a></li>
+					<li <if condition='(ACTION_NAME eq "wanjie") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/wanjie')}>" title="完结管理">完结管理</a></li>
+					<li <if condition='(ACTION_NAME eq "mianfei") and (CONTROLLER_NAME eq "Xiaoshuo")'>class="current"</if>><a href="<{:U('Xiaoshuo/mianfei')}>" title="免费管理">免费管理</a></li> -->
+				</ul>
+			</dd> 
+		</dl>
+		<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 个人中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd <if condition='CONTROLLER_NAME eq "Geren"'>style="display:block"</if> >
+				<ul>
+					<li <if condition='(ACTION_NAME eq "jiesuan") and (CONTROLLER_NAME eq "Geren")'>class="current"</if>><a href="<{:U('Geren/jiesuan')}>" title="结算记录">结算记录</a></li>
+				<!-- 	<li <if condition='(ACTION_NAME eq "gong") and (CONTROLLER_NAME eq "Geren")'>class="current"</if>><a href="<{:U('Geren/gong')}>" title="代理商结算">公众号设置</a></li>
+					<li <if condition='(ACTION_NAME eq "gongjie") and (CONTROLLER_NAME eq "Geren")'>class="current"</if>><a href="<{:U('Geren/gongjie')}>" title="公众号接口">公众号接口</a></li>
+					<li <if condition='(ACTION_NAME eq "tuiguang") and (CONTROLLER_NAME eq "Geren")'>class="current"</if>><a href="<{:U('Geren/tuiguang')}>" title="推广链接">推广链接</a></li> -->
+					<li <if condition='(ACTION_NAME eq "mima") and (CONTROLLER_NAME eq "Geren")'>class="current"</if>><a onclick="picture_add('修改密码','<{:U('Geren/mima')}>')" title="修改密码">修改密码</a></li>
+					
+					
+					
+				</ul>
+			</dd> 
+		</dl>
+		<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 数据统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd <if condition='CONTROLLER_NAME eq "Tongji"'>style="display:block"</if> >
+				<ul>
+				<!-- 	<if condition="$_SESSION.guanli neq null">
+					<li <if condition='(ACTION_NAME eq "dingdan") and (CONTROLLER_NAME eq "Tongji")'>class="current"</if>><a href="<{:U('Tongji/dingdan')}>" title="订单统计">充值订单统计</a></li>
+					<else/><li <if condition='(ACTION_NAME eq "daidingdan") and (CONTROLLER_NAME eq "Tongji")'>class="current"</if>><a href="<{:U('Tongji/daidingdan')}>" title="订单统计">充值订单统计</a></li>
+					</if> -->
+					<!-- <li <if condition='(ACTION_NAME eq "user") and (CONTROLLER_NAME eq "Tongji")'>class="current"</if>><a href="<{:U('Tongji/user')}>" title="用户统计">用户统计</a></li> -->
+					
+					
+					
+				</ul>
+			</dd> 
+		</dl>
+
+    <dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i>帮助中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd <if condition='CONTROLLER_NAME eq "Help"'>style="display:block"</if> >
+				<ul>
+					<li <if condition='(ACTION_NAME eq "index") and (CONTROLLER_NAME eq "Help")'>class="current"</if>><a href="<{:U('Help/index')}>" title="帮助中心">帮助中心</a></li>
+					<!-- <li <if condition='(ACTION_NAME eq "sys") and (CONTROLLER_NAME eq "System")'>class="current"</if>><a href="<{:U('System/sys')}>" title="系统信息">系统信息</a></li> -->
+				</ul>
+			
+			</dd> 
+		</dl>
+
+
+		<!-- <dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 热词管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd <if condition='CONTROLLER_NAME eq "Reci"'>style="display:block"</if> >
+				<ul>
+					<li <if condition='(ACTION_NAME eq "index") and (CONTROLLER_NAME eq "Reci")'>class="current"</if>><a href="<{:U('Reci/index')}>" title="用户列表">热词列表</a></li>
+				</ul>
+			</dd> 
+		</dl> -->
+		<!-- <dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 标签管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd <if condition='CONTROLLER_NAME eq "Biaoqian"'>style="display:block"</if> >
+				<ul>
+					<li <if condition='(ACTION_NAME eq "index") and (CONTROLLER_NAME eq "Biaoqian")'>class="current"</if>><a href="<{:U('Biaoqian/index')}>" title="标签列表">标签列表</a></li>
+				</ul>
+			</dd> 
+		</dl> -->
+		<!-- 
+		<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd <if condition='CONTROLLER_NAME eq "System"'>style="display:block"</if> >
+				<ul>
+					<li <if condition='(ACTION_NAME eq "index") and (CONTROLLER_NAME eq "System")'>class="current"</if>><a href="<{:U('System/index')}>" title="用户列表">系统通知</a></li>
+				
+				</ul>
+			</dd> 
+		</dl> -->
+
+
+	</div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div> 
+
+<script type="text/javascript"> 
+ 		function picture_add(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url,
+            shade: 0.6,
+		    area:['68%','80%'] 
+        });
+        // layer.full(index);
+    }
+
+function del(id){
+	var con;
+	con=confirm("确定删除吗?"); //在页面上弹出对话框
+	if(con==true){
+		location.href="<{:U('del')}>?id="+id+"";
+	}
+}  
+</script>

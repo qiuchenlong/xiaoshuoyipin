@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>收益</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script type="text/javascript" src="__PUBLIC__/js/echarts.common.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s" style="    z-index: 1000;">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>昨日收益</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<div class="shouyi clearfloat main box-s">
+    <!--圆环图-->
+    <div style="position: relative;">
+        <div id="main" style="width: 100%;height:6rem;"></div>
+    </div>
+    <!-- 收益 star -->
+    <div class="top clearfloat">
+        <div class="two" style="padding-top: 0;">
+            <div class="xia box-s" style="display: flex;justify-content: space-between;padding:0 0.4rem;margin-top:0;">
+                <!--<a href="<{:U('Tixian/index')}>">
+                    本金¥<{$money}> / 收益¥<{$shouyi}>
+                    <span>提现</span>
+                </a>-->
+                <p>
+                    <span class="p"><i class="u_befor2" style="background:#ff8700;"></i>已投金额<em class="em"> <{$dongjie}></em></span>
+
+                </p>
+                <p>
+                    <span class="p"><i class="u_befor2" style="background:#f55f5b;"></i>今天收益<em class="em"> <{$dang}></em></span>
+
+                </p>
+                <p>
+                    <span class="h-qb p"><a href="<{:U('Tixian/index')}>">提现</a></span>
+                    <em class="em"></em>
+                </p>
+            </div>
+        </div>
+        <div class="three clearfloat" style="background: #fff;">
+            <div class="zuo clearfloat fl" onclick="location.href = '<{:U('Shouyi/tzshouyi')}>'">
+                <p class="tit"><span class="u_befor"></span>项目收益</p>
+                <!--<img src="__PUBLIC__/img/11.png">-->
+                <p class="fu-tit"><{$q}></p>
+                <span class="u-particulars">详 情</span>
+            </div>
+            <span class="fl line"></span>
+            <div class="zuo clearfloat fl" onclick="location.href = '<{:U('Chongzhi/lixi')}>'">
+                <p class="tit"><span class="u_befor"></span>分红收益</p>
+                <!--<img src="__PUBLIC__/img/50.png">-->
+                <p class="fu-tit"><{$lixi}></p>
+                <span class="u-particulars">详 情</span>
+            </div>
+            <span class="fl line"></span>
+            <div class="you clearfloat fl" onclick="location.href = '<{:U('hehuoren/index')}>'">
+                <p class="tit"><span class="u_befor"></span>团队收益</p>
+                <!--<img src="__PUBLIC__/img/10.png">-->
+                <p class="fu-tit"><{$tt}></p>
+                <span class="u-particulars">详 情</span>
+            </div>
+        </div>
+        <!-- 	<div class="four clearfloat box-s">
+                <img src="img/48.png">
+                资金托管于第三方，已在公安局备案
+            </div> -->
+    </div>
+    <!-- 收益 end -->
+    <!--随意存 star-->
+    <div class="paihang">
+        <p class="tit box-s"><span class="u_befor"></span>随意存</p>
+        <div class="content">
+            <p style="font-size: 0.4rem;color: #666;padding:0.4rem 0 0 1em;">
+                <span style="padding-right: 2.4rem;">可自由定制期限的银行存款</span>
+                <span class="u-particulars2">详 情</span>
+            </p>
+        </div>
+    </div>
+    <!--随意存 end-->
+    <!-- paihang star -->
+    <div class="paihang clearfloat">
+        <p class="tit box-s"><span class="u_befor"></span>今日投资收益</p>
+        <div class="content">
+            <foreach name="arr" item="v">
+                <?php $ff=$v['time'];$fff=str_split($ff,10)[0];if($fff==date('Y-m-d')){ ?>
+                <div class="list" onclick="location.href = '<{:U('xiangmujin')}>?id=<{$v.user_id}>&xiangmu_id=<{$v.xiangmu_id}>'">
+                    <div class="zuo">
+                        <ul>
+                            <li></li>
+                            <li><{$v.xiangmu_id}></li>
+                        </ul>
+                    </div>
+                    <div class="you">
+                        <{$v.shouyi}>元
+                    </div>
+                </div>
+                <?php } ?>
+            </foreach>
+        </div>
+    </div>
+    <!-- paihang end -->
+    <!--xgtouzi star-->
+    <!--<div class="xgtouzi clearfloat">
+        <div class="top clearfloat">
+            <img src="__PUBLIC__/img/55.png"/>
+        </div>
+        <div class="middle clearfloat">
+            <img src="__PUBLIC__/img/16.png"/>
+            <img src="__PUBLIC__/img/18.png"/>
+        </div>
+        <div class="bottom clearfloat">
+            长按识别二维码
+        </div>
+        &lt;!&ndash; <div class="list clearfloat">
+            <a href="#">发布计划</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="#">新手课堂</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="#">关于我们</a>
+        </div> &ndash;&gt;
+    </div>-->
+    <!--xgtouzi end-->
+</div>
+<!--footer star-->
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s">
+            <a href="<{:U('index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s active">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+        title   : {
+            text         : '总资产（元）',
+            subtext      : "<{$zong}>",
+            x            : 'center',
+            y            : '36%',
+            textStyle    : {
+                fontWeight : 'normal',
+                fontSize   : 16,
+                display    : 'block',
+                background : '#fff',
+            },
+            subtextStyle : {
+                fontSize   : 24,
+                color      : '#000',
+                display    : 'block',
+                background : '#fff',
+            },
+        },
+        tooltip : {
+            trigger   : 'item',
+            formatter : '{a} <br/>{b}: {c} ({d}%)',
+        },
+        series  : [
+            {
+                radius    : ['0', '75%'],
+                center    : ['50%', '50%'],
+                type      : 'pie',
+                label     : {
+                    normal   : {
+                        show : false,
+                    },
+                    emphasis : {
+                        show : false,
+                    },
+                },
+                labelLine : {
+                    normal   : {
+                        show : false,
+                    },
+                    emphasis : {
+                        show : false,
+                    },
+                },
+                tooltip   : {
+                    show : false,
+                },
+                data      : [
+                    {
+                        value     : 100,
+                        name      : '白底',
+                        itemStyle : {
+                            normal : {
+                                color : '#fff',
+                            },
+                        },
+                    },
+                ],
+                animation : false,
+            },
+            {
+                radius    : ['76%', '80%'],
+                center    : ['50%', '50%'],
+                type      : 'pie',
+                label     : {
+                    normal   : {
+                        show : false,
+                    },
+                    emphasis : {
+                        show : false,
+                    },
+                },
+                labelLine : {
+                    normal   : {
+                        show : false,
+                    },
+                    emphasis : {
+                        show : false,
+                    },
+                },
+                tooltip   : {
+                    show : false,
+                },
+                data      : [
+                    {
+                        value     : 100,
+                        name      : '中间',
+                        itemStyle : {
+                            normal : {
+                                color : '#cbdd97',
+                            },
+                        },
+                    },
+                ],
+                animation : false,
+            },
+            {
+                name              : '总资产',
+                type              : 'pie',
+                radius            : ['80%', '90%'],
+                color             : ['#14a422', '#ef6354'],
+                avoidLabelOverlap : false,
+                label             : {
+                    normal : {
+                        show     : false,
+                        position : 'center',
+                    },
+                },
+                labelLine         : {
+                    normal : {
+                        show : false,
+                    },
+                },
+                /*把参数直接丢到这里*/
+                data              : [
+                    {value : "<{$shouyi}>", name : '收益余额'},
+                    {value : "<{$benjin}>", name : '本金余额'},
+                ],
+            },
+        ],
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>

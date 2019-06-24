@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <script src="__PUBLIC__/src/library/zepto.js"></script>
+    <style>
+        html{
+            height: 100%;
+            background: #f7f7f7;
+        }
+        body{
+            height: 100%;
+            background: #f7f7f7;
+        }
+        input{border: 0;}
+        .content{
+            background: white;
+            /*width:90%;*/
+            width: 100%;
+            margin: 10px auto 0;
+            /*border:1px solid #ddd;*/
+        }
+        .content ul{
+            padding: 1em 20px;
+        }
+        .content ul li{
+            border-bottom: 1px solid #ddd;
+            /*padding:6px 6px 6px 10px;*/
+            font-size: 14px;
+            /*line-height:30px;*/
+            height: 52px;
+            /*line-height: 52px;*/
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content ul li:last-child{
+            border: 0;
+        }
+        .content ul li input{
+            color: #989898;
+            outline: none;
+            width: 100%;
+        }
+        .content ul li:first-child input{
+            width: 60%;
+        }
+        .getCode{
+            /*float:right;*/
+            display: flex;
+            align-items: center;
+            text-decoration: underline;
+            text-decoration: none;
+            /*color:#2674cc;*/
+            margin-right: 16px;
+            padding: 0 5px;
+            height: 31px;
+            background: #ccc;
+            color: #fff;
+            border-radius: 3px;
+        }
+        .forget{
+            background: white;
+            width: 90%;
+            margin: 0 auto;
+            font-size: 12px;
+            line-height: 35px;
+        }
+        /*    	.forget_psd{
+              color:#2674cc;
+          }*/
+        .btn{
+            width: 90%;
+            margin: 6px auto 0;
+        }
+        .btn button{
+            width: 100%;
+            height: 35px;
+            /*background:#fd7656;*/
+            background: #fd7656;
+            color: white;
+            border-radius: 3px;
+        }
+        .checkBox{
+            display: block;
+            width: 100%;
+            font-size: 12px;
+            color: #989898;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .checkBox img{
+            width: 15px;
+            vertical-align: text-bottom;
+            margin-bottom: -1px;
+        }
+        .circle{
+            width: 11px;
+            height: 11px;
+            border: 1px solid #fd7656;
+            border-radius: 100%;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <ul>
+        <li>
+            <input type="text" id="phone" placeholder="请输入电子邮箱" />
+            <a class="getCode" id="get_code" href="javascript:;">获取验证码</a>
+        </li>
+        <li>
+            <input type="text" placeholder="请输入验证码" id="veritfy_code" />
+        </li>
+        <li>
+            <input type="password" id="password" placeholder="请设置密码（6-20位英文字母，数字）" />
+        </li>
+        <li>
+            <input type="password" id="passwords" placeholder="再输一次密码" />
+        </li>
+    </ul>
+</div>
+<div class="forget">
+    <!--<span class="forget_psd">忘记密码？</span>-->
+    <a href="<{:U('Login/login_frame')}>" style="text-decoration: underline;color:#484848;float:right;">已有账号，点击登录</a>
+</div>
+<div class="btn">
+    <button class="register_btn">
+        注册
+    </button>
+</div>
+<div>
+		<span class="checkBox">
+            <label class="js-select">
+                <input class="js-agree" type="checkbox" name="agree" checked="checked" style="display: none;">
+                <img class="circle1" src="__PUBLIC__/images/xuan.png" />
+                <span class="circle" style="display: none;"></span>
+            </label>
+            <span onclick="zhuceXieyi()">我已阅读并同意用户注册协议</span>
+		</span>
+</div>
+</body>
+<script>
+    if (location.protocol == 'http:') {
+        location.protocol = 'https:';
+    }
+    $('.js-select').on('change', function(e) {
+        $('input[name="agree"]').checked = true;
+        let input = $('input[name="agree"]').prop('checked');
+        if (input == true) {
+            $('.circle1').show();
+            $('.circle').hide();
+        }
+        else {
+            $('.circle1').hide();
+            $('.circle').show();
+        }
+    });
+    $('.js-agree').on('click', function(e) {
+        $('input[name="agree"]').attr('checked', 'checked');
+    });
+    /*$('.register_btn').on('click', function(e) {
+        let input = $('input[name="agree"]').prop('checked');
+        if (input == true) {
+            document.getElementById('forms').submit();
+        }
+        else {
+            alert('请勾选协议');
+        }
+    });*/
+    var code = '';
+    var CAPTCHA_click = true;
+    code = parseInt(1000 + (Math.random() * 8999));
+    var get_verifyCode = '';
+    $('#get_code').click(function() {
+        var reg = new RegExp('^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$');
+        var phones = $('#phone').val();
+        //checkMobile为检查手机号码,reg.test为检查电子邮箱号
+        if (!reg.test(phones)) {
+            alert('请输入正确的电子邮箱号');
+            return false;
+        }
+        if (!CAPTCHA_click) {
+            return false;
+        }
+        nextClick();
+        $.get('http://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/User/youjian', {
+                mail    : $('#phone').val(),
+                title   : '验证码',
+                content : code,
+            },
+            function(data) {
+                if (data.code == 200) {
+                    get_verifyCode = data.verifyCode;
+                    api.toast({
+                        msg : '发送成功',
+                    });
+                } else if (data.code == 220) {
+                    api.toast({
+                        msg : '发送失败，请检查您的网络~',
+                    });
+                }
+            },
+        );
+    });
+    $('.register_btn').click(function() {
+        if ($('#veritfy_code').val() != code) {
+            alert('验证码不正确');
+        }
+        else if (($('#password').val() != $('#passwords').val()) || !$('#password').val()) {
+            alert('两次输入密码不同');
+        }
+        else if (!$('#phone').val()) {
+            alert('电子邮箱不能为空');
+        }
+        else {
+            $.post('http://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/User/register', {
+                phone    : $('#phone').val(),
+                password : $('#password').val(),
+            }, function(ret, err) {
+                if (JSON.parse(ret).code == 200) {
+                    // var userid = ret.id;
+                    // $api.setStorage('user_id', userid);
+                    // $api.send('usershua', {cid : 1});
+                    location.href =
+                        'http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login' + '?phone=' +
+                        $('#phone').val() + '&pwd=' + $('#password').val()
+                } else {
+                    alert(JSON.parse(ret).msg);
+                }
+            });
+        }
+    });
+    function nextClick() {
+        if (CAPTCHA_click) {
+            CAPTCHA_click = false;
+            var i     = 60,
+                timer = setInterval(function() {
+                    i--;
+                    $('#get_code').text(i + '秒后重新获取');
+                    if (i == -1) {
+                        $('#get_code').text('重新获取');
+                        CAPTCHA_click = true;
+                        clearInterval(timer);
+                    }
+                }, 1000);
+        }
+    }
+</script>
+</html>

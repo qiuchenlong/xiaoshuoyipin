@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+    	body,html{
+    		background:#fff;
+    		height:100%;
+    	}
+    	
+    	.list{
+    	   margin-left:0px;
+           margin-top: 50px;
+    	   
+    	}
+    	
+    	.list li{
+    	   border-bottom:1px solid #eaeaea;
+    	   overflow:hidden;
+    	   padding:10px 0px;
+    	   position:relative;
+    	}
+    	
+    	.list li .select{
+    	 
+    	   position:absolute;
+    	   top:50%;
+    	   left:0px;
+    	   margin-top:-10px;
+    	   width:20px;
+    	   height:20px;
+    	   background:url(../../image/gou.png) no-repeat;
+    	   background-size:20px;
+    	}
+    	
+    	.list li .select.active{
+    	   background-image:url(../../image/gou1.png);
+    	}
+    	
+    	.list li .cover{
+    	   float:left;
+    	   width:60px;
+    	   height:auto;
+    	   border-radius: 4px;
+    	   margin-left:10px;
+    	}
+    	
+    	.list li .ct{
+    	   float:left;
+    	   margin-left:10px;
+    	}
+    	
+    	.list li .ct p:nth-child(1){
+    	   margin-top:10px;
+    	   font-size:15px;
+    	   color:#484848;
+    	}
+    	
+    	.list li .ct p:nth-child(2){
+    	   margin-top:8px;
+    	   font-size:12px;
+    	   color:#989898;
+    	}
+    	
+    	.list li .ct p:nth-child(3){
+    	   margin-top:8px;
+    	   font-size:12px;
+    	   color:#989898;
+    	}
+    	
+    	.ft{
+    	   position:fixed;
+    	   padding:10px 0px;
+    	   bottom:0px;
+    	   left:0px;
+    	   border-top:1px solid #eaeaea;
+    	   width:100%;
+    	}
+    	
+    	.ft .ft_bt{
+    	   width:85%;
+    	   margin: 0px auto;
+    	   background:#65CCDB;
+    	   border-radius: 4px;
+    	   text-align: center;
+    	   height:36px;
+    	   line-height:36px;
+    	   color:#fff;
+    	   font-size:15px;
+    	}
+    	
+    	.select{
+    	   display:none;
+    	}
+    </style>
+    
+    <link rel="stylesheet" href="../../src/css/index.css">   <!--css-->
+    <link rel="stylesheet" href="../../src/css/icon/iconfont.css">
+</head>
+<body ng-controller="DataController">
+<header class="header">
+    <div class="u-hd_f">
+        <a class="iconfont  icon-xiangshangbiaoshi-copy" href="../frame0.html"></a>
+        <span>账户中心</span>
+        <span></span>
+    </div>
+    <div class="u-hd_fbase"></div>
+</header>
+	<ul class="list">
+	<!--    <li class="item" ng-repeat="b in bookList" >
+	      <span class="select" data="{{b.caseid}}" ></span>
+	      <img src="{{imgurl + b.images}}" class="cover"/>
+	      <div class="ct" ng-click="bookdetail(b.articleid)">
+	          <p>{{b.articlename}}</p>
+	          <p>{{b.author}}</p>
+	          <p>上次阅读至:{{b.chaptername}}</p>
+	      </div>
+	   </li> -->
+	   <li class="item" onClick="location.href='../dtail.html'" >
+	      <span class="select"></span>
+	      <img src="../../image/book0.png" class="cover"/>
+	      <div class="ct">
+	          <p>我的盖世英雄</p>
+	          <p>乐哥哥</p>
+	          <p>上次阅读至:4</p>
+	      </div>
+	   </li>
+	    <li class="item" onClick="location.href='../dtail.html'" >
+	      <span class="select"></span>
+	      <img src="../../image/book0.png" class="cover"/>
+	      <div class="ct">
+	          <p>我的盖世英雄</p>
+	          <p>乐哥哥</p>
+	          <p>上次阅读至:4</p>
+	      </div>
+	   </li>
+	    <li class="item" onClick="location.href='../dtail.html'" >
+	      <span class="select"></span>
+	      <img src="../../image/book0.png" class="cover"/>
+	      <div class="ct">
+	          <p>我的盖世英雄</p>
+	          <p>乐哥哥</p>
+	          <p>上次阅读至:4</p>
+	      </div>
+	   </li>
+	</ul>
+	
+	<div class="ft" >
+	    <div class="ft_bt" onclick="shanchu()">
+	      
+	                     删除
+	    </div>
+	</div>
+	
+</body>
+
+</html>

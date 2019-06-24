@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>结果</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/src/css/api.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/src/css/win_header.css" />
+    <style>
+        .booksList2{
+            background: white;
+            margin-top: 5px;
+            padding: 0 10px 10px 10px;
+        }
+        .booksList2 ul li{
+            border-bottom: 0px solid #f3f3f3;
+            margin-bottom: 10px;
+        }
+        .booksList2 ul li:last-child{
+            border-bottom: 0;
+        }
+        .booksList2 ul li .bookCover{
+            float: left;
+            width: 15%;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .booksList2 ul li .bookCover img{
+            width: 100%;
+            height: 85px;
+        }
+        .booksList2 ul li .bookInfo{
+            float: left;
+            width: 76%;
+            margin-left: 3%;
+            font-size: 11px;
+            color: #787878;
+            line-height: 15px;
+        }
+        .booksList2 ul li .bookInfo .booksName{
+            font-size: 13px;
+            color: #484848;
+            margin-top: 5px;
+            line-height: 25px;
+        }
+        .booksList2_title{
+            padding: 0;
+        }
+        .author{
+            margin-top: 15px;
+            color: #484848;
+        }
+        .author img{
+            width: 10px; height: 10px;
+            vertical-align: middle;
+        }
+        .label{
+            padding: 1px;
+            line-height: 15px;
+            float: right;
+            border: 1px solid #bbdba8;
+            border-radius: 3px;
+            color: #bbdba8;
+            margin-right: 5px;
+        }
+        .labels{
+            padding: 1px;
+            line-height: 15px;
+            margin-right: 5px;
+            float: right;
+            border: 1px solid #99bbda;
+            border-radius: 3px;
+            color: #99bbda;
+        }
+        .txt{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .author{
+            font-weight: 600;
+            color: #484848;
+        }
+        @media screen and (max-width: 320px){
+            .booksList2 ul li .bookCover{
+                width: 25%;
+            }
+        }
+        @media screen and (min-width: 321px) and (max-width: 375px){
+            .booksList2 ul li .bookCover{
+                width: 22%;
+            }
+            .booksList2 ul li .bookInfo{
+                width: 75%;
+            }
+        }
+        @media screen and (min-width: 376px) and (max-width: 414px){
+            .booksList2 ul li .bookCover{
+                width: 20%;
+            }
+            .booksList2 ul li .bookInfo{
+                width: 77%;
+            }
+        }
+        .appHeaderColor{
+            background: #fff !important;
+            color: #000 !important;
+        }
+        .back img{width: 18px; height: 18px; margin-left: 10px;}
+    </style>
+</head>
+<body ng-controller="DataController">
+<header class="appHeaderColor">
+    <span class="title"><{$_GET['name']}></span>
+    <span class="back" tapmode="active" onClick="location.href='<{:U(index)}>'"><img src="__PUBLIC__/src/images/fanhui.png" alt=""></span>
+    <div class="icon" onClick="location.href='<{:U('Sousuo/index')}>'">
+        <img src="__PUBLIC__/src/images/zui_search_ico.png" alt=""></div>
+</header>
+<div class="booksList2">
+    <ul>
+        <if condition="$arr eq null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="4" color="#cccccc">暂无此书</font>
+        </if>
+        <foreach name="arr" item="v">
+            <li class="clearfix" onClick="location.href='<{:U('index/dtail')}>?id=<{$v.articleid}>'">
+                <div class="bookCover">
+                    <img src="__PUBLIC__/<{$v.images}>" alt="" />
+                </div>
+                <div class="bookInfo">
+                    <p class="booksName"><{$v.articlename}></p>
+                    <p class="txt">
+                        <{$v.intro}>
+                    </p>
+                    <div class="author">
+						<span>
+							<i class="iconfont"><img src="__PUBLIC__/src/images/authors.png" /></i>
+							<{$v.author}>
+						</span>
+                        <span class="labels">
+							<{$v.sortid}>
+						</span>
+                        <span class="label">
+							<{$v.size}>万字
+						</span>
+                    </div>
+                </div>
+            </li>
+        </foreach>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>我的账户</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css"/>
+</head>
+<body>
+	<div class="wdzhtu clearfloat">
+		<img src="__PUBLIC__/img/50.png">
+	</div>
+	<p class="wdprice"><{$v.money}>元</p>
+	<p class="bukeyong">不可用金额（已投资金额）<span style="color: red;"><{$s}></span>元</p>
+	<div class="wdbtn clearfloat">
+		<a href="<{:U('Chongzhi/chongzhi')}>" class="chongzhi fl">充值</a>
+
+
+		<a href="<{:U('Tixian/index')}>" class="chongzhi tixian fl">提现</a>
+	</div>
+<!-- 	<p class="wdnr">
+		<img src="img/tishi.png">
+		资金托管于中国工商银行，已在公安局备案，
+		并在银行存放3000万风险备用金。
+	<p> -->
+		<div class="center-bottom clearfloat">
+			<div class="top clearfloat fl box-s">
+				<ul>
+					<li>
+						<a href="<{:U('Shouyi/index')}>">
+							<p class="tu">
+								<span></span>
+								<img src="__PUBLIC__/img/33.png">
+							</p>
+							<p class="tit">
+								收益
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="<{:U('User/czjilu')}>">
+							<p class="tu">
+								<span></span>
+								<img src="__PUBLIC__/img/chongzhi.png">
+							</p>
+							<p class="tit">
+								充值记录
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="<{:U('User/txjilu')}>">
+							<p class="tu">
+								<span></span>
+								<img src="__PUBLIC__/img/tixian.png">
+							</p>
+							<p class="tit">
+								提现记录
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="<{:U('User/tzjilu')}>">
+							<p class="tu">
+								<span></span>
+								<img src="__PUBLIC__/img/tixian.png">
+							</p>
+							<p class="tit">
+								投资记录
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="<{:U('User/liushui')}>">
+							<p class="tu">
+								<span></span>
+								<img src="__PUBLIC__/img/tixian.png">
+							</p>
+							<p class="tit">
+								流水账
+							</p>
+						</a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+</body>

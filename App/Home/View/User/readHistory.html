@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/src/css/icon/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/src/css/index.css">   <!--css-->
+	<style>
+    	body,html{
+    		background:#fff;
+    		height:100%;
+    	}
+
+    	.list{
+    	   margin-left:0px;
+           margin-top: 50px;
+
+    	}
+
+    	.list li{
+    	   border-bottom:1px solid #eaeaea;
+    	   overflow:hidden;
+    	   padding:10px 0px;
+    	   position:relative;
+    	}
+
+    	.list li .select{
+
+    	   position:absolute;
+    	   top:50%;
+    	   left:0px;
+    	   margin-top:-10px;
+    	   width:20px;
+    	   height:20px;
+    	   background:url(../../image/gou.png) no-repeat;
+    	   background-size:20px;
+    	}
+
+    	.list li .select.active{
+    	   background-image:url(../../image/gou1.png);
+    	}
+
+    	.list li .cover{
+    	   float:left;
+    	   width:60px;
+    	   height:auto;
+    	   border-radius: 4px;
+    	   margin-left:10px;
+    	}
+
+    	.list li .ct{
+    	   float:left;
+    	   margin-left:10px;
+    	}
+
+    	.list li .ct p:nth-child(1){
+    	   margin-top:10px;
+    	   font-size:15px;
+    	   color:#484848;
+    	}
+
+    	.list li .ct p:nth-child(2){
+    	   margin-top:8px;
+    	   font-size:12px;
+    	   color:#989898;
+    	}
+
+    	.list li .ct p:nth-child(3){
+    	   margin-top:8px;
+    	   font-size:12px;
+    	   color:#989898;
+    	}
+
+    	.ft{
+    	   position:fixed;
+    	   padding:10px 0px;
+    	   bottom:0px;
+    	   left:0px;
+    	   border-top:1px solid #eaeaea;
+    	   width:100%;
+    	}
+
+    	.ft .ft_bt{
+    	   width:85%;
+    	   margin: 0px auto;
+    	   background:#65CCDB;
+    	   border-radius: 4px;
+    	   text-align: center;
+    	   height:36px;
+    	   line-height:36px;
+    	   color:#fff;
+    	   font-size:15px;
+    	}
+
+    	.select{
+    	   display:none;
+    	}
+    </style>
+</head>
+<body ng-controller="DataController">
+<header class="header">
+    <div class="u-hd_f">
+        <a class="iconfont  icon-xiangshangbiaoshi-copy" href="javascript:history.back(-1);"></a>
+        <span class="h1">阅读记录</span>
+        <span class="icon" id="bian"></span>
+    </div>
+    <div class="u-hd_fbase"></div>
+</header>
+	<ul class="list">
+<foreach name="v" item="s">
+
+	<li class="item"   >
+	      <span class="select"></span>
+	      <img src="http://www.youdingb.com/xiangmu/xiaoshuoyipin/Public/<{$s.images}>" class="cover" onClick="location.href='<{:U('Index/dtail')}>?id=<{$s.articleid}>'" />
+	      <div class="ct" >
+              <span onClick="location.href='<{:U('Index/shanchuhis')}>?id=<{$s.caseid}>'" style=" float: right; position: absolute; right: 20px; margin-top:30px;"><img style=" width: 30px; height:auto;" src="http://www.youdingb.com/xiangmu/xiaoshuoyipin/Public/images/shanchu.png"></span>
+	          <p><{$s.articlename}></p>
+	          <p><{$s.author }></p>
+	          <p>上次阅读至:<{$s.chaptername}></p>
+	      </div>
+	   </li>
+
+ </foreach>
+	  <!--  <li class="item" onClick="location.href='<{:U('Index/dtail')}>'" >
+	      <span class="select"></span>
+	      <img src="../../image/book0.png" class="cover"/>
+	      <div class="ct">
+	          <p>我的盖世英雄</p>
+	          <p>乐哥哥</p>
+	          <p>上次阅读至:4</p>
+	      </div>
+	   </li>
+	    <li class="item" onClick="location.href='../dtail.html'" >
+	      <span class="select"></span>
+	      <img src="../../image/book0.png" class="cover"/>
+	      <div class="ct">
+	          <p>我的盖世英雄</p>
+	          <p>乐哥哥</p>
+	          <p>上次阅读至:4</p>
+	      </div>
+	   </li>
+	    <li class="item" onClick="location.href='../dtail.html'" >
+	      <span class="select"></span>
+	      <img src="../../image/book0.png" class="cover"/>
+	      <div class="ct">
+	          <p>我的盖世英雄</p>
+	          <p>乐哥哥</p>
+	          <p>上次阅读至:4</p>
+	      </div>
+	   </li> -->
+	</ul>
+<!-- 
+	<div class="ft" >
+	    <div class="ft_bt" onclick="shanchu()">
+
+	                     删除
+	    </div>
+	</div> -->
+
+</body>
+<script type="text/javascript">
+    var flag = 0;
+    $('#bian').click(function() {
+        api.sendEvent({
+            name  : 'hisC',
+            extra : {
+                flag : flag
+            }
+        });
+        if (flag == 0) {
+            flag = 1;
+            $(this).text('完成');
+        } else {
+            flag = 0;
+            $(this).text('编辑');
+        }
+    })
+    var frameName = "";
+    apiready = function() {
+        newwin();
+        var $back = $api.dom('.back');
+        $back.onclick = function() {
+            api.sendEvent({
+                name  : 'closeW',
+                extra : {
+                    framename : frameName
+                }
+            })
+            api.closeWin({});
+        }
+        $api.fixStatusBar($api.dom('header'));
+        var SBColor = $api.getStorage('SBColor');
+        api.setStatusBarStyle({
+            style : 'dark', // 'rgb(0,0,0)' || '#fff'
+        });
+        /*打开此win时通过传递过来的参数操作页面 */
+        var frm_name = api['pageParam']['frm_name'];
+        var frm_url = api['pageParam']['frm_url'];
+        var title = api['pageParam']['title'] || false;
+        var r_txt = api['pageParam']['r_txt'] || false;
+        var datas = api['pageParam']['data'] || {};
+        //		var new_name =  api['pageParam']['new_name'] || false;
+        //		var new_url =  api['pageParam']['new_url'] || false;
+        if (title) {
+            $api.dom('.title').innerHTML = title;
+        }
+        if (r_txt) {
+            $api.dom('header').innerHTML += '<div class="icon">' + r_txt + '</div>';
+        }
+        /*打开子窗口*/
+        openFrm(frm_name, frm_url, datas);
+    };
+    /*apiready结束*/
+    /*********静态操作*************/
+    /*打开子窗口函数*/
+    function openFrm(frm_name, frm_url, datas) {
+        var systemType = api.systemType;
+        frameName = frm_name;
+        api.openFrame({
+            name              : frm_name,
+            url               : frm_url,
+            rect              : {
+                x : 0,
+                y : $api.dom('header').offsetHeight,
+                w : api.winWidth,
+                h : 'auto'
+            },
+            vScrollBarEnabled : false,
+            pageParam         : {
+                data : datas
+            }
+        });
+    }
+    /*打开子窗口函数结束*/
+    /*********静态操作结束*************/
+</script>
+</html>

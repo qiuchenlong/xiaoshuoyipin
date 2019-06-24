@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>账户管理</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <style>
+        a{ display: inline-block;}
+        .earnings img{
+            margin-right: 0.4rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>账户管理</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<section class="earnings">
+    <a href="<{:U('User/renzheng')}>">
+        <img src="__PUBLIC__/img/icon0/wdzh0.png" style="width: 1rem;height: 0.8rem;">
+        <span>实名认证</span>
+    </a>
+    <a href="<{:U('User/userxiugai')}>">
+        <img style="vertical-align: text-top;width: 1rem;" src="__PUBLIC__/img/icon0/wdzh1.png" alt="">
+        <span>修改资料</span>
+    </a>
+    <a href="<{:U('User/setpw')}>">
+        <img style="vertical-align: text-top;width: 1rem;" src="__PUBLIC__/img/icon0/wdzh2.png" alt="">
+        <span>修改密码</span>
+    </a>
+</section>
+<!--footer star-->
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s active">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+</body>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>提现</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <style type="text/css">
+        .erweima{ width: 4.2rem; height: 4.2rem; position: absolute; margin-left: 0px; }
+    </style>
+</head>
+<body>
+<!--<div class="Withdraw_hd">
+    <div class="left">
+        <a >图</a>
+        <span>收款方式</span>
+    </div>
+    <div class="right">
+        <a href="javascript:;"></a>
+    </div>
+</div>-->
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>转换收益</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<form action="<{:U('transition')}>" method="post" enctype="multipart/form-data">
+    <div class="txian clearfloat">
+        <div class="content clearfloat box-s" style="padding-bottom: 0.3rem;">
+            <div class="top clearfloat" style="    padding: 0.3rem 0;">
+                <div class="zuo clearfloat fl">
+                    可转收益：
+                </div>
+                <div class="zhong" style="display: flex;font-size: 1rem;">
+                    <!--<span style="padding: 0 6px 0 0.5rem;">¥</span>-->
+                    <input type="number"  class="input" value="<{$shouyi}>" readonly/>
+                </div>
+                <!--<div class="you clearfloat fr">
+                    <{$y.shouyi}> / <{$y.money}>
+                </div>-->
+            </div>
+            <div class="top clearfloat" style="border:0;padding: 0.3rem 0;">
+                <div class="zuo clearfloat fl">
+                    输入金额：
+                </div>
+                <div class="zhong" style="display: flex;font-size: 1rem;">
+                    <!--<span style="padding: 0 6px 0 0.5rem;">¥</span>-->
+                    <input type="number" name="tixian" class="input" placeholder="扣20%后自动转换到本金" value="" required>
+                </div>
+                <!--<div class="you clearfloat fr">
+                    <{$y.shouyi}> / <{$y.money}>
+                </div>-->
+            </div>
+        </div>
+        <p style="font-size: 0.5rem;margin:0 0.3rem;    display: flex;">
+            <span style="color:#feae3f;width: 7em;">友情提示：</span>
+            收益转换或提现扣20%平台税，本金提现免费
+        </p>
+        <div class="wdbtn wdbtntwo clearfloat">
+            <button type="submit" class="chongzhi fl">提交</button>
+        </div>
+    </div>
+
+</form>
+<!--footer star-->
+<div class="h_base"></div>
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s active">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+<script type="text/javascript" src="__PUBLIC__/js/withdraw.js"></script>
+</body>

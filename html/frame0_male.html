@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/api.css" />
+    <link rel="stylesheet" href="../src/css/index.css">
+    <link rel="stylesheet" href="../src/css/swiper-4.2.2.min.css"><!--轮播css-->
+    <link rel="stylesheet" href="../src/css/icon/iconfont.css"><!--图标字体->
+    <link rel="stylesheet" href="../src/css/icon/iconfont.css">
+    <script src="../src/library/zepto.js"></script><!--页面js-->
+    <script src="../src/library/zepto.js"></script><!--页面js-->
+    <script src="../src/library/swiper-4.2.2.min.js"></script><!--页面js-->
+    <script src="../src/js/global.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="base"></div>
+    <div class="breadcrumbs">
+        <div class="u-search">
+            <form class="form" action="">
+                <div class="search-div" onClick="location.href='frame0/seek.html'">
+                    <i class="iconfont icon-sousuo"></i>
+                    <input class="search-input" type="search" placeholder="搜索我的书架、在线书库">
+                </div>
+                <button type="button" class="button" onClick="location.href='ranking.html'">排行</button>
+            </form>
+        </div>
+        <div class="nav">
+            <a class="nav_a" href="frame0.html">女频</a>
+            <a class="nav_a current" href="frame0_male.html">男频</a>
+            <a class="nav_a" href="frame0_publish.html">情欲</a>
+            <a class="nav_a" href="frame0_gratis.html">免费</a>
+            /*/*<a class="nav_a" href="BookSelection.html">书单</a>*/*/
+        </div>
+    </div>
+</header>
+<div class="content">
+    <div class="m-swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><a href="javascript:;"><img src="../src/images/ind-01.png" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="../src/images/ind-02.png" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="../src/images/ind-03.png" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="../src/images/ind-04.png" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="../src/images/ind-05.png" alt=""></a></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Initialize Swiper -->
+        </div>
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                pagination : {
+                    el        : '.swiper-pagination',
+                    clickable : true,
+                },
+                loop       : true,
+                delay      : 1500,
+                autoplay   : {
+                    disableOnInteraction : false,
+                },
+            });
+        </script>
+    </div>
+    <div class="m-choice">
+        <h3 class="h3">精选</h3>
+        <a class="u-text_line" href="javascript:;">免费已生效，点开即领！</a>
+    </div>
+    <div class="m-recom">
+        <div class="u-hd"onClick="location.href='frame0/resou.html'" >
+            <h2 class="h2">本期主打</h2>
+            <a style="display: flex;align-items: center;" href="javascript:;">
+                    	更多<i class="iconfont icon-signboard_right" style="vertical-align: middle;font-size:0.2rem"></i>
+                    </a>
+        </div>
+        <div class="bd">
+            <ul class="u-ul_flex">
+                <li class="li">
+                    <div class="top">
+                        <a href="dtail.html">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li">
+                    <div class="top">
+                        <a href="dtail.html">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="dtail.html">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li">
+                    <div class="top">
+                        <a href="dtail.html">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <!--<li class="li">
+                    <div class="top">
+                        <a href="javascript:;">
+                            <img src="../src/images/i-01.png"/>
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <!--强力推荐-->
+    <div class="m-recom">
+        <div class="u-hd" onClick="location.href='frame0/resou.html'">
+            <h2 class="h2">强力推荐</h2>
+            <div class="right"><a href="javascript:;">更多</a></div>
+        </div>
+        <div class="bd">
+            <ul class="u-ul_flex">
+                <li class="li" onClick="location.href='dtail.html'" >
+                    <div class="top">
+                        <a href="dtail.html">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'" >
+                    <div class="top">
+                        <a href="dtail.html">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="dtail.html">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'" >
+                    <div class="top">
+                        <a href="javascript:;">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="top">
+                        <a href="dtail.html">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="top">
+                        <a href="dtail.html">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="dtail.html">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="top">
+                        <a href="javascript:;">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-time-travel">
+        <div class="u-hd"onClick="location.href='frame0/resou.html'">
+            <h2 class="h2">穿越start</h2>
+            <div class="right" ><a href="javascript:;">更多</a></div>
+        </div>
+        <div class="bd">
+            <ul class="u-ul_lr">
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="left">
+                        <img src="../src/images/i-01.png" alt="">
+                    </div>
+                    <div class="right">
+                        <h3 class="h3 u-text_line">邪王轻点爱：枭宠医妃</h3>
+                        <p class="text">
+                            <span class="author">拈花惹笑</span>
+                            <span class="u-title1">王爷</span>
+                            <span class="u-title2">女尊天下</span>
+                        </p>
+                        <p class="u-line2">特种女兵军医穿越：战神王爷轻点可以吗？</p>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="left">
+                        <img src="../src/images/i-01.png" alt="">
+                    </div>
+                    <div class="right">
+                        <h3 class="h3 u-text_line">邪王轻点爱：枭宠医妃</h3>
+                        <p class="text">
+                            <span class="author">拈花惹笑</span>
+                            <span class="u-title1">王爷</span>
+                            <span class="u-title2">女尊天下</span>
+                        </p>
+                        <p class="u-line2">特种女兵军医穿越：战神王爷轻点可以吗？</p>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="left">
+                        <img src="../src/images/i-01.png" alt="">
+                    </div>
+                    <div class="right">
+                        <h3 class="h3 u-text_line">邪王轻点爱：枭宠医妃</h3>
+                        <p class="text">
+                            <span class="author">拈花惹笑</span>
+                            <span class="u-title1">王爷</span>
+                            <span class="u-title2">女尊天下</span>
+                        </p>
+                        <p class="u-line2">特种女兵军医穿越：战神王爷轻点可以吗？</p>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'" >
+                    <div class="left">
+                        <img src="../src/images/i-01.png" alt="">
+                    </div>
+                    <div class="right">
+                        <h3 class="h3 u-text_line">邪王轻点爱：枭宠医妃</h3>
+                        <p class="text">
+                            <span class="author">拈花惹笑</span>
+                            <span class="u-title1">王爷</span>
+                            <span class="u-title2">女尊天下</span>
+                        </p>
+                        <p class="u-line2">特种女兵军医穿越：战神王爷轻点可以吗？</p>
+                    </div>
+                </li>
+            </ul>
+            <ul class="u-ul_flex">
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="top">
+                        <a href="javascript:;">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'">
+                    <div class="top">
+                        <a href="javascript:;">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <li class="li" onClick="location.href='dtail.html'" >
+                    <div class="top">
+                        <a href="javascript:;">
+                            <img src="../src/images/i-01.png" />
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>
+                <!--<li class="li">
+                    <div class="top">
+                        <a href="javascript:;">
+                            <img src="../src/images/i-01.png"/>
+                        </a>
+                    </div>
+                    <div class="button">
+                        <a class="u-line2" href="javascript:;">医妃读心术</a>
+                    </div>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="base"></div>
+    <div class="menu">
+        <a class="footer_a" href="frame1.html">
+            <i class="iconfont icon-shujia"></i>
+            <span>书架</span>
+        </a>
+        <a class="footer_a current" href="frame0.html"> <i class="iconfont icon-xing"></i> <span>精选</span> </a>
+        <a class="footer_a" href="stack.html"> <i class="iconfont icon-caidan1"></i> <span>书库</span> </a>
+        <a class="footer_a" href="discover.html">
+            <i class="iconfont icon-faxian-copy"></i>
+            <span>发现</span>
+        </a>
+    </div>
+</footer>
+<!--<footer class="footer"></footer>-->
+</body>
+</html>

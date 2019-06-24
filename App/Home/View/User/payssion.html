@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/api.css" />
+    <link rel="stylesheet" href="__PUBLIC__/src/css/index.css">   <!--css-->
+    <link rel="stylesheet" href="__PUBLIC__/src/css/icon/iconfont.css">
+    <script src="__PUBLIC__/src/library/zepto.js"></script><!--页面js-->
+    <script src="__PUBLIC__/src/js/global.js"></script>
+    <style>
+        body, html{ background: #fff;}
+        .cz_ul{
+            width: calc(100% - 0.68rem);
+            margin: 0 auto;
+            margin-bottom: 50px;
+            /*padding:0 10px;*/
+            /*text-align:center;*/
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .cz_ul .cz_li{
+            width: 48%;
+            height: 1.64rem;
+            /*display:inline-block;*/
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            font-size: 14px;
+            border: 1px solid #dfdfdf;
+            color: #999;
+            border-radius: 3px;
+            margin-bottom: 0.24rem;
+            position: relative;
+        }
+        /*ul li:nth-child(3n-1){
+            margin: 0 11.5px;
+        }*/
+        .cz_ul span{
+            color: #000;
+        }
+        .cz_li span{
+            font-size: 0.36rem;
+        }
+        .cz_ul .cz_li a{
+            font-size: 12px;
+        }
+        .cz_ul .size_s{
+            font-size: 0.24rem;
+            color: #929292;
+            margin-top: 9px;
+        }
+        .cz_ul .current{
+            border: 1px solid #f58d1c;
+            color: #f58d1c;
+        }
+        .cz_ul .current .size_s{color: #f58d1c;}
+        .cz_ul .hot{
+            display: none;
+            position: absolute;
+            top: -0.2rem;
+            right: -0.16rem;
+            color: red;
+            font-size: 0.5rem;
+        }
+        .cover{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            background: rgba(0, 0, 0, .3);
+            z-index: 100;
+        }
+        .pay_way{
+            background: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .title{
+            line-height: 40px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .choose{
+            padding: 20px 0;
+            line-height: 25px;
+        }
+        .choose img{
+            width: 40%;
+        }
+        .close{
+            width: 10%;
+            position: absolute;
+            left: 44.5%;
+            top: 63%;
+        }
+        .close img{
+            width: 100%;
+        }
+        .cz_hd{
+            padding: 0.34rem;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 0.34rem;
+        }
+        .cz_h3{
+            text-align: center;
+            padding-bottom: 0.4rem;
+            font-size: 0.45rem;
+            color: #3174d0;
+        }
+        .btn_cz{
+            width: 100%;
+            background: linear-gradient(183deg, #2bafad, #2784cc);
+            color: #fff;
+            text-align: center;
+            line-height: 0.6rem;
+            border-radius: 5px;
+            margin-top: 0.24rem;
+        }
+        .ps_art{
+            padding: 0.45rem 0;
+            line-height: 1.6;
+        }
+        .ps_art .list{
+            color: #f58d1c;
+        }
+        .h_p{
+            display: flex;
+            justify-content: space-around;
+        }
+        .h_p a{
+            border: 2px solid #317fe9;
+            line-height: 2;
+            padding: 0 0.2rem;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<section class="cz_hd">
+    <h3 class="cz_h3">充值</h3>
+    <p>您的余额：<span style="color:#f58d1c;"><{$v.egold}></span> 书币</p><br>
+    <p class="h_p">
+        <a  style="border-color:transparent;" href="<{:U('chong_zhi')}>">贝宝充值</a>
+        <a href="<{:U('payssion')}>">payssion</a>
+    </p>
+
+</section>
+
+<ul class="cz_ul">
+<foreach name="chongzhi" item="cz">
+    <li class="cz_li" data="<{$cz.price}>">
+        <span><{$cz.cname}></span>
+        <span class="size_s"><{$cz.jianjie}></span>
+        <span class="size_s">送<{$cz.gcount}>书券</span>
+        <i class="iconfont icon-huo hot" style="display: block;"></i>
+    </li>
+  </foreach>
+   <!--  <li class="cz_li">
+        <span>50<span>元</span></span>
+        <span class="size_s">5000+3000书币</span>
+        <span class="size_s">多送30元</span>
+        <i class="iconfont icon-huo hot" style="display: block;"></i>
+    </li>
+    <li class="cz_li">
+        <span>100<span>元</span></span>
+        <span class="size_s">10000+8000书币</span>
+        <span class="size_s">多送80元</span>
+        <i class="iconfont icon-huo hot"></i>
+    </li>
+    <li class="cz_li">
+        <span>200<span>元</span></span>
+        <span class="size_s">20000+20000书币</span>
+        <span class="size_s">多送200元</span>
+        <i class="iconfont icon-huo hot"></i>
+    </li>
+    <li class="cz_li">
+        <span style="display: flex;align-items: center;">
+            <i class="iconfont icon-classify_zuanleishipin" style="color: goldenrod;font-size: 22px;"></i>
+            年费VIP会员
+        </span>
+        <span style="margin-top: 4px;">（365元）</span>
+        <span class="size_s" style="margin-top: 6px;">每天1元，全年免费看</span>
+        <i class="iconfont icon-huo hot"></i>
+    </li> -->
+    <form style="width: 100%" name="payssion_payment" action="http://sandbox.payssion.com/checkout/live_57d9d64eb483ebeb" method="get">
+
+    <input type="hidden" name="api_key" value="live_d405958aac043b70">
+   <!--  <input type="text" name="api_sig" value="<{$isg}>"><br><br> -->
+    <!-- <input type="hidden" name="pm_id" value="alipay_cn"><br><br> -->
+    <input type="hidden" name="order_id" value="<{$user}>">
+
+    <!-- <input type="hidden" name="amount" id='id' onblur="user()" placeholder="请填入金额" required><br><br> -->
+
+    <input type="hidden" name="currency" value="USD" readonly  >
+    <input type="hidden" name="description" value="购买金币">
+
+    <input type="hidden" name="return_url" value="http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/home/zhifu/payssion"><br><br><span id='user'></span><span id='amount'></span>
+    <p class="h_p js-pay" style="display: none;">
+    <input type="image" style="border-radius: 5px;border: 1px solid #f58d1c;width: 2.4rem;height: 0.8rem;" src="__PUBLIC__/images/payssion.png" name="submit" alt="请使用PayPal付款！">
+    </p>
+
+</form>
+    <!-- <a class="btn_cz" href="javascript:;">确认充值</a> -->
+    <article class="ps_art">
+        <p class="ps"><span class="list">*</span><span>1元=100书币，书币属于虚拟商品，一经购买不得退换</span></p>
+        <p class="ps"><span class="list">*</span><span>充值后书币到账可能有延迟，1小时内未到账请与客服联系。客服QQ：123456</span></p>
+        <p class="ps"><span class="list">*</span><span>工作时间：周一到周六8:30-12:00，13:30-23:00</span></p>
+    </article>
+</ul>
+<!--<div class="cover" style="display:none;">
+    <div class="close" onclick="_close()">
+        <img src="__PUBLIC__/image/close.png" alt="" />
+    </div>
+    <div class="pay_way">
+        <div class="title">
+            支付方式
+        </div>
+        <div class="choose">
+				<span>
+					<img src="__PUBLIC__/image/alipay@2x.png" alt="" />
+					<br />
+					支付宝
+				</span>
+            <span style="position:absolute;top:48%;height:40px;border-left:1px solid #f1f1f1;"></span>
+            <span>
+					<img src="__PUBLIC__/image/wechat@2x.png" alt="" />
+					<br />
+					微信
+				</span>
+        </div>
+    </div>
+</div>-->
+<footer class="footer">
+    <div class="base"></div>
+    <div class="menu">
+        <a class="footer_a" href="<{:U('Shujia/index')}>">
+            <i class="iconfont icon-yg-shujia"></i>
+            <span>书架</span>
+        </a>
+        <a class="footer_a" href="<{:U('Index/index')}>"> <i class="iconfont icon-shouye"></i> <span>首页</span>
+        </a>
+        <a class="footer_a current" href="<{:U('User/chong_zhi')}>"> <i class="iconfont icon-chongzhi"></i>
+            <span>充值</span></a>
+        <a class="footer_a" href="<{:U('Faxian/index')}>"><i class="iconfont icon-wode"></i><span>我的</span></a>
+    </div>
+</footer>
+</body>
+<script type="text/javascript" src="__PUBLIC__/script/api.js"></script>
+<script type="text/javascript" src="__PUBLIC__/script/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+    var czid=0;
+    $('.cz_li').on('click', function(e) {
+        var zhi= $(this).attr('data');
+         $.post("<{:U('payssion')}>",{id:zhi},function(data){
+
+                 if(data==null){
+
+                    alert('老铁，没东西啊');
+                 }else{
+
+                        $("#amount").html('<input type="hidden" name="amount" value="'+zhi+'"  >');
+                     $("#user").html('<input type="hidden" name="api_sig" value="'+data+'">');
+                 }
+             });
+        $(this).addClass('current').siblings().removeClass('current');
+        $('.js-pay').show();
+    });
+
+    // $('.btn_cz').on('click', function(e) {
+    //  window.location.href="<{:U('chongzhi')}>?id="+czid;
+    // })
+</script>
+</html>

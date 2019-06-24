@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../src/css/api.css"/>
+     <link rel="stylesheet" type="text/css" href="../../src/css/win_header.css" />
+    <style>
+    	.booksList2{
+    		background:white;
+    		margin-top:5px;
+    		padding:0 10px 10px 10px;
+    	}
+    	.booksList2 ul li{
+    		border-bottom:0px solid #f3f3f3;
+    		margin-bottom:10px;
+    	}
+    	.booksList2 ul li:last-child{
+    		border-bottom:0;
+    	}
+    	.booksList2 ul li .bookCover{
+    		float:left;
+    		width:15%;
+    		margin-bottom:10px;
+    		margin-top: 10px;
+    	}
+    	.booksList2 ul li .bookCover img{
+    		width:100%;
+    		height: 85px; 
+    		
+    	}
+    	.booksList2 ul li .bookInfo{
+    		float:left;
+    		width:76%;
+    		margin-left:3%;
+    		font-size:11px;
+    		color:#787878;
+    		line-height:15px;
+    	}
+    	.booksList2 ul li .bookInfo .booksName{
+    		font-size:13px;
+    		color:#484848;
+    		margin-top:5px;
+    		line-height:25px;
+    	}
+
+    	.booksList2_title{
+    		padding:0;
+    	}
+    	.author{
+    		margin-top:15px;
+    		color:#484848;
+    	}
+    	.author img{
+width: 10px; height: 10px;
+vertical-align: middle;
+    	}
+    	.label{
+    		padding:1px;
+    		line-height:15px;
+    		float:right;
+    		border:1px solid #bbdba8;
+    		border-radius:3px;
+    		color:#bbdba8;
+    		margin-right: 5px;
+    	}
+    	.labels{
+    		padding:1px;
+    		line-height:15px;
+    		margin-right: 5px;
+    		float:right;
+    		border:1px solid #99bbda;
+    		border-radius:3px;
+    		color:#99bbda;
+    	}
+    	.txt{
+    		overflow: hidden;
+		 	text-overflow: ellipsis;
+		 	display: -webkit-box;
+		 	-webkit-line-clamp: 3;
+		 	-webkit-box-orient: vertical;
+    	}
+    	.author{
+    		font-weight:600;
+    		color:#484848;
+    	}
+    	
+    	@media screen and (max-width: 320px) {
+		    .booksList2 ul li .bookCover{
+		    	width:25%;
+		    }
+		}
+		@media screen and (min-width:321px) and (max-width: 375px){
+		    .booksList2 ul li .bookCover{
+		    	width:22%;
+		    }
+		    .booksList2 ul li .bookInfo{
+		    	width:75%;
+		    }
+		}
+		@media screen and (min-width:376px) and (max-width: 414px){
+		    .booksList2 ul li .bookCover{
+		    	width:20%;
+		    	
+		    }
+		    .booksList2 ul li .bookInfo{
+		    	width:77%;
+		    }
+		}
+		.appHeaderColor{
+   			background:#ffffff !important;
+   			color: #000000 !important;
+   		}
+   		.back img{width: 18px; height: 18px ; margin-left: 10px;}
+    </style>
+</head>
+<body ng-controller="DataController">
+
+
+        <header class="appHeaderColor">
+          <span class="title">标题</span>
+          <span class="back"  tapmode="active" onClick="location.href='../frame0.html'" ><img src="../../src/images/fanhui.png" alt="" ></span>
+          <div class="icon" onClick="location.href='seek.html'"><img src="../../src/images/zui_search_ico.png" alt="" ></div>
+        </header>
+
+    
+	<div class="booksList2">
+		<ul>
+		
+			<li class="clearfix" onClick="location.href='../dtail.html'" >
+				<div class="bookCover">
+					<img src="../../src/images/book0.png" alt="" />
+				</div>
+				<div class="bookInfo">
+					<p class="booksName">在时光尽头等你</p>
+					<p class="txt">
+						小四有次在接受采访的时候提到齐名的死，他不是因为对易瑶的死内疚或是对森湘的死痛苦才自杀的
+						，齐名总是
+					</p>
+					<div class="author">
+						<span>
+							<i class="iconfont"><img src="../../src/images/authors.png"/></i>
+							倾城
+						</span>
+						
+						<span class="labels">
+							都市言情
+						</span>
+						<span class="label">
+							10万字
+						</span>
+					</div>
+				</div>
+			</li>
+			<li class="clearfix" onClick="location.href='../dtail.html'" >
+				<div class="bookCover">
+					<img src="../../src/images/book0.png" alt="" />
+				</div>
+				<div class="bookInfo">
+					<p class="booksName">在时光尽头等你</p>
+					<p class="txt">
+						小四有次在接受采访的时候提到齐名的死，他不是因为对易瑶的死内疚或是对森湘的死痛苦才自杀的
+						，齐名总是
+					</p>
+					<div class="author">
+						<span>
+							<i class="iconfont"><img src="../../src/images/authors.png"/></i>
+							倾城
+						</span>
+						
+						<span class="labels">
+							都市言情
+						</span>
+						<span class="label">
+							10万字
+						</span>
+					</div>
+				</div>
+			</li>
+
+<li class="clearfix" onClick="location.href='../dtail.html'" >
+				<div class="bookCover">
+					<img src="../../src/images/book0.png" alt="" />
+				</div>
+				<div class="bookInfo">
+					<p class="booksName">在时光尽头等你</p>
+					<p class="txt">
+						小四有次在接受采访的时候提到齐名的死，他不是因为对易瑶的死内疚或是对森湘的死痛苦才自杀的
+						，齐名总是
+					</p>
+					<div class="author">
+						<span>
+							<i class="iconfont"><img src="../../isrc/images/authors.png"/></i>
+							倾城
+						</span>
+						
+						<span class="labels">
+							都市言情
+						</span>
+						<span class="label">
+							10万字
+						</span>
+					</div>
+				</div>
+			</li>
+
+<li class="clearfix" onClick="location.href='../dtail.html'" >
+				<div class="bookCover">
+					<img src="../../src/images/book0.png" alt="" />
+				</div>
+				<div class="bookInfo">
+					<p class="booksName">在时光尽头等你</p>
+					<p class="txt">
+						小四有次在接受采访的时候提到齐名的死，他不是因为对易瑶的死内疚或是对森湘的死痛苦才自杀的
+						，齐名总是
+					</p>
+					<div class="author">
+						<span>
+							<i class="iconfont"><img src="../../image/authors.png"/></i>
+							倾城
+						</span>
+						
+						<span class="labels">
+							都市言情
+						</span>
+						<span class="label">
+							10万字
+						</span>
+					</div>
+				</div>
+			</li>
+			
+		</ul>
+	</div>
+	
+</body>
+
+</html>

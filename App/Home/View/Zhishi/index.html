@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>项目讲堂</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/swiper-4.2.2.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <script type="text/javascript" src="__PUBLIC__/js/swiper-4.2.2.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>项目讲堂</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<div class="clearfloat main">
+    <!--liebiao star-->
+    <div class="liebiao liebiaotwo clearfloat">
+        <!--轮播-->
+        <div class="m-swiper">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <img src="__PUBLIC__/img/7-17/financial.png" alt="">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <img src="__PUBLIC__/img/7-17/financial.png" alt="">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <img src="__PUBLIC__/img/7-17/financial.png" alt="">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <img src="__PUBLIC__/img/7-17/financial.png" alt="">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <img src="__PUBLIC__/img/7-17/financial.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Initialize Swiper -->
+            </div>
+            <script>
+                var swiper = new Swiper('.swiper-container', {
+                    pagination : {
+                        el        : '.swiper-pagination',
+                        clickable : true,
+                    },
+                    loop       : true,
+                    delay      : 1500,
+                    autoplay   : {
+                        disableOnInteraction : false,
+                    },
+                });
+            </script>
+        </div>
+        <!--<img class="m_ad" src="__PUBLIC__/img/7-17/financial.png" alt="">-->
+        <div class="content clearfloat">
+            <foreach name="zhishi" item="v">
+                <a href="<{:U('detail')}>?id=<{$v.id}>">
+                    <div class="list">
+                        <div class="list_img">
+                            <span></span>
+                            <img src="__PUBLIC__/images/<{$v.images}>" class="wenzhang_img" />
+                        </div>
+                        <div class="you">
+                            <div class="zhong clearfloat">
+                                <{$v.title}>
+                            </div>
+                            <div class="time clearfloat">
+                                <span class="fl"><{$v.shijian}></span>
+                                <span class="fr"><{$v.liulan}>人浏览</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </foreach>
+        </div>
+    </div>
+    <!--liebiao end-->
+</div>
+<!--footer star-->
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s active">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+</body>
+</html>

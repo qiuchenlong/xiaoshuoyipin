@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>登录</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/base.css" />
+    <script src="__PUBLIC__/src/library/zepto.js"></script>
+    <style>
+        input:-webkit-autofill{
+            -webkit-box-shadow: 0 0 0px 1000px #f3f3f3 inset;
+            border: 0px solid #ccc !important;
+        }
+        input[required]:invalid, input:focus:invalid, textarea[required]:invalid, textarea:focus:invalid{box-shadow: none;}
+        html{
+            height: 100%;
+            /*height: 100vh;*/
+            /*background: url('../../image/loginbg.png') no-repeat;*/
+            position: relative;
+        }
+        body{
+            background: #f3f3f3;
+        }
+        a{display: inline-block;}
+        .content{
+            /*background:white;*/
+            /*width:90%;*/
+            width: calc(100% - 75px);
+            margin: 0 auto;
+            /*border:1px solid #ddd;*/
+        }
+        .content ul li{
+            border-bottom: 1px solid #ddd;
+            /*padding:6px 6px 6px 10px;*/
+            font-size: 14px;
+            /*line-height:30px;*/
+            height: 54px;
+            display: flex;
+            align-items: center;
+        }
+        .content ul li:last-child{
+            /*border:0;*/
+        }
+        .content ul li input{
+            color: #989898;
+            outline: none;
+            width: 100%;
+            border: 0;
+            background: inherit;
+        }
+        .content ul li input::-webkit-input-placeholder{ /* WebKit browsers */
+            color: #d3d3d4;
+        }
+        /*    	.content ul li:first-child input{
+                    width:70%;
+                }*/
+        .getCode{
+            float: right;
+            text-decoration: underline;
+            color: #2674cc;
+        }
+        .forget{
+            /*background:white;*/
+            /*width:84%;*/
+            width: calc(100% - 75px);
+            margin: 0 auto;
+            font-size: 12px;
+            /*line-height:35px;*/
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /*padding:0 3%;*/
+        }
+        .forget span{
+            color: #4e4d4b;
+        }
+        .forget span:nth-child(2){
+            color: #fc6a4c;
+        }
+        .forget_psd{
+            color: #2674cc;
+        }
+        .btn{
+            width: calc(100% - 75px);
+            margin: 0 auto;
+        }
+        .btn button{
+            width: 100%;
+            height: 35px;
+            background: #ccc;
+            color: white;
+            border-radius: 3px;
+        }
+        .footer{
+            position: initial;
+            /*position: absolute;*/
+            /*left:0;*/
+            /*bottom:0;*/
+            margin-top: 90px;
+            width: 100%;
+        }
+        .footer p{
+            font-size: 13px;
+            /*color:#151515;*/
+            color: #959595;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .footer p .line1, .footer p .line2{
+            border-top: 1px solid #a4a4a4;
+            width: 25%;
+            position: absolute;
+            top: 6px;
+            right: 20px;
+        }
+        .footer p .line1{
+            left: 20px;
+        }
+        .login_way{
+            /*width:50%;*/
+            display: flex;
+            justify-content: space-around;
+            width: calc(100% - 60px);
+            /*padding:20px 0;*/
+            margin: 25px auto 0;
+            text-align: center;
+        }
+        .login_way img{width: 80px;height: 80px;border-radius: 6px;}
+        /*    	.qq{
+                    float:left;
+                    width:40%;
+                }*/
+        .weixin{
+            /*    		float:right;*/
+            width: 58px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        /*.weixin:nth-child(2){
+            margin: 0 66px;
+        }*/
+        .weixin img{
+            width: 58px;
+            height: 58px;
+        }
+        .weixin span{
+            font-size: 12px;
+            margin-top: 11px;
+            color: #a2a2a2;
+        }
+        .qq img, .weixin img{
+            /*width:40%;*/
+        }
+        .go-register{
+            float: right;
+        }
+        .page_1{
+            display: flex;
+            height: 121px;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .page_1 .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page_1 .line{
+            height: 1px;
+            width: 120px;
+            background: #ccc;
+        }
+        .page_1 .txt{
+            padding: 0 14px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .page_1 .tip{
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c0bfc1;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="page_1">
+    <div class="row">
+        <div class="line"></div>
+        <div class="txt">账号登录</div>
+        <div class="line"></div>
+    </div>
+    <div class="tip">
+        （各登录方式不同，信息不互通）
+    </div>
+</div>
+<form action="<{:U('Login/login')}>" method="post">
+    <div class="content">
+        <ul>
+            <li>
+                <input type="text" name="phone" id="phone" placeholder="账号" onchange="bianse();" value="" required />
+                <!--<a class="getCode" href="javascript:;" onclick="createCode()">获取验证码</a>-->
+            </li>
+            <li>
+                <input type="password" name="pwd" id="pwd" placeholder="密码" value="" required />
+            </li>
+        </ul>
+    </div>
+    <div class="forget">
+        <a href="<{:U('Login/forget')}>" class="forget_psd">忘记密码</a>
+        <a href="<{:U('Login/zhuce')}>" class="go-register">注册账号</a>
+    </div>
+    <div class="btn">
+        <button type="submit" id="tijiao">
+            登录
+        </button>
+    </div>
+</form>
+<!--<section class="footer">
+    <p>
+        <span class="line1" style=""></span><span style="width:40%;">或使用第三方账号登录</span><span class="line2" style=""></span>
+    </p>
+    <div class="login_way">
+        <div id="facebook">
+            <a href="http://www.facebook.com/v3.1/dialog/oauth?client_id=1068912489952175&response_type=code&redirect_uri=http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login_frame.html&state=state123abc&&scope=email">
+                <img src="__PUBLIC__/src/images/wechat@2x.png" alt="" />
+                <br>
+                <span>facebook</span>
+            </a>
+        </div>
+        <div class="line">
+            <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1600608013&redirect_uri=http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login_frame.html&state=s123&scope=openid%20profile">
+                <img src="__PUBLIC__/src/images/qq@2x.png" alt="" onclick="weiXinLogin()" />
+                <br>
+                <span>line</span>
+            </a>
+        </div>
+        <div class="weixin">
+            <img src="../../image/3.png" alt="" onclick=""/>
+                <span>微博账号</span>
+        </div>
+    </div>
+</section>-->
+<p class="js-text"></p>
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/userModel.js"></script>
+<!--<script type="text/javascript" src="__PUBLIC__/js/f_otherLogin.js"></script>-->
+<script type="text/javascript">
+    function parseData(res) {
+        return typeof(res) == 'string' ? JSON.parse(res) : res;
+    }
+    /**/
+    /*function weiXinLogin() {
+        //		var loginWay = new otherLogin();
+        //		loginWay.wx_register();
+        var Login = new otherLogin();
+        Login.wx_register(function(ret, err) {
+            if (ret) {
+                var sex;
+                if (ret.sex == 1) {
+                    sex = '男';
+                } else if (ret.sex == 0) {
+                    sex = '女';
+                }
+                $api.post(phpurl + 'wx_login.php', {
+                    values : {
+                        name   : ret.name,
+                        wechat : ret.openid,
+                        sex    : sex,
+                    },
+                    files  : {
+                        images : ret.headimgurl,
+                    },
+                }, function(rel, err) {
+                    if (rel && rel.state == 1) {
+                        $api.setStorage('userid', rel.result.user_id);
+                        api.openWin({
+                            name            : 'she_zhi_ji_ben_zi_liao_win',
+                            url             : '../frame0/she_zhi_ji_ben_zi_liao_win.html',
+                            slidBackEnabled : false,
+                            pageParam       : {flag : 1},
+                        });
+                    } else if (rel && rel.state == 0) {
+                        $api.setStorage('userid', rel.result.user_id);
+                        $api.setStorage('sex', rel.result.sex);
+                        $api.send('fresh');//登录之后重新加载数据
+                        api.openWin({
+                            name            : 'homeSlid',
+                            url             : '../homeSlid.html',
+                            bounces         : false,
+                            slidBackEnabled : false,
+                        });
+                    }
+                });
+            } else {
+            }
+        });
+    }*/
+    /*base64转码 start*/
+    function Base64() {
+
+        // private property
+        _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        // public method for encoding
+        this.encode = function(input) {
+            var output = '';
+            var chr1,
+                chr2,
+                chr3,
+                enc1,
+                enc2,
+                enc3,
+                enc4;
+            var i = 0;
+            input = _utf8_encode(input);
+            while (i < input.length) {
+                chr1 = input.charCodeAt(i++);
+                chr2 = input.charCodeAt(i++);
+                chr3 = input.charCodeAt(i++);
+                enc1 = chr1 >> 2;
+                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+                enc4 = chr3 & 63;
+                if (isNaN(chr2)) {
+                    enc3 = enc4 = 64;
+                } else if (isNaN(chr3)) {
+                    enc4 = 64;
+                }
+                output = output +
+                    _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+                    _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+            }
+            return output;
+        };
+        // public method for decoding
+        this.decode = function(input) {
+            var output = '';
+            var chr1,
+                chr2,
+                chr3;
+            var enc1,
+                enc2,
+                enc3,
+                enc4;
+            var i = 0;
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, '');
+            while (i < input.length) {
+                enc1 = _keyStr.indexOf(input.charAt(i++));
+                enc2 = _keyStr.indexOf(input.charAt(i++));
+                enc3 = _keyStr.indexOf(input.charAt(i++));
+                enc4 = _keyStr.indexOf(input.charAt(i++));
+                chr1 = (enc1 << 2) | (enc2 >> 4);
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                chr3 = ((enc3 & 3) << 6) | enc4;
+                output = output + String.fromCharCode(chr1);
+                if (enc3 != 64) {
+                    output = output + String.fromCharCode(chr2);
+                }
+                if (enc4 != 64) {
+                    output = output + String.fromCharCode(chr3);
+                }
+            }
+            output = _utf8_decode(output);
+            return output;
+        };
+        // private method for UTF-8 encoding
+        _utf8_encode = function(string) {
+            string = string.replace(/\r\n/g, '\n');
+            var utftext = '';
+            for (var n = 0; n < string.length; n++) {
+                var c = string.charCodeAt(n);
+                if (c < 128) {
+                    utftext += String.fromCharCode(c);
+                } else if ((c > 127) && (c < 2048)) {
+                    utftext += String.fromCharCode((c >> 6) | 192);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                } else {
+                    utftext += String.fromCharCode((c >> 12) | 224);
+                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                }
+            }
+            return utftext;
+        };
+        // private method for UTF-8 decoding
+        _utf8_decode = function(utftext) {
+            var string = '';
+            var i = 0;
+            var c = c1 = c2 = 0;
+            while (i < utftext.length) {
+                c = utftext.charCodeAt(i);
+                if (c < 128) {
+                    string += String.fromCharCode(c);
+                    i++;
+                } else if ((c > 191) && (c < 224)) {
+                    c2 = utftext.charCodeAt(i + 1);
+                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                    i += 2;
+                } else {
+                    c2 = utftext.charCodeAt(i + 1);
+                    c3 = utftext.charCodeAt(i + 2);
+                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                    i += 3;
+                }
+            }
+            return string;
+        };
+    }
+    /*base64转码 end*/
+    //登录后调用
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+    var code = getQueryString('code');
+    var state = getQueryString('state');
+    //facebook
+    if (state == 'state123abc') {
+        //用代码交换访问口令
+        $.get('https://graph.facebook.com/v3.1/oauth/access_token?client_id=1068912489952175&redirect_uri=http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login_frame.html&client_secret=fc9abd1060df0cb499bd5d8e05166499&code=' + code, function(result) {
+            console.log(result);
+            var oauth = parseData(result);
+            var token = oauth.access_token;
+            /*//检查访问口令
+            $.get('https://graph.facebook.com/debug_token?input_token=' + token + '&access_token=' + token,
+                function(ret) {
+                console.log(ret);
+            });*/
+            $.get('https://graph.facebook.com/me?scope=email&fields=id,name,email,first_name,last_name,link,birthday,picture&access_token=' + token, function(ret) {
+                console.log(ret);
+                $.post('http://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/fxbook',
+                    {name : parseData(ret).name, uid : parseData(ret).id}, function(e) {
+                        location.href = 'http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/fxbook' +
+                            '?name=' + parseData(ret).name + '&uid=' + parseData(ret).id;
+                    },
+                );
+            });
+        });
+    }
+    //line
+    else if (state == 's123') {
+        $.post('https://api.line.me/oauth2/v2.1/token', {
+            'grant_type'    : 'authorization_code',
+            'code'          : code,
+            'redirect_uri'  : 'http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/login_frame.html',
+            'client_id'     : '1600608013',
+            'client_secret' : 'ec197cf2cb3cc726ca778a75e6c3be14',
+        }, function(ret) {
+            console.log(ret);
+            var b64 = new Base64();
+            var line_info = b64.decode(parseData(ret).id_token.split('.')[1]);
+            //去掉最后一位的空格符(它生成后会自动换行而形成)
+            line_info = line_info.substring(0, line_info.length - 1);
+            console.log(line_info)
+            //注册并登录小说
+            $.post('http://www.youdingb.com/xiangmu/xiaoshuoyipin/book/index.php/Home/user/fxbook',
+                {name : JSON.parse(line_info).name, uid : JSON.parse(line_info).sub}, function(e) {
+                    console.log(JSON.parse(line_info).sub)
+                    location.href='http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/Login/fxbook'
+                        + '?name=' + JSON.parse(line_info).name + '&uid=' + JSON.parse(line_info).sub
+                }
+            );
+        });
+    }
+</script>
+</html>

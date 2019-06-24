@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>提现</title>
+    <meta name="keywords" content="">
+    <meta name="description" content=""> 
+    <script src="__PUBLIC__/js/rem.js"></script> 
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css"/>
+    <style type="text/css">
+    	.erweima{ width: 80px; height: 80px; position: absolute; margin-left: 0px; }
+    </style>
+</head>
+<body>
+
+	 <form action="<{:U('userxiugai')}>" method="post" enctype="multipart/form-data" >
+	<div class="txian clearfloat">
+		<div class="content clearfloat box-s"><p class="tit pt5">
+				
+               
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font size="5">实名认证</font>
+              
+				
+			</p><br>
+			<div class="top clearfloat">
+				
+			
+			
+			<div class="top clearfloat">
+				
+				<div class="zhong clearfloat fl">
+					<input type="text" name="wxname" class="input" id="" value="" placeholder="姓名" />
+				</div>
+				
+			</div>
+			<div class="top clearfloat">
+				
+				<div class="zhong clearfloat fl">
+					<input type="text" name="number" class="input" id="" value="" placeholder="身份证号码" />
+				</div>
+				
+			</div>
+			<br>
+			<div class="top clearfloat" style="height: 100px;">
+                   
+				<div class="zhong clearfloat fl" style=" width: 100%;">
+					
+					<img src="__PUBLIC__/img/up.png" class="erweima" /><input type="file"  name="images1" style="opacity: 0; height: 80px; width: 80px;" >
+                        <div class="zuo clearfloat fl" style=" width: 100%; font-size: 12px; color: #cccccc;">
+					  点击身份证正面
+				       </div>
+				</div>
+			</div>
+				<br>
+			<div class="top clearfloat" style="height: 100px;">
+                   
+				<div class="zhong clearfloat fl" style=" width: 100%;">
+					
+					<img src="__PUBLIC__/img/up.png" class="erweima" /><input type="file"  name="images2" style="opacity: 0; height: 80px; width: 80px;" >
+                        <div class="zuo clearfloat fl" style=" width: 100%; font-size: 12px; color: #cccccc;">
+					  点击身份证反面
+				       </div>
+				</div>
+			</div>
+
+			<!--<div class="top clearfloat">
+				<div class="zuo clearfloat fl">
+					<img src="__PUBLIC__/img/wx.png"/>
+				</div>
+				<div class="zhong clearfloat fl">
+					<input type="text" name="bankname" id="" value="" placeholder="账户全称" />
+				</div>
+			</div>
+				<div class="top clearfloat">
+				<div class="zuo clearfloat fl">
+					<img src="__PUBLIC__/img/wx.png"/>
+				</div>
+				<div class="zhong clearfloat fl">
+					<input type="text" name="banknum" id="" value="" placeholder="银行账号" />
+				</div>
+			</div> -->
+			<div class="wdbtn wdbtntwo clearfloat">
+				<button type="submit" class="chongzhi fl">申请实名</button>
+			</div>
+			
+			<!-- <p class="tit pt5">
+				<span class="shu fl">2、</span>
+				<span class="zi fl">
+					邀请奖励金额不能立即提现，可作为保证金使用，计划结束后可提现;
+				</span>
+			</p>
+			<p class="tit pt5">
+				<span class="shu fl">3、</span>
+				<span class="zi fl">
+					正在执行中的计划，保证金与收益在计划结束后可提现;
+				</span>
+			</p> -->
+		</div>
+	</div>
+</form>
+</body>

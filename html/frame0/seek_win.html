@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+
+		header{
+		   background:#ffffff;
+		}
+    	.top{
+    		height:45px;
+    		background:#ffffff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+    	}
+		.back{
+			float:left;
+			width:38px;
+			text-align:center;
+			line-height:40px;
+			color:#333333;
+		}
+    	.search{
+    		float:left;
+    		width:82%;
+    	}
+    	.searchInput{
+    		width:300px;
+    		padding-left:20px !important;
+    		height:30px !important;
+    		line-height:30px;
+    		font-size:11px !important;
+    		border:none;
+    		border:1px solid #e6e6e6;
+    		border-radius:25px;
+    		outline: none;
+    		color:#939393;
+				background: #f7f7f7;
+    	}
+			.tip{
+				width: 50px;
+				color: #4f4f4f;
+				font-size: 15px;
+				text-align: center;
+			}
+    </style>
+</head>
+<body>
+    <header>
+		<div class="top">
+			<div class="back" onclick="api.closeWin({});">
+				<i class="iconfont icon-llmainpageback"></i>
+			</div>
+			<div class="search">
+				<input type="search" id="keys" class="searchInput" placeholder="搜索书名、作者、分类" >
+			</div>
+			<div class="tip">
+				搜索
+			</div>
+		</div>
+	</header>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/FInit.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+
+	apiready = function(){
+		var $top = $api.dom('header');
+		$api.fixStatusBar($top);
+
+		var systemType = api.systemType;
+
+        if(systemType == 'ios'){
+			api.openFrame({
+			    name: "fddfsdsf",
+			    url: 'seek.html',
+			    rect: {
+				    x:0,
+				    y: $api.dom('header').offsetHeight+0,
+				    w: api.winWidth,
+				    h: 'auto'
+			    },
+			    vScrollBarEnabled:false,
+			    pageParam:api.pageParam
+			});
+		}else{
+		    api.openFrame({
+			    name: "fdfsf",
+			    url: 'seek.html',
+			    rect: {
+				    x:0,
+				    y: $api.dom('header').offsetHeight,
+				    w: api.winWidth,
+				    h: 'auto'
+			    },
+			    vScrollBarEnabled:false,
+			    pageParam:api.pageParam
+			});
+		}
+	};
+	$('.tip').click(function()
+	{
+	var keys=document.getElementById('keys').value;
+	$api.send("sou_suo",{keys:keys});
+	})
+</script>
+</html>

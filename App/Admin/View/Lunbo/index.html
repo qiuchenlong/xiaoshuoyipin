@@ -1,0 +1,102 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>轮播图管理</title>  
+<style>
+        td p{max-height:300px;overflow:hidden !important;}
+        .Hui-article-box{overflow: scroll;}
+    </style>
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 轮播图管理 <span class="c-gray en">&gt;</span> 录播图列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <i ></i> </a>
+		<if condition="$_SESSION.guanli neq null"><a onClick="picture_add('新增轮播图','<{:U('add')}>')" href="javascript:;" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加轮播图</a></if> </span> <span class="r">共有数据：<strong><{$shu}></strong> 条</span> </div>
+			
+			
+			<div class="mt-0">  
+				<table class="table table-border table-bordered table-bg table-hover table-sort" width="100%">
+					<thead>
+						<tr class="text-c"> 
+							
+							<th width="10">ID</th>
+							<th width="80">图片</th>
+							<th width="10">类型</th>
+							<th width="50">频道</th>
+							<th width="50">标题</th>
+							<th width="150">详情</th>
+							<th width="200">连接</th>
+							<th width="80">操作</th>
+							 
+						</tr> 
+						<foreach name="arr" item="v">
+						<tr class="text-c"> 
+							<td width="100"><{$v.id}></td>
+							<td width="80"><img src="__PUBLIC__/<{$v.images}>" width="50"></td>
+							<td width="100"><{$v.gotos}></td>
+							<td width="100">
+							<if condition="$v.path eq 1">女频轮播
+							<elseif condition="$v.path eq 2"/>男频轮播
+							<elseif condition="$v.path eq 3"/>出版轮播
+							<elseif condition="$v.path eq 4"/>免费轮播
+							</if>
+							</td>
+							<td width="100"><{$v.title}></td>
+							<td width="100" style="text-overflow: ellipsis;"><{$v.content}></td>
+							<td width="100"><{$v.weburl}></td>
+							<td width="80"><a title="编辑" onClick="picture_edit('修改轮播图','<{:U('edit')}>?id=<{$v.id}>')" href="javascript:;"class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a  href="<{:U('del')}>?id=<{$v.id}>" class="ml-5"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						</tr> 
+					</foreach>
+					</thead> 
+					<tfoot>
+						
+					</tfoot>
+				</table>
+				<{$btn}>
+			</div>
+		</article>
+	</div> 
+
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+	function picture_add(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        layer.full(index);
+    }
+
+   function picture_edit(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        layer.full(index);
+    }
+ 
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

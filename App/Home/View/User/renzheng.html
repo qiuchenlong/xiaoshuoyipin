@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>实名认证</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="__PUBLIC__/js/rem.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/page.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font_712439_a6o3fmynf14/iconfont.css">
+    <style type="text/css">
+        .erweima{ width: 56%;margin-left: 0px; }
+        .input{ height: inherit;}
+    </style>
+</head>
+<body>
+<header>
+    <div class="h_base"></div>
+    <div class="tabHost  box-s">
+        <a class="iconfont icon-icon4" href="javascript:history.back(-1);"></a>
+        <span>实名认证</span>
+        <i class="iconfont icon-msnui-more"></i>
+        <!-- <p class="bt">知识分享</p> -->
+    </div>
+</header>
+<form action="<{:U('renzheng')}>" method="post" enctype="multipart/form-data">
+    <div class="txian clearfloat">
+        <div class="top clearfloat">
+            <div class="zhong user_list">
+                <span>真实姓名</span>
+                <input type="text" name="wxname" class="input" placeholder="请输入您的真实姓名" />
+            </div>
+            <div class="zhong user_list">
+                <span>证件类型</span>
+                <input type="text" name="" class="input" placeholder="身份证"  readonly />
+            </div>
+            <div class="zhong user_list">
+                <span>证件号码</span>
+                <input type="text" name="number" class="input" id="" value="" placeholder="请输入您的证件号码" />
+            </div>
+            <!--证件照片 start-->
+            <div class="zhong user_list">
+                <span>证件照片</span>
+            </div>
+            <div class="top clearfloat">
+                <div class="zhong files_div">
+                    <img src="__PUBLIC__/img/icon0/autonym0.png" class="erweima" id="pic_master_img" />
+                    <input
+                        type="file" name="images1" class="user_files" style="opacity: 0;left: 22%;width: 56%;" onchange="file(this)">
+                       <!--  <input type="file"  name="images1" style="opacity: 0; height: 80px; width: 80px;" onchange="file(this)"> -->
+                </div>
+            </div>
+            <div class="top clearfloat">
+                <div class="zhong files_div">
+                    <img src="__PUBLIC__/img/icon0/autonym1.png" class="erweima" id="pic_master_img1" /><input
+                        type="file" name="images2" class="user_files" style="opacity: 0;left: 22%;width: 56%;" onchange="file1(this)">
+                       <!--  <input type="file"  name="images2" style="opacity: 0; height: 80px; width: 80px;" onchange="file1(this)"> -->
+                </div>
+            </div>
+
+
+           
+            <!--证件照片 end-->
+            <!--<div class="top clearfloat">
+                <div class="zuo clearfloat fl">
+                    <img src="__PUBLIC__/img/wx.png"/>
+                </div>
+                <div class="zhong clearfloat fl">
+                    <input type="text" name="bankname" id="" value="" placeholder="账户全称" />
+                </div>
+            </div>
+                <div class="top clearfloat">
+                <div class="zuo clearfloat fl">
+                    <img src="__PUBLIC__/img/wx.png"/>
+                </div>
+                <div class="zhong clearfloat fl">
+                    <input type="text" name="banknum" id="" value="" placeholder="银行账号" />
+                </div>
+            </div> -->
+            <div class="wdbtn wdbtntwo clearfloat">
+                <if condition="$_SESSION.yanzheng eq 3">
+                     <p  class="chongzhi fl" style="background: #b1d8ff; color: #3984d3;">已通过</p>
+                    <elseif condition="$_SESSION.yanzheng eq 1"/>
+                    <p  class="chongzhi fl" style="background: #b1d8ff; color: #3984d3;">审核中</p>
+                    <elseif condition="$_SESSION.yanzheng eq 2"/>
+                   <button type="submit" class="chongzhi fl" style="background: #b1d8ff; color: #3984d3;">提交审核</button>
+                   <elseif condition="$_SESSION.yanzheng eq 0"/>
+                   <button type="submit" class="chongzhi fl" style="background: #b1d8ff; color: #3984d3;">提交审核</button>
+               </if>
+               
+            </div>
+            <!-- <p class="tit pt5">
+                <span class="shu fl">2、</span>
+                <span class="zi fl">
+                    邀请奖励金额不能立即提现，可作为保证金使用，计划结束后可提现;
+                </span>
+            </p>
+            <p class="tit pt5">
+                <span class="shu fl">3、</span>
+                <span class="zi fl">
+                    正在执行中的计划，保证金与收益在计划结束后可提现;
+                </span>
+            </p> -->
+        </div>
+    </div>
+</form>
+<!--footer star-->
+<div style="height: 1.5rem;"></div>
+<div class="footer clearfloat">
+    <ul>
+        <li class="fl box-s">
+            <a href="<{:U('Index/index')}>">
+                <span class="icon1"></span>
+                <p>首页</p>
+            </a>
+        </li>
+        <li class="fl box-s">
+            <a href="<{:U('Shouyi/index')}>">
+                <span class="icon2"></span>
+                <p>收益</p>
+            </a>
+        </li>
+        <li class="fl box-s active">
+            <a href="<{:U('User/index')}>">
+                <span class="icon3"></span>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--footer end-->
+<script type="text/javascript">
+    function file(el) {//this
+        for (var i = 0; i < el.files.length; i++) {
+            $('#pic_master_img').attr('src', window.URL.createObjectURL(el.files[i]));
+        }
+    }
+    function file1(el) {//this
+        for (var i = 0; i < el.files.length; i++) {
+            $('#pic_master_img1').attr('src', window.URL.createObjectURL(el.files[i]));
+        }
+    }
+</script>
+</body>
+</html>

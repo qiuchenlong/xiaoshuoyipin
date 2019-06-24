@@ -1,0 +1,1 @@
+{"flie":{"name":["833159528DDC4F4827D30573223CED01.jpg","92539DE4DC03907334C9822BD211BB41.jpg"],"type":["image\/jpeg","image\/jpeg"],"tmp_name":["C:\\wamp\\tmp\\php8E5A.tmp","C:\\wamp\\tmp\\php8E7A.tmp"],"error":[0,0],"size":[25760,25760]}}

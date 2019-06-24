@@ -1,0 +1,116 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>小说管理</title>  
+<style type="text/css">
+    #pingtuan{
+        display:none;
+    }
+    .flex{
+           margin-left: 9%;
+          line-height: 2.5;
+        font-size:14px;
+         
+
+    }
+    .gong_span{
+      width: 20%;
+      display: inline-block;
+      text-align: right;
+      color:#72879d;
+      font-weight:bold;
+    }
+
+    .p{
+       margin-left: 3%;
+      color:#72879d;
+     
+    }
+    .bao{
+   
+     margin-left: 32%;
+     
+    }
+    .h4{
+      font-size: 14px;
+      color:#72879d;
+      border-bottom: 1px solid #f1f1f1;
+          padding-bottom: 10px;
+          font-weight: bold;
+    }
+    .m-ps{
+      background: #49a4dd;
+      color:#fff;
+      font-size: 12px;
+      line-height: 3;
+      padding: 0 12px;
+      border-radius: 5px;
+    }
+</style>
+</head>  
+
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+  <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 频道管理 <span class="c-gray en">&gt;</span> 男频列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+  
+  
+  
+      
+ <p class="m-ps">注意：接入公众号必须是“认证服务号”</p>
+ <h4 class="h4">
+  公众号设置
+</h4>
+  
+    <div class="flex"><span class="gong_span">类型</span><span class="p"><input type="radio" name="" checked>认证服务号</span ></div>
+    <div class="flex"><span class="gong_span">原始ID</span><span  class="p"><{$v.yuanshiid}></span ></div>
+    <div class="flex"><span class="gong_span">微信号</span><span  class="p"><{$v.weixinhao}></span ></div>
+    <div class="flex"><span class="gong_span">昵称</span><span  class="p"><{$v.nicheng}></span ></div>
+    <div class="flex"><span class="gong_span">App id</span><span  class="p"><{$v.appid}></span ></div>
+    <div class="flex"><span class="gong_span">App Secret</span ><span class="p"><{$v.appsecret}></span ></div><br>
+<!-- <h4 class="h4">
+  关注设置
+</h4> -->
+
+    
+    
+          <span class="bao"><a onclick="picture_add('修改','<{:U('gongzhonghao')}>')"><button  class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 修改</button></a></span>
+    </article>
+  </div> 
+
+
+</section>
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+
+  function picture_add(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url,
+            shade: 0.6,
+        area:['68%','80%'] 
+        });
+        // layer.full(index);
+    }
+ 
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
+

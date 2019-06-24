@@ -1,0 +1,77 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>小说管理</title>  
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 频道管理 <span class="c-gray en">&gt;</span> 用户统计 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+	
+	
+	
+			
+			<table class="table table-border table-bordered table-bg">
+				<thead>
+					<tr>
+						<th colspan="7" scope="col">信息统计</th>
+			</tr>
+					<tr class="text-c">
+						<th>用户统计</th>
+						<th>新增用户</th>
+						<th>新增代理商</th>
+						
+					
+			</tr>
+		</thead>
+			<tbody id="changetr">
+					
+					<tr class="text-c success">
+						<td>本日</td> 
+						<td><{$user1}></td>
+						<td><{$dai1}></td>
+						
+			  </tr>
+					
+					<tr class="text-c success">
+						<td>本月</td>  
+						<td><{$user2}></td>
+						<td><{$dai2}></td>
+						
+			</tr>
+			</tr>
+					
+					<tr class="text-c success">
+						<td>总数</td>  
+						<td><{$user}></td>
+						<td><{$dai}></td>
+						
+			</tr>
+		</tbody>
+	</table>
+
+		
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+ 
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

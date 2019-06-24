@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+    	.head{
+    		background:white;
+    		padding:15px;
+    	}
+    	.wenzi{
+    		float:left;
+    		font-size:14px;
+    		line-height:65px;
+    	}
+    	.userHead,.youJianTou{
+    		float:right;
+    	}
+    	.userHead{
+    		margin-right:30px;
+    	}
+    	.youJianTou{
+    		line-height:65px;
+    	}
+    	.userHead img{
+    		width:65px;
+    		height:65px;
+    	}
+    	
+    	.list{
+    		margin-top:10px;
+    		background:white;
+    	}
+    	.list ul li{
+    		line-height:40px;
+    		padding:0 10px;
+    		font-size:14px;
+    		border-bottom:1px solid #dedede;
+    	}
+    	.youJIanTou,.userName{
+    		float:right;
+    		color:#989898;
+    	}
+    	.icon-you{
+    		font-size:14px;
+    	}
+    </style>
+</head>
+<body ng-controller="DataController">
+	<div class="head clearfix">
+		<div class="wenzi">
+			我的头像
+		</div>
+		<div class="youJianTou">
+			<i class="iconfont icon-you"></i>
+		</div>
+		<div class="userHead">
+			<img src="../../image/toux@2x.png" alt="" />
+		</div>
+	</div>
+	<div class="list">
+		<ul>
+			<li>
+				<span class="title">我的昵称</span>
+				<span class="youJIanTou"><i class="iconfont icon-you"></i></span>
+				<span class="userName" style="margin-right:10px;">{{user.name}}</span>
+			</li>
+			<li>
+				<span class="title">我的账号</span>
+				<span class="youJIanTou" style="visibility: hidden;"><i class="iconfont icon-you"></i></span>
+				<span class="userName" style="margin-right:10px;">{{user.mobile}}</span>
+			</li>
+			<li>
+				<span class="title">我的性别</span>
+				<span class="youJIanTou"><i class="iconfont icon-you"></i></span>
+				<span class="userName" style="margin-right:10px;" ng-if="user.sex==0">女</span>
+				<span class="userName" style="margin-right:10px;" ng-if="user.sex==1">男</span>
+			</li>
+			<li>
+				<span class="title">出生日期</span>
+				<span class="youJIanTou"><i class="iconfont icon-you"></i></span>
+				<span class="userName" style="margin-right:10px;">2000-01-01</span>
+			</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/jquery-2.1.4.js"></script>
+<script src="../../script/angular.min.js"></script>
+<script src="../../script/ev.js"></script>
+<script type="text/javascript">
+	
+		var app = angular.module("myApp", []);
+	app.controller("DataController",["$scope",function($scope){
+		$scope.user = {};
+		$scope.imgurl = imageUrl;
+		
+		
+		EventT.on("apiready",function(){
+		$scope.user=$api.getStorage('user');
+		$scope.$apply();
+		})
+
+		
+	}])
+	
+		apiready = function(){
+	
+		EventT.emit("apiready");
+		
+	}
+</script>
+</html>

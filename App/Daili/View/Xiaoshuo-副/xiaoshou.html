@@ -1,0 +1,114 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>小说管理</title>  
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 频道管理 <span class="c-gray en">&gt;</span> 销售列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <i ></i> 
+		
+	
+
+
+	<span class="r">共有数据：<strong><{$shu}></strong> 条</span> </div>
+			
+			
+			<div class="mt-0">  
+				<table class="table table-border table-bordered table-bg table-hover table-sort" width="100%">
+					<thead>
+						<tr class="text-c"> 
+							
+							<th width="10">ID</th>
+							<th width="50">小说名</th>
+							<th width="10">每章售价</th>
+							
+							<th width="50">订单数量</th>
+							<th width="50">共使用代金券</th>
+							<th width="50">共使用余额</th>
+							<th width="50">阅读量</th>
+							<th width="50">代理商</th>
+							
+							
+						
+							
+							
+							
+						<!-- 	<th width="20">操作</th> -->
+							
+							 
+						</tr> 
+						<foreach name="arr" item="v">
+						<tr class="text-c"> 
+							<!-- <td width="100"><{$v.sortid}></td> -->
+							
+							<td width="20"><{$v.articleid }></td>
+							<td width="100">
+								
+								<{$v.articlename}>
+							</td>
+							<td width="30"><{$v.saleprice}></td>
+							
+							    
+							</td>
+							<td width="30"><{$v.zongshu}></td>
+							<td width="30"><{$v.daijin}></td>
+							<td width="30"><{$v.money}></td>
+							
+							<td width="30"><{$v.yuedu}></td>
+							<if condition="$v.dainame eq null"><td width="30"></td>
+								<else/><td width="30"><{$v.dainame}></td></if>
+
+							
+						
+							
+							
+							
+							
+							
+							
+							
+							<!-- <td width="30"><a title="编辑频道栏目" href="<{:U('edit')}>?id=<{$v.sortid}>&type=1"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> </td> -->
+						</tr> 
+					</foreach>
+					</thead> 
+					<tfoot>
+						
+					</tfoot>
+				</table>
+				<{$btn}>
+			</div>
+		</article>
+	</div> 
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+ $("#sel").change(function(){
+        var opt=$("#sel").val();
+        // alert(opt);
+        window.location.href = "/xiangmu/xiaoshuotaiwang/index.php/Admin/Xiaoshuo/xiaoshou.html?id="+opt;
+ });
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+
+</body>
+</html>

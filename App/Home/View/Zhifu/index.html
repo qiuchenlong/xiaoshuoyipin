@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html>
+<head>
+	<body>
+	<center><br><br>
+
+   <!--  <form action="http://www.paypal.com/cgi-bin/webscr" method="post"> 
+<input type="hidden" name="cmd" value="_xclick"> 
+<input type="hidden" name="business" value="PayPal账户中的email地址">
+<input type="hidden" name="item_name" value="商品描述">
+<input type="hidden" name="item_number" value="商品编号"> 
+<input type="hidden" name="currency_code" value="货币单位，如USD，EUR等">
+<input type="hidden" name="amount" value="商品金额或订单总价"> 
+<input type="hidden" name="notify_url" value="交易后paypal返回网站地址" />
+<input type="hidden" name="cancel_return" value="客户取消交易后返回地址" />
+<input type="hidden" name="return" value="客户交易返回地址" />
+<input type="submit" value="PayPal"> 
+</form> -->
+
+
+<form action="http://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+
+<input type="hidden" name="cmd" value="_xclick">  <!-- // "_xclick" 立即购买 -->
+
+<input type="hidden" name="business" value="3200788086-facilitator@qq.com">  
+<!-- //PayPal账户上的电子邮件地址 -->
+
+<input type="hidden" name="item_name" value="Item Name">
+<!-- //物品名称（或购物车名称） -->
+
+<input type="hidden" name="currency_code" value="USD"> 
+<!-- //定义币种以标示货币变量 值可以为 "USD"、"EUR"、"GBP"、"CAD"、"JPY"。 -->
+
+<input type="hidden" name="amount" value="5"> 
+
+<input type=  "hidden"   name=  "return"   value="http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Home/zhifu/zfhou "  >
+<!-- //物品的价格（购物车中所有物品的总价格,因为是_Xclick模式） -->
+<input type="image" src="http://www.paypal.com/zh_XC/i/btn/x-click-but01.
+gif" name="submit" alt="请使用PayPal付款！">
+
+</form>
+
+</center>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.js"></script>
+<script> 
+	function user(){
+        // alert(11);
+        var user_id = $.trim($("#id").val());
+       	
+        $.post("<{:U('index')}>",{id:user_id},function(data){
+        	
+                 if(data==null){
+              		
+              		alert('老铁，没东西啊');
+                 }else{
+                 
+
+                 	 $("#user").html('<input type="hidden" name="api_sig" value="'+data+'">');
+                 }
+             });
+       
+    };
+</script> 
+</body>

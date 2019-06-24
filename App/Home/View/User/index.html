@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="__PUBLIC__/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__PUBLIC__/css/api.css" />
+    <link rel="stylesheet" href="__PUBLIC__/src/css/index.css">   <!--css-->
+    <link rel="stylesheet" href="__PUBLIC__/src/css/swiper-4.2.2.min.css"><!--轮播css-->
+    <link rel="stylesheet" href="__PUBLIC__/src/css/icon/iconfont.css">
+    <script src="__PUBLIC__/src/library/zepto.js"></script><!--页面js-->
+    <script src="__PUBLIC__/src/library/swiper-4.2.2.min.js"></script><!--页面js-->
+    <script src="__PUBLIC__/src/js/global.js"></script>
+
+</head>
+<body>
+<div class="content">
+    <div class="m-user_chd">
+        <div class="hd">
+            <div class="iconfont icon-user"></div>
+            <p class="user-name">
+                <if condition="$_SESSION neq null"><?php echo session('username'); ?>
+
+                <else/> 临时用户0c1234567
+                </if>
+            </p>
+        </div>
+        <div class="img">
+        <if condition="$_SESSION neq null">
+            <img class="img-user_rec" src="__PUBLIC__/images/denglu.jpg" alt="">
+
+            <else/>
+             <img class="img-user_rec" src="__PUBLIC__/src/images/user_rec.png" alt="">
+         </if>
+            <if condition="$_SESSION eq null">
+            <a class="img_a" href="<{:U('Login/login')}>"></a>
+            <else/><a class="img_a" id="all_move"></a>
+        </if>
+        </div>
+        <ul class="ft">
+            <li class="li">
+                <p class="nmb"><{$v.egold}></p>
+                <p>金币</p>
+            </li>
+            <li class="li">
+                <p class="nmb"><{$v.gcount}></p>
+                <p>代金券</p>
+            </li>
+            <li class="li" onClick="location.href='readHistory.html'">
+                <p class="nmb">0</p>
+                <p>阅读记录</p>
+            </li>
+        </ul>
+    </div>
+    <ul class="m-user_list">
+        <a href="chong_zhi.html?id=<{$v.egold}>">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-money"></i>
+                    <p class="h4">
+                        <span>我的账户</span>
+                        <span class="ps"></span>
+                    </p>
+                </div>
+                <div class="right">
+                    <span >充值</span>
+                    <!-- <i class="iconfont icon-signboard_right"></i> -->
+                </div>
+            </li>
+        </a>
+ <!--        <a href="javascript:;">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-vip-copy"></i>
+                    <p class="h4">
+                        <span>我的VIP</span>
+                        <span class="ps"></span>
+                    </p>
+                </div>
+                <div class="right">
+                    <span class="text">开通</span>
+                    <i class="iconfont icon-signboard_right"></i>
+                </div>
+            </li>
+        </a>
+        <a href="message.html">
+            <li class="li">
+                <div class="left">
+                    <i class="iconfont icon-mulu"></i>
+                    <p class="h4">
+                        <span>消息中心</span>
+                        <span class="ps"></span>
+                    </p>
+                </div>
+            </li>
+        </a>-->
+    </ul>
+</div>
+
+ <script>
+    $('#all_move').click(function(){
+        alert('您已登录');
+    })
+</script>
+</body>
+</html>

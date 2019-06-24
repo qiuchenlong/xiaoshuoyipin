@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>飞答后台管理系统</title> 
+
+<link href="__ROOT__/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="__ROOT__/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="__ROOT__/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+	<link href="__ROOT__/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+	<link href="__ROOT__/themes/default/default.css" rel="stylesheet" type="text/css" media="print"/>
+<link href="__ROOT__/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
+<!--[if IE]>
+<link href="themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
+<![endif]-->
+
+<!--[if lt IE 9]><script src="js/speedup.js" type="text/javascript"></script><script src="js/jquery-1.11.3.min.js" type="text/javascript"></script><![endif]-->
+<!--[if gte IE 9]><!--><script src="__ROOT__/js/jquery-2.1.4.min.js" type="text/javascript"></script><!--<![endif]-->
+
+<script src="__ROOT__/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="__ROOT__/js/jquery.validate.js" type="text/javascript"></script>
+<script src="__ROOT__/js/jquery.bgiframe.js" type="text/javascript"></script>
+
+<script src="__ROOT__/uploadify/scripts/jquery.uploadify.js" type="text/javascript"></script>
+
+
+
+<script src="__ROOT__/js/dwz.core.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.util.date.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.validate.method.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.barDrag.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.drag.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.tree.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.accordion.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.ui.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.theme.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.switchEnv.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.alertMsg.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.contextmenu.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.navTab.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.tab.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.resize.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.dialog.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.dialogDrag.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.sortDrag.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.cssTable.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.stable.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.taskBar.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.ajax.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.pagination.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.database.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.datepicker.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.effects.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.panel.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.checkbox.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.history.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.combox.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.file.js" type="text/javascript"></script>
+<script src="__ROOT__/js/dwz.print.js" type="text/javascript"></script>
+	<script src="__ROOT__/kindeditor/kindeditor-min.js" type="text/javascript"></script>
+	<script src="__ROOT__/kindeditor/zh_CN.js" type="text/javascript"></script>
+
+<!-- 可以用dwz.min.js替换前面全部dwz.*.js (注意：替换时下面dwz.regional.zh.js还需要引入)
+<script src="bin/dwz.min.js" type="text/javascript"></script>
+-->
+<script src="__ROOT__/js/dwz.regional.zh.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function(){
+	DWZ.init("__ROOT__/dwz.frag.xml", {
+		loginUrl:"login_dialog.html", loginTitle:"登录",	// 弹出登录对话框
+//		loginUrl:"login.html",	// 跳到登录页面
+		statusCode:{ok:200, error:300, timeout:301}, //【可选】
+		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderDirection"}, //【可选】
+		keys: {statusCode:"statusCode", message:"message"}, //【可选】
+		ui:{hideMode:'offsets'}, //【可选】hideMode:navTab组件切换的隐藏方式，支持的值有’display’，’offsets’负数偏移位置的值，默认值为’display’
+		debug:false,	// 调试模式 【true|false】
+		callback:function(){
+			initEnv();
+			$("#themeList").theme({themeBase:"themes"}); // themeBase 相对于index页面的主题base路径
+		}
+	});
+});
+</script>
+
+</head>
+
+<body>
+	<div id="layout">
+		<div id="header">
+			<div class="headerNav">
+
+				<ul class="themeList" id="themeList">
+					<li theme="default"><div class="selected">蓝色</div></li>
+					<li theme="green"><div>绿色</div></li>
+					<!--<li theme="red"><div>红色</div></li>-->
+					<li theme="purple"><div>紫色</div></li>
+					<li theme="silver"><div>银色</div></li>
+					<li theme="azure"><div>天蓝</div></li>
+				</ul>
+			</div>
+
+			<!-- navMenu -->
+			
+		</div>
+
+		<div id="leftside">
+			<div id="sidebar_s">
+				<div class="collapse">
+					<div class="toggleCollapse"><div></div></div>
+				</div>
+			</div>
+			<div id="sidebar">
+				<div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
+
+				<div class="accordion" fillSpace="sidebar">
+					<div class="accordionHeader">
+						<h2><span>Folder</span>界面组件</h2>
+					</div>
+					<div class="accordionContent">
+						<ul class="tree treeFolder">
+							 
+							<li><a >分类管理</a>
+								<ul>
+									<li><a href="?m=FeiAdmin&c=Classify&a=showList" target="navTab" rel="classify_list">主分类列表</a></li>
+									<li><a href="?m=FeiAdmin&c=SonClassify&a=showList" target="navTab" rel="sonclassify_list">子分类列表</a></li>
+									<li><a href="?m=FeiAdmin&c=SonClassify&a=shenshowList" target="navTab" rel="shenshow_list">审核子分类</a></li>
+								</ul>
+							</li>
+							<li><a>用户管理</a>
+								<ul>
+									<li><a href="?m=FeiAdmin&c=User&a=wshowList" target="navTab" rel="wuser_list">未认证用户列表</a></li> 
+									<li><a href="?m=FeiAdmin&c=User&a=dshowList" target="navTab" rel="duser_list">待通过用户列表</a></li> 
+									<li><a href="?m=FeiAdmin&c=User&a=yshowList" target="navTab" rel="yuser_list">已认证用户列表</a></li>
+									<li><a href="?m=FeiAdmin&c=User&a=xyUserList" target="navTab" rel="Xyuser_list">系统用户列表</a></li>  
+								</ul>
+							</li>
+							<li><a>话题管理</a>
+								<ul> 
+									<li><a href="?m=FeiAdmin&c=Talk&a=shenhelst" target="navTab" rel="shen_list">审核话题列表</a></li>
+									<li><a href="?m=FeiAdmin&c=Talk&a=showList" target="navTab" rel="talk_list">话题列表</a></li> 
+									<li><a href="?m=FeiAdmin&c=Talk&a=jubaoList" target="navTab" rel="jubao_list">话题举报</a></li> 
+								</ul>
+							</li>
+							
+							<li><a>热词管理</a>
+								<ul>
+									<li><a href="?m=FeiAdmin&c=HotKey&a=showList" target="navTab" rel="hotkey_list">热词列表</a></li>
+								</ul>
+							</li>
+							
+							<li><a>系统管理</a> 
+								<ul>
+									<li><a href="?m=FeiAdmin&c=System&a=showXi" target="navTab" rel="system_list">系统管理</a></li>
+									<li><a href="?m=FeiAdmin&c=Sysinfomation&a=lst" target="navTab" rel="sysinfo_list">系统消息</a></li>
+								</ul> 
+							</li>
+
+							<li><a>帮助中心</a>
+								<ul>
+									<li><a href="?m=FeiAdmin&c=HelpCenter&a=lst" target="navTab" rel="hlep_list">帮助中心</a></li>
+								</ul> 
+							</li>
+
+							<li><a>飞币管理</a>
+								<ul>
+									<li><a href="?m=FeiAdmin&c=Feibi&a=lst" target="navTab" rel="feibi_list">飞币价格设置列表</a></li>
+								</ul>
+							</li>
+
+							<li><a>用户购买记录管理</a>
+								<ul> 
+									<li><a href="?m=FeiAdmin&c=Buyfeibi&a=lst" target="navTab" rel="Buyfeibi_list">用户购买记录管理</a></li>
+								</ul>
+							</li>
+
+							<li><a>提现记录管理</a>
+								<ul>  
+									<li><a href="?m=FeiAdmin&c=Withdraw&a=lst" target="navTab" rel="tixian_list">提现记录管理</a></li>
+								</ul>
+							</li>
+							
+							<li><a>系统话题管理</a>  
+								<ul>  
+									<li><a href="?m=FeiAdmin&c=User&a=talktouser" target="navTab" rel="talktouser_list">话题添加到用户</a></li>
+								</ul>
+							</li>
+
+
+							<li><a>游戏管理</a>
+								<ul>
+									<li><a href="?m=FeiAdmin&c=Joy&a=lst" target="navTab" rel="joy_list">游戏列表</a></li>
+								</ul> 
+							</li>
+
+							<li><a>虚拟回复管理</a>
+								<ul>
+									<li><a href="?m=FeiAdmin&c=Index&a=qan_lst" target="navTab" rel="qan_list">问题回答列表</a></li>
+									<li><a href="?m=FeiAdmin&c=Index&a=reply_lst" target="navTab" rel="reply_lst">评论列表</a></li>
+								</ul>  
+							</li>
+                           
+                           <li><a>讨论分配</a>
+								<ul> 
+									<li><a href="__ROOT__/Admin/outsidefile/huatifenpei.php" target="blank">话题分配给用户</a></li> 
+									<li><a href="__ROOT__/Admin/outsidefile/fenxiangfenpei.php" target="blank">分享分配给话题</a></li>
+									<li><a href="__ROOT__/Admin/outsidefile/huifufenpei.php" target="blank">给话题分配回复</a></li>
+									<li><a href="__ROOT__/Admin/outsidefile/wentifenpei.php" target="blank">给用户分配问答</a></li>
+								</ul> 
+							</li>
+
+
+							  <li><a>用户分配</a>
+								<ul>
+									<li><a href="__ROOT__/Admin/outsidefile/yonghufenpei.php" target="blank">用户基础分配</a></li>
+									<li><a href="__ROOT__/Admin/outsidefile/fensifenpei.php" target="blank">用户相互关注分配</a></li>
+								</ul> 
+							</li>
+
+
+						</ul>
+					</div>
+ 
+				</div>
+			</div>
+		</div>
+		<div id="container">
+			<div id="navTab" class="tabsPage">
+				<div class="tabsPageHeader">
+					<div class="tabsPageHeaderContent"><!-- 显示左右控制时添加 class="tabsPageHeaderMargin" -->
+						<ul class="navTab-tab">
+							<li tabid="main" class="main"><a href="javascript:;"><span><span class="home_icon">我的主页</span></span></a></li>
+						</ul>
+					</div>
+					<div class="tabsLeft">left</div><!-- 禁用只需要添加一个样式 class="tabsLeft tabsLeftDisabled" -->
+					<div class="tabsRight">right</div><!-- 禁用只需要添加一个样式 class="tabsRight tabsRightDisabled" -->
+					<div class="tabsMore">more</div>
+				</div>
+				<ul class="tabsMoreList">
+					<li><a href="javascript:;">我的主页</a></li>
+				</ul>
+				<div class="navTab-panel tabsPageContent layoutBox">
+					<div class="page unitBox">
+
+						<div class="pageFormContent" layoutH="80" style="margin-right:230px;font-size:30px">
+
+							欢迎来到放飞科技后台管理系统
+
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

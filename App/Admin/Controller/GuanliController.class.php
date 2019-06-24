@@ -1,0 +1,55 @@
+<?php
+namespace Admin\Controller;
+use Think\Controller;
+header('content-type:text/html;charset=utf-8');
+class GuanliController extends CommonController {
+    public function index(){
+      $model =M("admin");
+            //查出总条数 
+            $count = $model->count();
+            //引入分页类 
+            $page = new \Think\Page($count,8); //传入一个总条数，和每页显示的条数
+            //引入数据
+            $arr = $model->limit($page->firstRow.','.$page->listRows)->select();
+            //分页
+            
+            $btn = $page->show();
+
+            
+
+            // var_dump($info);die;
+            //分配数据
+           
+            $this->assign('arr',$arr);          //用户
+            $this->assign('btn',$btn);          //分页
+            $this->assign('shu',$count);        //总条数   
+            $this->display();   
+        
+     
+    }
+
+    
+    
+
+    public function edit(){
+        if(IS_POST){
+           
+
+                $sql=M('admin')->save($_POST);
+                 if ($sql> 0){
+                    echo '<script>alert("修改成功");window.parent.location.reload()</script>';
+                } else {
+                    echo '<script>alert("用户信息无更改");history.go(-1)</script>';
+                }
+              
+               
+        }else{
+            $a=$_GET['id'];
+           $v=M('admin')->find($a);
+           $this->assign('v',$v);
+           $this->display();  
+        }
+    }
+    
+    
+}

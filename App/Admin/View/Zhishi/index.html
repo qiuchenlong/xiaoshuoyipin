@@ -1,0 +1,111 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>知识管理</title> 
+<style>
+ .myimg img{max-width:100px}
+td {
+
+      white-space:nowrap;
+      max-height:100px;
+      overflow:hidden;
+      text-overflow: ellipsis;
+
+}
+table{
+	table-layout: fixed;
+}
+
+
+</style> 
+
+</head>  
+<body>
+<!--_header 作为公共模版分离出去-->
+<include file='Index/header'/>  
+<!--/_header 作为公共模版分离出去-->
+ 
+<!--_menu 作为公共模版分离出去-->
+<include file='Index/leftmenu' />  
+<!--/_menu 作为公共模版分离出去--> 
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 知识管理 <span class="c-gray en">&gt;</span> 知识列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav> 
+	<div class="Hui-article">
+		<article class="cl pd-20"> 
+			<div class="text-c"> 
+		<form action="<{:U(index)}>" method="post">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入标题"  name="id">
+		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索标题</button>
+		</form>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <i ></i> </a><a href="<{:U('add')}>"   class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加知识</a> </span> <span class="r">共有数据：<strong><{$shu}></strong> 条</span> </div>
+			
+			
+			<div class="mt-0">  
+				<table id="tab" class="table table-border table-bordered table-bg table-hover table-sort" width="100%">
+					<thead>
+						<tr class="text-c"> 
+							
+							<th width="100" >ID</th>
+							<th width="100">标题<{$b}></th>
+							<th width="100">推荐首页</th>
+							<th width="300" height="50">内容</th>
+							<th width="100">时间</th>
+							<th width="80">浏览人数</th>
+							<th width="100">操作</th>
+							
+							 
+						</tr> 
+						<foreach name="arr" item="v">
+						<tr class="text-c"> 
+							
+							<td width="100" id="<{$v.id}>"><{$v.id}></td>
+							<td width="100"><{$v.title}></td>
+							<td width="100"><if condition="$v.tuijian eq 0">下架&nbsp;&nbsp;
+							<a href="<{:U('index')}>?id=<{$v.id}>&tuijian=1"><button>推荐</button></a>
+							<else/>推荐&nbsp;&nbsp;<a href="<{:U('index')}>?id=<{$v.id}>&tuijian=0"><button>下架</button></a>
+							</if>
+							</td>
+							<!-- <td width="100"><img src="__PUBLIC__/images/<{$v.images}>"  width="50"></td> -->
+
+							<td class="myimg" width="300"><{$v.content}></td>
+							<td width="100"><{$v.time}></td>
+							<td width="130"><{$v.liulan}></td>
+							<td ><a title="编辑" href="<{:U('edit')}>?id=<{$v.id}>"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a   class="ml-5" onclick="del('<{$v.id}>')"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						</tr> 
+					</foreach>
+					</thead> 
+					<tfoot>
+						
+					</tfoot>
+				</table>
+				<{$btn}>
+			</div>
+		</article>
+	</div> 
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript"> 
+
+function del(id){
+	var con;
+	con=confirm("确定删除吗?"); //在页面上弹出对话框
+	if(con==true){
+		location.href="<{:U('del')}>?id="+id+"";
+	}
+}
+ 
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

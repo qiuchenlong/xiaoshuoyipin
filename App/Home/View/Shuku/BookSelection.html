@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="__PUBLIC__/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__PUBLIC__/css/api.css" />
+    <link rel="stylesheet" href="__PUBLIC__/src/css/index.css">   <!--css-->
+    <link rel="stylesheet" href="__PUBLIC__/src/css/icon/iconfont.css">
+    <script src="__PUBLIC__/src/library/zepto.js"></script><!--页面js-->
+    <script src="__PUBLIC__/src/js/global.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="u-hd_f">
+        <a class="iconfont  icon-xiangshangbiaoshi-copy" href="index.html"></a>
+        <span class="h1">书单广场</span>
+        <span></span>
+    </div>
+    <div class="u-hd_fbase"></div>
+</header>
+<div class="content" style=" margin-top: 10px;">
+    <ul class="m-bookList">
+        <foreach name="arr" item="v">
+
+          <if condition="$v.gotos eq 0">
+            <li class="li"    onClick="location.href='<{:U('Index/dtail')}>?id=<{$v.bookid}>'" >
+                </if>
+
+                <if condition="$v.gotos eq 1">
+                <li class="li"    onClick="location.href='<{:U('Index/guanggao')}>?id=<{$v.id}>'" >
+                </if>
+
+                <if condition="$v.gotos eq 2">
+                <li class="li"    onClick="location.href='<{:U('Index/dtail')}>?id=<{$v.bookid}>'" >
+                <a href="" target="_blank" >
+                </if>
+
+      
+
+            <h4 class="h4"><{$v.title}></h4>
+            <p class="imgList">
+                <img src="__PUBLIC__/<{$v.images}>" alt="">
+                <img src="__PUBLIC__/<{$v.imagest}>" alt="">
+                <img src="__PUBLIC__/<{$v.imagess}>" alt="">
+            </p>
+            <p class="ft">
+                 <{$v.addtime}>
+               
+            </p>
+        </li>
+       
+        </foreach>
+    </ul>
+</div>
+
+<!-- <{$btn}> -->
+<script src="__PUBLIC__/src/js/book.js"></script>
+</body>
+</html>
