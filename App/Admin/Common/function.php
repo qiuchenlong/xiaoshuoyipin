@@ -1,4 +1,5 @@
-<?php 
+<?php
+use Think\Url;
     //批量删除html代码1
     function plsch1()
     {
@@ -118,11 +119,18 @@
     //     }
     //        $this->display();  
     //        //要下载PHPMailer类         
-    // }   
+    // }
 
-
-
-
-
-
+/**
+ * Url生成
+ * @param string        $url 路由地址
+ * @param string|array  $vars 变量
+ * @param bool|string   $suffix 生成的URL后缀
+ * @param bool|string   $domain 域名
+ * @return string
+ */
+function url($url = '', $vars = '', $suffix = true, $domain = false)
+{
+    return Url::build($url, $vars, $suffix, $domain);
+}
 ?>
