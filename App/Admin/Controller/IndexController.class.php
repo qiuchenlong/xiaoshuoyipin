@@ -46,7 +46,7 @@ class IndexController extends CommonController {
     //账号退出
     public function tuichu(){
         session_destroy();
-         echo '<script>alert("账号退出成功");location.href="http://www.youdingb.com/xiangmu/xiaoshuoyipin/index.php/Admin"</script>';
+        $this->success("退出成功",U('/Admin/Login/login'));
     }
 
    //公用头部模版
