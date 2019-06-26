@@ -26,7 +26,6 @@ class BookController extends Controller{
 		$sx = $_REQUEST['sx'];
 		$userid = $_REQUEST['userid'];
 		$Model = M();
-       	$shijan = date('Y-m-d H:i:s');
         //增加阅读时长
         $Model->Query("UPDATE jieqi_system_users SET readtime=readtime+2  where uid='".$userid."';");
         $book = $Model->Query("SELECT saleprice,ffee FROM jieqi_article_article where articleid =".$articleid.";");
