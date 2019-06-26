@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace think;
+namespace Think;
 
 use think\response\Json as JsonResponse;
 use think\response\Jsonp as JsonpResponse;
