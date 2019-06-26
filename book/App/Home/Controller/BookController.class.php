@@ -15,97 +15,60 @@ class BookController extends Controller{
 		$data = array($data);
 		echo getSuccessJson($data,'操作成功'); 
 	}
-
-	//访问单个章节
+    /**
+     * 获取某一个章节的数据
+     * sx integer 章节
+     * id integer 小说id
+     * userid integer 用户id
+     */
 	public function chapterreads(){ 
-		$articleid=$_REQUEST['id'];
-		$sx=$_REQUEST['sx'];
-		$userid=$_REQUEST['userid'];
+	    $articleid = $_REQUEST['id'];
+		$sx = $_REQUEST['sx'];
+		$userid = $_REQUEST['userid'];
 		$Model = M();
-       	$shijan=date('Y-m-d H:i:s');
-
-$Model->Query("UPDATE jieqi_system_users SET readtime=readtime+2  where uid='".$userid."';");//增加阅读时长
-
-
-
+       	$shijan = date('Y-m-d H:i:s');
+        //增加阅读时长
+        $Model->Query("UPDATE jieqi_system_users SET readtime=readtime+2  where uid='".$userid."';");
         $book = $Model->Query("SELECT saleprice,ffee FROM jieqi_article_article where articleid =".$articleid.";");
-             
-        $mianfei=$book[0]['ffee'];//免费章节
-        // $counts = $Model->Query("SELECT COUNT() AS count FROM jieqi_article_chapter where articleid =".$articleid."");
-
+        $mianfei = $book[0]['ffee'];//免费章节
         if($sx<100){
-        	$shu=1;
+        	$shu = 1;
         }else if($sx%100==0){
-        	$shu=$sx/100;	
+        	$shu = $sx/100;
         }else if($sx%100!=0){
-        	$shu=($sx/100)+1;	
+        	$shu = ($sx/100)+1;
         }
-
-		$data = $Model->Query("SELECT chapterid,articlename,chaptername,texts FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $sx,1;");
-               
+        //取下一章节的数据
+		$data = $Model->Query("SELECT chapterid,articlename,chaptername,attachment FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $sx,1;");
         //加入浏览书架
  		$usercase = $Model->Query("SELECT * FROM jieqi_article_bookcase where articleid='".$articleid."'and userid='".$userid."'and flag=1;");
-
-    $usershujia = $Model->Query("SELECT * FROM jieqi_article_bookcase where articleid='".$articleid."'and userid='".$userid."'and flag=0;");
-         $shijiancuo=time();   
-
-                if($usershujia){//更新书架时间
-          $Model->Query("UPDATE jieqi_article_bookcase SET chapterid='".$data[0]['chapterid']."',chaptername='".$data[0]['chaptername']."'  ,zhixu=$sx , lastvisit=$shijiancuo where caseid='".$usershujia[0]['caseid']."';");
-                 }
-
-          
-        if($usercase){//更新记录时间
+        $usershujia = $Model->Query("SELECT * FROM jieqi_article_bookcase where articleid='".$articleid."'and userid='".$userid."'and flag=0;");
+        $shijiancuo=time();
+        //更新书架时间
+        if($usershujia){
+            $Model->Query("UPDATE jieqi_article_bookcase SET chapterid='".$data[0]['chapterid']."',chaptername='".$data[0]['chaptername']."'  ,zhixu=$sx , lastvisit=$shijiancuo where caseid='".$usershujia[0]['caseid']."';");
+        }
+        //更新记录时间
+        if($usercase){
         	$Model->Query("UPDATE jieqi_article_bookcase SET chapterid='".$data[0]['chapterid']."'  where caseid='".$usercase[0]['caseid']."';");
-           
         	$Model->Query("UPDATE jieqi_article_bookcase SET chaptername='".$data[0]['chaptername']."'  where caseid='".$usercase[0]['caseid']."';");
-
             $Model->Query("UPDATE jieqi_article_bookcase SET zhixu=$sx  where caseid='".$usercase[0]['caseid']."';");
             $Model->Query("UPDATE jieqi_article_bookcase SET lastvisit=$shijiancuo  where caseid='".$usercase[0]['caseid']."';");
         }else{
         	$flag=1;
         	$cid=$data[0]['chapterid'];
         	$cname=$data[0]['chaptername'];
-         
     		$sortname = $Model->Query("INSERT INTO jieqi_article_bookcase(articleid,userid,flag,chapterid,chaptername,zhixu,lastvisit)VALUES('$articleid','$userid','$flag','$cid','$cname','$sx','$shijiancuo')");
         }
-
         //加入浏览量
         $datas = $Model->Query("SELECT * FROM orders where aid='".$articleid."' and user_id='".$userid."' and path='".$shu."' and state=1 ");
-
         $quanji = $Model->Query("SELECT * FROM orders where aid='".$articleid."' and user_id='".$userid."' and path=0 and state=1 ");//购买全集
-
-/*		foreach ($data as $key => $value) {
-        $yimai = $Model->Query("SELECT * FROM orders_read where book_id =".$data[0]['chapterid']." and user_id=".$userid.";");
-
-        $user = $Model->Query("SELECT egold FROM jieqi_system_users where uid=".$userid.";");*/
-
-
         if($datas  || $quanji || $mianfei>=$sx)//判断是否已经购买
         {
             $data[0]['du']=1;   
         }else{
-/*                 if($book[0]['saleprice']<=$user[0]['egold'])
-                 {
-                   $data[0]['du']=1;
-
-                 	   $user = $Model->Query("UPDATE jieqi_system_users set egold=egold-".$book[0]['saleprice']."   where uid=".$userid.";");
-
-                 	      $insertArr = array(
-         "user_id"=>$userid,
-         "shubi"=>$book[0]['saleprice'],
-         "book_id"=>$data[0]['chapterid'],
-      );
-      $id = myinsert('orders_read',$insertArr);
-
-
-                 }
-                 else
-                 {*/
             $data[0]['du']=0;
-                  // }
         }
-		     // }
-
 		$data = array($data);
 		echo getSuccessJson($data,'操作成功'); 
 	}
@@ -932,73 +895,40 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
 	// 	echo getSuccessJson($data,'操作成功'); 
 	// }
 
-		//小说阅读2
+    /**
+     * 获取文章章节接口
+     */
 	public function chapterread(){ 
-		$articleid=$_REQUEST['id'];
-		$userid=$_REQUEST['userid'];
-    $path=1;
-		$Model = M();
-
-
-
-        $shijan=date('Y-m-d H:i:s');
-       $usercase = $Model->Query("SELECT * FROM jieqi_article_bookcase where articleid='".$articleid."'and userid='".$userid."'and flag=1;");
-          if($usercase)//检测是否有阅读记录
-          {
-              
-           $z=$usercase[0]['zhixu'];
-          }
-          else
-          {
-          $z=0;
-          }
-       
-       
-        $book = $Model->Query("SELECT saleprice FROM jieqi_article_article where articleid =".$articleid.";");
-		$data = $Model->Query("SELECT chapterid,articlename,chaptername,texts FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $z,1;");
-
+        $articleid = $_REQUEST['id'];
+        $userid = $_REQUEST['userid'];
+        $path = 1;
+        $Model = M();
+        $shijan = date('Y-m-d H:i:s');
+        $usercase = $Model->Query("SELECT * FROM jieqi_article_bookcase where articleid='".$articleid."'and userid='".$userid."'and flag=1;");
+        if($usercase)//检测是否有阅读记录
+        {
+            $z = $usercase[0]['zhixu'];
+        }else{
+            $z = 0;
+        }
+		$data = $Model->Query("SELECT chapterid,articlename,chaptername,attachment FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $z,1;");
+        //获取章节数
 		$shuliang = $Model->Query("SELECT COUNT(*) as count FROM jieqi_article_chapter where articleid =".$articleid.";");
-
-         $data[0]['sl']=$shuliang[0]['count'];
-          $data[0]['z']=$z;
-
-           $aid=1;
-            $adcount = $Model->Query("select COUNT(*) AS count from book_ad where path='".$path."' and bookid like '%".$aid."%' ");//广告
-    $countss=$adcount[0]['count'];
-
-    $x=rand(0,$countss);
-
-    $result = $Model->Query("select * from book_ad where path='".$path."' and bookid like '%".$aid."%' order by id  desc limit $x,1");
-      $data[0]['weburl']=$result[0]['weburl'];
-       $data[0]['gotos']=$result[0]['gotos'];
-        $data[0]['content']=$result[0]['content'];
-         $data[0]['title']=$result[0]['title'];
-		     // foreach ($data as $key => $value) {
-       // $yimai = $Model->Query("SELECT * FROM orders_read where book_id =".$value['chapterid']." and user_id=".$userid.";");
-
-       //         if($yimai||$book[0]['saleprice']<=0)//判断是否已经购买
-       //         {
-       //        $data[$key]['du']=1;
-                
-       //         }
-       //         else
-       //         {
-                  
-       //           $data[$key]['du']=0;
-                  
-
-
-
-       //         }
-
-
-		     // }
-
-		// $data = array($data);
-		// echo getSuccessJson($data,'操作成功');
-
-      $data = array($data);
-    echo getSuccessJson($data,'操作成功'); 
+        //随机获取广告
+        $aid = 1;
+        $adcount = $Model->Query("select COUNT(*) AS count from book_ad where path='".$path."' and bookid like '%".$aid."%' ");//广告
+        $countss = $adcount[0]['count'];
+        $x = rand(0,$countss);
+        $result = $Model->Query("select * from book_ad where path='".$path."' and bookid like '%".$aid."%' order by id  desc limit $x,1");
+        $dataRes = [
+            'sl' =>$shuliang[0]['count'],
+            'z' => $z,
+            'gotos' => $result[0]['gotos'],
+            'content' => $result[0]['content'],
+            'title' => $result[0]['title'],
+        ];
+        $res = array_merge($data[0],$dataRes);
+        echo getSuccessJson($res,'操作成功');
 	}
 
 	//评论表

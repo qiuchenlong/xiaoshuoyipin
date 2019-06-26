@@ -1710,12 +1710,12 @@ public function upchapter()
                     $xxx=M('jieqi_article_chapter')->where($yy)->order('chapterid desc')->select();
                     foreach ($xxx as $kk => $o){
                         $dax[]=$o['size'];
-                        $han=fopen("Public/text/".$kk.time().".text","w");
+                        /*$han=fopen("Public/text/".$kk.time().".text","w");
                         fwrite($han,$o['attachment']);
                         fclose($han);
                         $diz['texts']="Public/text/".$kk.time().".text";
                         $zzz['chapterid']=$o['chapterid'];
-                        $jiesu=M('jieqi_article_chapter')->where($zzz)->order('chapterid desc')->save($diz);
+                        $jiesu=M('jieqi_article_chapter')->where($zzz)->order('chapterid desc')->save($diz);*/
                     }
                     $sumx=array_sum($dax);
                     $geng['lastchapter']=$xxx[0]['chaptername'];
@@ -1724,12 +1724,6 @@ public function upchapter()
                     $geng['lastupdate']=date('Y-m-d H:i:s');
                     $us['articleid']=I('id');
                     M('jieqi_article_article')->where($us)->save($geng);
-                    /*foreach ($xxx as $ke => $va){
-                        $tx['chapterid'] = $ke;
-                        $tx['texts'] = $file_path;
-                        $txx['chapterid'] = $ke;
-                        M('jieqi_article_chapter')->where($txx)->save($tx);
-                    }*/
                      echo '<script>alert("添加成功");window.parent.location.reload()</script>';die;
                     //生成text
                      // var_dump($xxx);die;
