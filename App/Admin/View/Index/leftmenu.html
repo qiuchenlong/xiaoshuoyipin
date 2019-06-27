@@ -3,10 +3,12 @@
 		<if condition="$_SESSION.guanli neq null">
 		<dl id="menu-xitong">
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd <if condition='CONTROLLER_NAME eq "Guanli"'>style="display:block"</if> >
+			<dd>
 				<ul>
 					<li <if condition='(ACTION_NAME eq "index") and (CONTROLLER_NAME eq "Guanli")'>class="current"</if>><a href="<{:U('Guanli/index')}>" title="系统列表">管理员列表</a></li>
-					
+
+					<li <if condition='(ACTION_NAME eq "index") and (CONTROLLER_NAME eq "Guanli")'>class="current"</if>><a href="<{:U('Role/index')}>" title="系统列表">角色管理</a></li>
+
 				</ul>
 			</dd> 
 		</dl>

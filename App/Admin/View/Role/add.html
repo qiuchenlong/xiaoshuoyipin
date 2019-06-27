@@ -1,0 +1,70 @@
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+
+<title>添加角色</title>
+<link href="__PUBLIC__/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/usercss/login.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #pingtuan{
+        display:none;
+    } 
+</style>
+</head> 
+<body>
+    <div class="register-wrap clearfix">
+<div class="page-container"> 
+    <div class="title"><h2>添加角色</h2></div>
+	<form class="form form-horizontal"action="<{:U('Role/roleAddPost')}>" method="post" enctype="multipart/form-data">
+         <div class="row cl">
+             <div>
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>角色名称：</label>
+             </div>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" required name="name" class="input-text"/>
+            </div>
+        </div>
+        <div class="row cl">
+          <label class="form-label col-xs-4 col-sm-2">角色描述：</label>
+          <div class="formControls col-xs-8 col-sm-9">
+              <textarea type="text" class="input-text" id="input-remark" name="remark"></textarea>
+          </div>
+        </div>
+
+        <div class="row cl">
+          <label class="form-label col-xs-4 col-sm-2">状态：</label>
+          <div class="formControls col-xs-8 col-sm-9">
+              <label class="radio-inline">
+                  <input type="radio" class="input-radio" name="status" value="1">开启
+              </label>
+              <label class="radio-inline">
+                  <input type="radio" class="input-radio" name="status" value="0">禁用
+              </label>
+          </div>
+        </div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+				<!-- <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
+				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+<!--_footer 作为公共模版分离出去--> 
+<include file='Index/footer'/>
+<!--/_footer /作为公共模版分离出去--> 
+
+<!--请在下方写此页面业务相关的脚本-->
+ <script type="text/javascript" src="__PUBLIC__/lib/jedate.js"></script>
+ <link type="text/css" rel="stylesheet" href="__PUBLIC__/lib/jedate.css">
+ <script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/lib/webuploader/0.1.5/webuploader.min.js"></script> -->
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/waibu/h5FileUpload.js"></script> --> 
+<script type="text/javascript" src="__PUBLIC__/waibu/Uploadimage.js"></script>
+<script src="__PUBLIC__/lib/kindeditor/kindeditor-min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/lib/kindeditor/zh_CN.js" type="text/javascript"></script>
+</body>
+</html>

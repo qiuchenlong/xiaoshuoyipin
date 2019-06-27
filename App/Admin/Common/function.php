@@ -1,5 +1,6 @@
 <?php
 use Think\Url;
+use Think\Cache;
     //批量删除html代码1
     function plsch1()
     {

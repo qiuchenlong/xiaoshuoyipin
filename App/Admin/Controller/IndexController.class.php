@@ -61,6 +61,7 @@ class IndexController extends CommonController {
 
     // 左侧列表
     public function leftmenu(){
+
     	$this->display();
     }
 

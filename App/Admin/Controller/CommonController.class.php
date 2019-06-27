@@ -7,58 +7,86 @@ class CommonController extends Controller{
 	//检测登录方是否登录或（未实现）
 	public function _initialize(){   
 		 $login_user = session('aid');
-		 if($login_user == ''){
-		 	$this->redirect('Admin/Login/login');
-		 }  
-		// // 在登陆后的页面判断:
-		// $online_time=time(); //记录当前时间
-		// if($online_time-session('login_time')>20){ //判断是否超过600秒
-		// // 执行 退出页面操作(代码自己写)
-		// 	session_destroy();
-		// 	header(U('Login/index'));
-		// } else {
-		// 	$time=time()
-		// 	session('login_time',$time); //如果进行了操作，更新时间
-		// }
-		 // //管理员信息  
-		 // $Model = M();
-		 // $user = $Model->Query("SELECT phone FROM k_admin WHERE id=".$login_user.";");
-		 // $this->phone = $user[0]['phone'];  
-		 // }
-	
+        return true;
+        /*if($login_user == 1){
+            return true;
+        }*/
+        if (!empty($login_user)) {
+//验证具体权限
+            $url = ltrim(__SELF__,'/index.php');
+            $url_arr = explode('/', $url);
+            $c = $url_arr[1];
+            $m = ACTION_NAME;
+            //查询角色，通过用户查询角色
+            $roleLists = $this->roleList($login_user);
+            if(!empty($roleLists)){
+                //查询权限，通过角色查询权限
+                $roleLists = $this->menuList($roleLists);
+            }else{
+                $this->error("您没有权限！");
+            }
+            var_dump($c);die;
+            $levelstr_arr = explode(',', $_SESSION['levelstr']);
+            if(!in_array($data['id'], $levelstr_arr) && ($c <> 'index' && $m <> 'index') && $_SESSION['levelstr'] <> 'all' && in_array($m, C('ACTION'))){
+                if(in_array($m, array('add','update','xiangqing'))){
+                    echo '<div style="margin-top:200px;float: none;margin-right: 0px;margin-left: 0px;text-align:center;">您没有权限! </div>';exit;
+                }
+                exit('您没有权限');
+                $result = array('result'=>false,'data'=>'','message'=>'您没有权限！');
+                echo json_encode($result);exit;
+            }
+            if(intval(session('adminid')) != 1 || intval(session('groupid')) != 1){
+                $adminData = M('my_admin')->where('id='.intval(session('adminid')))->find();
+                if(!empty($adminData['merchantid'])){
+                    session('adminmerchantid',$adminData['merchantid']);
+                }else{
+                    echo '<div style="margin-top:200px;float: none;margin-right: 0px;margin-left: 0px;text-align:center;">联系管理员给您授权商户! <a href="/admin/Login/sendemail">点击发送邮件</a></div>';exit;
+                }
+            }
+        } else {
+            $this->error("您还没有登录！", U("Login/login"));
+        }
 	}
+    /**
+     *  排序 排序字段为list_orders数组 POST 排序字段为：list_order
+     */
+    protected function listOrders($model)
+    {
+        if (!is_object($model)) {
+            return false;
+        }
+        $pk  = $model->getPk(); //获取主键名称
+        $ids = $_REQUEST("list_orders/a");
+        if (!empty($ids)) {
+            foreach ($ids as $key => $r) {
+                $data['list_order'] = $r;
+                $model->where([$pk => $key])->update($data);
+            }
+        }
+        return true;
+    }
 
-	// //ajax删除图 
- //     public	function deleteImage(){      
-	// 		// 先取出图片所在目录
-	// 		$images = $_REQUEST['images'];
-	// 		$root = C('IMG_rootPath'); 
-	// 		$imgpath = $root.$images;
-	// 		if(unlink($imgpath)){ 
-	// 		$result = array('state'=>1,'msg'=>'删除成功'); 
-	// 		}else{
-	// 		$result = array('state'=>0,'msg'=>'删除失败'); 
-	// 		}
-	// 		$this->ajaxReturn($result);
-	// 	}
+    /**
+     * @param $adminId
+     * @return string
+     * 根据用户id查询角色信息
+     */
+    protected function roleList($adminId){
+        $roles = M('AdminRole')
+            ->field('r.id')
+            ->join('LEFT JOIN Admin a ON a.id = admin_role.user_id')
+            ->join('LEFT JOIN Role r ON r.id = admin_role.role_id')
+            ->where(["admin_role.user_id" => $adminId])
+            ->select();
+        $roleIds = "";
+        foreach($roles as $v){
+            $roleIds .= $v['id'].',';
+        }
+        $roleIds = trim($roleIds,',');
+        return $roleIds;
+    }
+    protected function menuList($roleId){
 
-
-		//查询授权方的appid
-		// public function getappid(){
-		// 	$admin_id = session('admin_user_info');
-		// 	$Model = M(); 
-		// 	$shopappid = $Model->Query("SELECT auth_appid FROM wxshop WHERE admin_id=".$admin_id.";");//二维数组
-		// 	$appid = $shopappid[0]['auth_appid']; 
-		// 	if($appid!=''){
-		// 		return $appid; 
-		// 	}else{ 
-		// 		return false; 
-		// 	}
-
-		// }
-
-
-
+    }
 }
-
 ?>

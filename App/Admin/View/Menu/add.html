@@ -1,43 +1,52 @@
-<include file="public@header" />
+<!--_meta 作为公共模版分离出去-->
+<include file='Index/meta'/>
+<!--/meta 作为公共模版分离出去-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/simplebootadmin.css" />
+<style>
+	.form-group{
+		display:inline;
+	}
+</style>
 </head>
 <body>
 	<div class="wrap">
 		<ul class="nav nav-tabs">
-			<li><a href="{:url('Menu/index')}">后台菜单</a></li>
-			<li class="active"><a href="{:url('Menu/add')}">添加菜单</a></li>
-			<li><a href="{:url('Menu/lists')}">所有菜单</a></li>
+			<li><a href="<{:U('Menu/index')}>">后台菜单</a></li>
+			<li class="active"><a href="<{:U('Menu/add')}>">添加菜单</a></li>
+			<li><a href="<{:U('Menu/lists')}>">所有菜单</a></li>
 		</ul>
-		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('menu/addPost')}">
+		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="<{:U('menu/addPost')}>">
 			<div class="form-group">
 				<label for="input-parent_id" class="col-sm-2 control-label"><span class="form-required">*</span>上级</label>
 				<div class="col-md-6 col-sm-10">
 					<select class="form-control" name="parent_id" id="input-parent_id">
-						<option value="0">作为一级菜单</option>{$select_category}
+						<option value="0">作为一级菜单</option><{$select_category}>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="input-name" class="col-sm-2 control-label"><span class="form-required">*</span>名称</label>
 				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="input-name" name="name">
+					<input type="text" class="form-control" required id="input-name" name="name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="input-app" class="col-sm-2 control-label"><span class="form-required">*</span>应用</label>
 				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="input-app" name="app">
+					<input type="text" class="form-control" required id="input-app" name="app">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="input-controller" class="col-sm-2 control-label"><span class="form-required">*</span>控制器</label>
 				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="input-controller" name="controller">
+					<input type="text" class="form-control" required id="input-controller" name="controller">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="input-action" class="col-sm-2 control-label"><span class="form-required">*</span>方法</label>
 				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="input-action" name="action">
+					<input type="text" class="form-control" required id="input-action" name="action">
 				</div>
 			</div>
 			<div class="form-group">
@@ -83,11 +92,13 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+					<button type="submit" class="btn btn-primary radius">添加</button>
 				</div>
 			</div>
 		</form>
 	</div>
-	<script src="__STATIC__/js/admin.js"></script>
-</body>
-</html>
+	<!--_footer 作为公共模版分离出去-->
+	<include file='Index/footer'/>
+	<!--/_footer /作为公共模版分离出去-->
+	<script src="__PUBLIC__/static/js/wind.js"></script>
+	<script src="__PUBLIC__/static/js/admin.js"></script>
