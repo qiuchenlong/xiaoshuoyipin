@@ -12,9 +12,8 @@ class LoginController extends Controller{
             $a['pass']=I('password');
             $arr=M('admin')->where($a)->find();
             if($arr>0){
-                session('aid',$arr['id']);
+                session('user_id',$arr['id']);
                 session('name',$arr['name']);
-                session('guanli',$arr['name']);
                 $this->success("登录成功",U('/Admin/index'));
             }else{
                 $this->error("账号密码错误");

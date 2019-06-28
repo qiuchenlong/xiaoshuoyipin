@@ -1,5 +1,6 @@
 <?php
 namespace Admin\Controller;
+use Admin\Model\AdminMenuModel;
 use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 class IndexController extends CommonController {
@@ -38,7 +39,7 @@ class IndexController extends CommonController {
     
         $this->assign('ri',$ri);
         $this->assign('yue',$yue);
-        // $this->assign('goods',$goods); 
+        // $this->assign('goods',$goods);
         $this->display();
 
     }
@@ -61,7 +62,9 @@ class IndexController extends CommonController {
 
     // 左侧列表
     public function leftmenu(){
-
+        $adminMenuModel = new AdminMenuModel();
+        $menus = $adminMenuModel->menuTree();
+        $this->assign('menus',$menus);
     	$this->display();
     }
 

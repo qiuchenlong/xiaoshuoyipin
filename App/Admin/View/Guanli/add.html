@@ -2,7 +2,7 @@
 <include file='Index/meta'/>
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加用户</title>
+<title>添加管理员</title>
 <link href="__PUBLIC__/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <link href="__PUBLIC__/usercss/login.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -14,61 +14,43 @@
 <body>
     <div class="register-wrap clearfix">
 <div class="page-container"> 
-    <div class="title"><h2>添加用户</h2></div>
+    <div class="title"><h2>添加管理员</h2></div>
 	<form class="form form-horizontal"action="<{:U('add')}>" method="post" enctype="multipart/form-data"> 
-    <div class="row cl"> 
-     
-
-       
-  
-
-      <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户：</label>
-      <div class="formControls col-xs-8 col-sm-9">
-        <input type="text" class="input-text" value="<{$v.title}>" placeholder="" id="" name="uname">
-        
-        
-      </div>  
-    </div>
-     <div class="row cl"> 
-     <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>昵称：</label>
-      <div class="formControls col-xs-8 col-sm-9">
-        <input type="text" class="input-text" value="<{$v.title}>" placeholder="" id="" name="name">
-        
-        
-      </div>  
-    </div>
-     <div class="row cl"> 
-     <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>密码：</label>
-      <div class="formControls col-xs-8 col-sm-9">
-        <input type="text" class="input-text" value="<{$v.title}>" placeholder="" id="" name="pass">
-        
-        
-      </div>  
-    </div>
-
-     <div class="row cl"> 
-     <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>邮箱：</label>
-      <div class="formControls col-xs-8 col-sm-9">
-        <input type="text" class="input-text" value="<{$v.title}>" placeholder="" id="" name="email">
-        
-        
-      </div>  
-    </div>
-
-
-
-    
-
-   
-    
-
-    
-
-   
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="" required id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>密码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="password" class="input-text" required placeholder="" id="pass" name="pass">
+            </div>
+        </div>
+         <div class="row cl">
+             <label class="form-label col-xs-4 col-sm-2">邮箱：</label>
+             <div class="formControls col-xs-8 col-sm-9">
+                 <input type="text" class="input-text" placeholder="" id="mailbox" name="mailbox">
+             </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">手机号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="" id="mobile" name="mobile">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>角色：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <foreach name="roleData" item="val">
+                    <input value="<{$val.id}>" type="checkbox" name="role_id[]" ><{$val.name}>&nbsp;&nbsp;
+                </foreach>
+            </div>
+        </div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
-				<!-- <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>

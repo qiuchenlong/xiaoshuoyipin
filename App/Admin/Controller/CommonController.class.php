@@ -1,47 +1,30 @@
 <?php
 namespace Admin\Controller;
+use Admin\Model\AdminMenuModel;
+use Think\Auth;
 use Think\Controller;
 
 class CommonController extends Controller{ 
 
 	//检测登录方是否登录或（未实现）
-	public function _initialize(){   
-		 $login_user = session('aid');
-        return true;
-        /*if($login_user == 1){
+	public function _initialize(){
+        $adminMenuModel = new AdminMenuModel();
+        $menus = $adminMenuModel->menuTree();
+        $this->assign('menus',$menus);
+		 $login_user = session('user_id');
+        if($login_user == 1){
             return true;
-        }*/
+        }
         if (!empty($login_user)) {
 //验证具体权限
             $url = ltrim(__SELF__,'/index.php');
             $url_arr = explode('/', $url);
-            $c = $url_arr[1];
             $m = ACTION_NAME;
-            //查询角色，通过用户查询角色
-            $roleLists = $this->roleList($login_user);
-            if(!empty($roleLists)){
-                //查询权限，通过角色查询权限
-                $roleLists = $this->menuList($roleLists);
-            }else{
-                $this->error("您没有权限！");
-            }
-            var_dump($c);die;
-            $levelstr_arr = explode(',', $_SESSION['levelstr']);
-            if(!in_array($data['id'], $levelstr_arr) && ($c <> 'index' && $m <> 'index') && $_SESSION['levelstr'] <> 'all' && in_array($m, C('ACTION'))){
-                if(in_array($m, array('add','update','xiangqing'))){
-                    echo '<div style="margin-top:200px;float: none;margin-right: 0px;margin-left: 0px;text-align:center;">您没有权限! </div>';exit;
-                }
-                exit('您没有权限');
-                $result = array('result'=>false,'data'=>'','message'=>'您没有权限！');
-                echo json_encode($result);exit;
-            }
-            if(intval(session('adminid')) != 1 || intval(session('groupid')) != 1){
-                $adminData = M('my_admin')->where('id='.intval(session('adminid')))->find();
-                if(!empty($adminData['merchantid'])){
-                    session('adminmerchantid',$adminData['merchantid']);
-                }else{
-                    echo '<div style="margin-top:200px;float: none;margin-right: 0px;margin-left: 0px;text-align:center;">联系管理员给您授权商户! <a href="/admin/Login/sendemail">点击发送邮件</a></div>';exit;
-                }
+            $c = CONTROLLER_NAME;
+            $ruleName = strtolower("admin/" . $c . "/" . $m);
+            $auth = new Auth();
+            if(!$auth->check(session('user_id'),$ruleName)){
+                $this->error("无权限访问！", U("Index/index"));
             }
         } else {
             $this->error("您还没有登录！", U("Login/login"));

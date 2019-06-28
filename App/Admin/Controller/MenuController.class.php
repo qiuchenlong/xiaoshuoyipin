@@ -150,7 +150,7 @@ class MenuController extends CommonController
                     'type' => 'admin_url'
                 ])->count();
                 if (empty($findAuthRuleCount)) {
-                    M('AuthRule')->save([
+                    M('AuthRule')->add([
                         "name"  => $authRuleName,
                         "app"   => $app,
                         "type"  => "admin_url", //type 1-admin rule;2-user rule
@@ -239,13 +239,13 @@ class MenuController extends CommonController
                     $oldName       = "$oldApp/$oldController/$oldAction";
                     $findOldRuleId = M('AuthRule')->field('id')->where(["name" => $oldName])->find();
                     if (empty($findOldRuleId)) {
-                        M('AuthRule')->save([
+                        M('AuthRule')->add([
                             "name"  => $authRuleName,
                             "app"   => $app,
                             "type"  => "admin_url",
                             "title" => $menuName,
                             "param" => $param
-                        ]);//type 1-admin rule;2-user rule
+                        ]);
                     } else {
                         M('AuthRule')->where(['id' => $findOldRuleId])->save([
                             "name"  => $authRuleName,

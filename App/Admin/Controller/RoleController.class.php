@@ -25,6 +25,8 @@ class RoleController extends CommonController
     {
         $data = M('role')->order(["list_order" => "ASC", "id" => "DESC"])->select();
         $this->assign("roles", $data);
+        $count = M('role')->count();
+        $this->assign('count',$count);
         $this->display();
     }
 
@@ -41,7 +43,7 @@ class RoleController extends CommonController
      *     'param'  => ''
      * )
      */
-    public function roleAdd()
+    public function add()
     {
         $this->display();
     }
@@ -59,7 +61,7 @@ class RoleController extends CommonController
      *     'param'  => ''
      * )
      */
-    public function roleAddPost()
+    public function addPost()
     {
         if (IS_POST) {
             $post = $_POST;
@@ -95,18 +97,18 @@ class RoleController extends CommonController
      *     'param'  => ''
      * )
      */
-    public function roleEdit()
+    public function edit()
     {
-        $id = $this->request->param("id", 0, 'intval');
+        $id = isset($_REQUEST["id"])?$_REQUEST["id"]:0;
         if ($id == 1) {
             $this->error("超级管理员角色不能被修改！");
         }
-        $data = Db::name('role')->where(["id" => $id])->find();
+        $data = M('role')->where(["id" => $id])->find();
         if (!$data) {
             $this->error("该角色不存在！");
         }
         $this->assign("data", $data);
-        return $this->fetch();
+        $this->display();
     }
 
     /**
@@ -122,22 +124,22 @@ class RoleController extends CommonController
      *     'param'  => ''
      * )
      */
-    public function roleEditPost()
+    public function editPost()
     {
-        $id = $this->request->param("id", 0, 'intval');
+        $id = isset($_REQUEST["id"])?$_REQUEST["id"]:0;
         if ($id == 1) {
             $this->error("超级管理员角色不能被修改！");
         }
-        if ($this->request->isPost()) {
-            $data   = $this->request->param();
-            $result = $this->validate($data, 'role');
-            if ($result !== true) {
-                // 验证失败 输出错误信息
-                $this->error($result);
-
+        if (IS_POST) {
+            $data = $_POST;
+            $model = M('Role');
+            unset($data['id']);
+            if (!$model->create($data)) {
+                $this->error("错误");
             } else {
-                if (Db::name('role')->update($data) !== false) {
-                    $this->success("保存成功！", url('rbac/index'));
+                $res = $model->where(['id'=>$id])->field(true)->save($data);
+                if ($res) {
+                    $this->success("保存成功！", U('role/index'));
                 } else {
                     $this->error("保存失败！");
                 }
@@ -158,19 +160,19 @@ class RoleController extends CommonController
      *     'param'  => ''
      * )
      */
-    public function roleDelete()
+    public function delete()
     {
-        $id = $this->request->param("id", 0, 'intval');
+        $id = isset($_REQUEST["id"])?$_REQUEST["id"]:0;
         if ($id == 1) {
             $this->error("超级管理员角色不能被删除！");
         }
-        $count = Db::name('RoleUser')->where(['role_id' => $id])->count();
+        $count = M('AdminRole')->where(['role_id' => $id])->count();
         if ($count > 0) {
             $this->error("该角色已经有用户！");
         } else {
-            $status = Db::name('role')->delete($id);
+            $status = M('Role')->delete($id);
             if (!empty($status)) {
-                $this->success("删除成功！", url('rbac/index'));
+                $this->success("删除成功！", url('role/index'));
             } else {
                 $this->error("删除失败！");
             }
@@ -192,44 +194,37 @@ class RoleController extends CommonController
      */
     public function authorize()
     {
-        $AuthAccess     = Db::name("AuthAccess");
+        $AuthAccess = M("AuthAccess");
         $adminMenuModel = new AdminMenuModel();
         //角色ID
-        $roleId = $this->request->param("id", 0, 'intval');
+        $roleId = isset($_REQUEST["id"])?$_REQUEST["id"]:0;
         if (empty($roleId)) {
             $this->error("参数错误！");
         }
 
-        $tree       = new Tree();
+        $tree = new Tree();
         $tree->icon = ['│ ', '├─ ', '└─ '];
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
-
-        $result = $adminMenuModel->menuCache();
-
-        $newMenus      = [];
-        $privilegeData = $AuthAccess->where(["role_id" => $roleId])->column("rule_name");//获取权限表数据
-
+        $result = $adminMenuModel->menuData();
+        $newMenus = [];
+        $privilegeData = $AuthAccess->where(["role_id" => $roleId])->getField('rule_name',true);//获取权限表数据
         foreach ($result as $m) {
             $newMenus[$m['id']] = $m;
         }
-
         foreach ($result as $n => $t) {
             $result[$n]['checked']      = ($this->_isChecked($t, $privilegeData)) ? ' checked' : '';
             $result[$n]['level']        = $this->_getLevel($t['id'], $newMenus);
             $result[$n]['style']        = empty($t['parent_id']) ? '' : 'display:none;';
             $result[$n]['parentIdNode'] = ($t['parent_id']) ? ' class="child-of-node-' . $t['parent_id'] . '"' : '';
         }
-
         $str = "<tr id='node-\$id'\$parentIdNode  style='\$style'>
                    <td style='padding-left:30px;'>\$spacer<input type='checkbox' name='menuId[]' value='\$id' level='\$level' \$checked onclick='javascript:checknode(this);'> \$name</td>
     			</tr>";
         $tree->init($result);
-
         $category = $tree->getTree(0, $str);
-
         $this->assign("category", $category);
         $this->assign("roleId", $roleId);
-        return $this->fetch();
+        $this->display();
     }
 
     /**
@@ -247,32 +242,28 @@ class RoleController extends CommonController
      */
     public function authorizePost()
     {
-        if ($this->request->isPost()) {
-            $roleId = $this->request->param("roleId", 0, 'intval');
+        if (IS_POST) {
+            $roleId = isset($_REQUEST["roleId"])?$_REQUEST["roleId"]:0;
             if (!$roleId) {
-                $this->error("需要授权的角色不存在！");
+                exit('<script>alert("需要授权的角色不存在！");history.go(-1)</script>');
             }
-            if (is_array($this->request->param('menuId/a')) && count($this->request->param('menuId/a')) > 0) {
-
-                Db::name("authAccess")->where(["role_id" => $roleId, 'type' => 'admin_url'])->delete();
+            if (is_array($_POST['menuId']) && count($_POST['menuId']) > 0) {
+                M("authAccess")->where(["role_id" => $roleId, 'type' => 'admin_url'])->delete();
                 foreach ($_POST['menuId'] as $menuId) {
-                    $menu = Db::name("adminMenu")->where(["id" => $menuId])->field("app,controller,action")->find();
+                    $menu = M("adminMenu")->where(["id" => $menuId])->field("app,controller,action")->find();
                     if ($menu) {
                         $app    = $menu['app'];
                         $model  = $menu['controller'];
                         $action = $menu['action'];
                         $name   = strtolower("$app/$model/$action");
-                        Db::name("authAccess")->insert(["role_id" => $roleId, "rule_name" => $name, 'type' => 'admin_url']);
+                        M("authAccess")->add(["role_id" => $roleId, "rule_name" => $name, 'type' => 'admin_url']);
                     }
                 }
-
-                cache(null, 'admin_menus');// 删除后台菜单缓存
-
-                $this->success("授权成功！");
+                exit('<script>alert("授权成功!");window.parent.location.reload()</script>');
             } else {
                 //当没有数据时，清除当前角色授权
-                Db::name("authAccess")->where(["role_id" => $roleId])->delete();
-                $this->error("没有接收到数据，执行清除授权成功！");
+                M("authAccess")->where(["role_id" => $roleId])->delete();
+                exit('<script>alert("没有接收到数据，执行清除授权成功！");history.go(-1)</script>');
             }
         }
     }
@@ -285,10 +276,10 @@ class RoleController extends CommonController
      */
     private function _isChecked($menu, $privData)
     {
-        $app    = $menu['app'];
-        $model  = $menu['controller'];
+        $app = $menu['app'];
+        $model = $menu['controller'];
         $action = $menu['action'];
-        $name   = strtolower("$app/$model/$action");
+        $name = strtolower("$app/$model/$action");
         if ($privData) {
             if (in_array($name, $privData)) {
                 return true;
@@ -316,13 +307,6 @@ class RoleController extends CommonController
             $i++;
             return $this->_getLevel($array[$id]['parent_id'], $array, $i);
         }
-    }
-
-    //角色成员管理
-    public function member()
-    {
-        //TODO 添加角色成员管理
-
     }
 
 }

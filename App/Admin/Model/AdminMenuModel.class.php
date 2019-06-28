@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 namespace Admin\Model;
 
+use Think\Auth;
 use Think\Model;
 use Think\Cache;
 
@@ -64,7 +65,6 @@ class AdminMenuModel extends Model
         //父节点ID
         $parentId = intval($parentId);
         $result   = $this->where(['parent_id' => $parentId, 'status' => 1])->order("list_order", "ASC")->select();
-
         if ($withSelf) {
             $result2[] = $this->where(['id' => $parentId])->find();
             $result    = array_merge($result2, $result);
@@ -79,29 +79,22 @@ class AdminMenuModel extends Model
         $array = [];
 
         foreach ($result as $v) {
-
             //方法
             $action = $v['action'];
-
             //public开头的通过
             if (preg_match('/^public_/', $action)) {
                 $array[] = $v;
             } else {
-
                 if (preg_match('/^ajax_([a-z]+)_/', $action, $_match)) {
-
                     $action = $_match[1];
                 }
-
                 $ruleName = strtolower($v['app'] . "/" . $v['controller'] . "/" . $action);
-//                print_r($ruleName);
-                if (cmf_auth_check(cmf_get_current_admin_id(), $ruleName)) {
+                $auth = new Auth();
+                if ($auth->check(session('user_id'),$ruleName)) {
                     $array[] = $v;
                 }
-
             }
         }
-
         return $array;
     }
 
@@ -155,9 +148,9 @@ class AdminMenuModel extends Model
 
                 if (strpos($app, 'plugin/') === 0) {
                     $pluginName = str_replace('plugin/', '', $app);
-                    $url        = cmf_plugin_url($pluginName . "://{$controller}/{$action}{$params}");
+                    $url        = U($pluginName . "://{$controller}/{$action}{$params}");
                 } else {
-                    $url = url("{$app}/{$controller}/{$action}{$params}");
+                    $url = U("{$app}/{$controller}/{$action}{$params}");
                 }
 
                 $app = str_replace('/', '_', $app);
@@ -168,10 +161,10 @@ class AdminMenuModel extends Model
                     "name"   => $a['name'],
                     "parent" => $parent,
                     "url"    => $url,
-                    'lang'   => strtoupper($app . '_' . $controller . '_' . $action)
+                    'lang'   => strtoupper($app . '_' . $controller . '_' . $action),
+                    'controller'=> $controller,
+                    'action' => $action
                 ];
-
-
                 $ret[$id . $app] = $array;
                 $child           = $this->getTree($a['id'], $id, $Level);
                 //由于后台管理界面只支持三层，超出的不层级的不显示
@@ -187,17 +180,14 @@ class AdminMenuModel extends Model
     }
 
     /**
-     * 更新缓存
+     * 菜单数据 暂时不加缓存
      * @param  $data
      * @return array
      */
-    public function menuCache($data = null)
+    public function menuData($data = null)
     {
         if (empty($data)) {
-            $data = $this->order("list_order", "ASC")->column('');
-            Cache::set('Menu', $data, 0);
-        } else {
-            Cache::set('Menu', $data, 0);
+            $data = $this->order("list_order", "ASC")->field('')->select();
         }
         return $data;
     }

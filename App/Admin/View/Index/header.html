@@ -28,9 +28,9 @@
 				<ul class="cl">
 					<li><{$phone}></li> 
 					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">
-						<if condition="$_SESSION.guanli eq null">代理商
-						<else/>管理员
-						</if>
+						<?php
+								echo session('name');
+						?>
 				<i class="Hui-iconfont">&#xe6d5;</i></a> 
 						<ul class="dropDown-menu menu radius box-shadow">   
 							<!-- <li><a href="javascript:;" onClick="editpassword('修改信息','<{:U('Login/editpassword')}>')">个人信息</a> --></li> 
