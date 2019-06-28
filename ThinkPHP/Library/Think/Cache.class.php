@@ -37,7 +37,7 @@ class Cache {
      */
     public function connect($type='',$options=array()) {
         if(empty($type))  $type = C('DATA_CACHE_TYPE');
-        $class  =   strpos($type,'\\')? $type : 'Think\\Cache\\Driver\\'.ucwords(strtolower($type));            
+        $class  =   strpos($type,'\\')? $type : 'Think\\Cache\\Driver\\'.ucwords(strtolower($type));
         if(class_exists($class))
             $cache = new $class($options);
         else
@@ -86,7 +86,7 @@ class Cache {
      * @param string $key 队列名
      * @return mixed
      */
-    // 
+    //
     protected function queue($key) {
         static $_handler = array(
             'file'  =>  array('F','F'),
@@ -114,7 +114,7 @@ class Cache {
         }
         return $fun[1]($queue_name,$value);
     }
-    
+
     public function __call($method,$args){
         //调用缓存类型自己的方法
         if(method_exists($this->handler, $method)){

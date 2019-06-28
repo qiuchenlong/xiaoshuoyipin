@@ -23,7 +23,7 @@
         <if condition="$status eq 1" >
             <dt style="color: green"><?php echo(strip_tags($message));?></dt>
             <else/>
-            <dt style="color: red"><?php echo(strip_tags(error));?></dt>
+            <dt style="color: red"><?php echo(strip_tags($error));?></dt>
         </if>
         <br>
         <dt>
