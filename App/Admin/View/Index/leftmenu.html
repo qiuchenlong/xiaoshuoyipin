@@ -4,10 +4,10 @@
 			<dl id="menu-member">
 				<dt><i class="Hui-iconfont">&#xe60d;</i> <{$topLevel.name}><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 				<if condition='$topLevel.items neq null'>
-					<dd <if condition='CONTROLLER_NAME eq $topLevel.controller'>style="display:block"</if>>
+					<dd <if condition='CONTROLLER_NAME eq $topLevel["controller"]'>style="display:block"</if>>
 						<ul>
 							<foreach name="topLevel.items" item="twoLevel">
-								<li <if condition='(ACTION_NAME eq $twoLevel.action) and (CONTROLLER_NAME eq $twoLevel.controller)'>class="current"</if>><a href="<{$twoLevel.url}>" title="<{$twoLevel.name}>"><{$twoLevel.name}></a></li>
+								<li <if condition='(ACTION_NAME eq $twoLevel["action"]) and (CONTROLLER_NAME eq $twoLevel["controller"])'>class="current"</if>><a href="<{$twoLevel.url}>" title="<{$twoLevel.name}>"><{$twoLevel.name}></a></li>
 							</foreach>
 						</ul>
 					</dd>
