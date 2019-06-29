@@ -42,17 +42,15 @@ table{
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 	 <i ></i>
 	</a>
-	<if condition="$_SESSION.guanli neq null">
-		<a onClick="picture_add('新增小说','<{:U('add')}>')" href="javascript:;"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加小说
-		</a> 
-	</span> 
-		<a  onclick="picture_txt('批量导入','<{:U('exl')}>')" href="javascript:;"  class="btn btn-primary radius">
-			<i class="Hui-iconfont">&#xe600;</i> 批量导入小说
-		</a>
-		<a onclick="clearcap('清空章节','<{:U('clearcap')}>')" href="javascript:;"  class="btn btn-primary radius">
-			一键清空章节
-		</a>
-	</if>
+	<a onClick="picture_add('新增小说','<{:U('add')}>')" href="javascript:;"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加小说
+	</a>
+</span>
+	<a  onclick="picture_txt('批量导入','<{:U('exl')}>')" href="javascript:;"  class="btn btn-primary radius">
+		<i class="Hui-iconfont">&#xe600;</i> 批量导入小说
+	</a>
+	<a onclick="clearcap('清空章节','<{:U('clearcap')}>')" href="javascript:;"  class="btn btn-primary radius">
+		一键清空章节
+	</a>
 	 </span>
 	</if>
 	<span class="r">共有数据：<strong><{$shu}></strong> 条</span> 
@@ -122,8 +120,7 @@ table{
 								</a> -->
 								
 								<td width="50">
-									<if condition="$_SESSION.guanli neq null">
-										<button><a href="<{:U('xszhangjie')}>?id=<{$v.articleid}>">章节</a></button></if>
+										<button><a href="<{:U('xszhangjie')}>?id=<{$v.articleid}>">章节</a></button>
 								</td>
 							
 
@@ -138,13 +135,12 @@ table{
 									<{$v.sortid}>
 								</if>
 							</td>
-							<if condition="$_SESSION.guanli neq null">
 							<td width="100"><a onClick="picture_txt('批量导入','<{:U('text')}>?id=<{$v.articleid}>&jiage=<{$v.saleprice}>')"  target="_self" ><button>上传章节</button></a>
 							<a title="修改" onClick="picture_add('修改小说','<{:U('edit')}>?id=<{$v.articleid}>')" href="javascript:;" target="_blank" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 							 <a  onclick="del('<{$v.articleid}>') "
  							title="删除" class="ml-5"><i class="Hui-iconfont">&#xe6e2;</i></a>
 
-							</td><else/><td></td></if>
+							</td><else/><td></td>
 						</tr> 
 					</foreach>
 					</thead> 

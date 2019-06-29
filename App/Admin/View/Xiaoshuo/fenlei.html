@@ -59,12 +59,8 @@ table{
 							<th width="150">二级分类</th>
 							<!-- <th width="20">分类</th> -->
 							
-							
-							
-							<if condition="$_SESSION.guanli neq null">
 							<th width="30">操作</th>
-							</if>
-							 
+
 						</tr> 
 						<foreach name="arr" item="v">
 						<tr class="text-c"> 
@@ -108,13 +104,11 @@ table{
 							</td>
 							<!-- <td width="100"><{$v.sortid}>	
 							</td> -->
-							<if condition="$_SESSION.guanli neq null">
 							<td width="30"><!-- <a href="<{:U('zhangjie')}>?id=<{$v.articleid}>"><button>添加章节</button></a> -->
 							<a title="修改" onClick="picture_add('修改分类','<{:U('fenedit')}>?id=<{$v.articleid}>')"   class="ml-5" style="text-decoration:none"><button>修改分类</button></a></td>
 							 <!-- <a  onclick="del('<{$v.articleid}>') "
  title="删除" class="ml-5"><i class="Hui-iconfont">&#xe6e2;</i></a> -->
-							</if>
-						</tr> 
+						</tr>
 					</foreach>
 					</thead> 
 					<tfoot>

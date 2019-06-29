@@ -57,12 +57,9 @@ table{
 							
 							
 							
-							<if condition="$_SESSION.guanli neq null">
 							<th width="30">操作</th>
-
 						<?php echo plsch1();?>
-					</if>
-						</tr> 
+						</tr>
 						<foreach name="arr" item="v">
 						<tr class="text-c"> 
 							<!-- <td width="100"><{$v.sortid}></td> -->
@@ -77,13 +74,12 @@ table{
 							<td width="20"><{$v.likes}>人</td>
 							<td width="50"><{$v.uname}></td>
 							
-							<if condition="$_SESSION.guanli neq null">
 							<td width="30"><!-- <a href="<{:U('zhangjie')}>?id=<{$v.articleid}>"><button>添加章节</button></a> -->
 							
 							 <a  onclick="del('<{$v.id}>') "
  title="删除" class="ml-5"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 							
-							<?php echo plsch2($v['id']);?></if>
+							<?php echo plsch2($v['id']);?>
 						</tr> 
 					</foreach>
 					</thead> 
