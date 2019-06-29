@@ -13,9 +13,11 @@ class CommonController extends Controller{
         $this->assign('menus',$menus);
 		 $login_user = session('user_id');
         if($login_user == 1){
+            session('guanli',$login_user);
             return true;
         }
         if (!empty($login_user)) {
+            session('guanli',$login_user);
 //验证具体权限
             $url = ltrim(__SELF__,'/index.php');
             $url_arr = explode('/', $url);
