@@ -3,8 +3,9 @@ namespace Admin\Controller;
 use Think\Controller;
 header('content-type:text/html;charset=utf-8');
 class PindaoController extends CommonController {
-
-  //女频
+    /**
+     * 女频 修改列表
+     */
     public function nvpin(){
 
              $a['layer']=0;
