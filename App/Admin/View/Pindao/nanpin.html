@@ -40,14 +40,9 @@
 							<th width="50">分类图片</th>
 							<th width="10">二级分类</th>
 							<th width="50">描述</th>
-							
-							
-							
-							<if condition="$_SESSION.guanli neq null">
+							<th width="50">排序</th>
 							<th width="50">操作</th>
-							</if>
-							 
-						</tr> 
+						</tr>
 						<foreach name="arr" item="v">
 						<tr class="text-c"> 
 							<!-- <td width="100"><{$v.sortid}></td> -->
@@ -60,19 +55,12 @@
 										echo $s['shortname'].' || ' ;
 									}
 								}
-								?><if condition="$_SESSION.guanli neq null">
-								 <a title="编辑二级分类"href="<{:U('erji')}>?id=<{$v.sortid}>&type=2"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a></if>
+								?>
+								 <a title="编辑二级分类"href="<{:U('erji')}>?id=<{$v.sortid}>&type=2"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 							</td>
 							<td width="100"><{$v.description}></td>
-							
-							
-							
-							
-							
-							
-							
-							<if condition="$_SESSION.guanli neq null">
-							<td ><a title="编辑一级分类" onclick="picture_add('编辑一级分类','<{:U('edit')}>?id=<{$v.sortid}>&type=2')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> &nbsp; &nbsp; &nbsp; <a  onclick="del('<{$v.sortid}>')" class="ml-5"><i class="Hui-iconfont">&#xe6e2;</i></a></td></if>
+							<td width="100"><{$v.sortnum}></td>
+							<td ><a title="编辑一级分类" onclick="picture_add('编辑一级分类','<{:U('edit')}>?id=<{$v.sortid}>&type=2')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> &nbsp; &nbsp; &nbsp; <a  onclick="del('<{$v.sortid}>')" class="ml-5"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr> 
 					</foreach>
 					</thead> 
