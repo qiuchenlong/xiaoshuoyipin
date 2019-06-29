@@ -436,8 +436,19 @@ class XiaoshuoController extends CommonController {
         
 
     }
-    
 
+    /**
+     * 获取频道子集的数据
+     * dudj
+     * 2为男频  3为女频 1为情欲 4免费
+     */
+    public function getPindaoSonData(){
+        $type = isset($_REQUEST['type'])?$_REQUEST['type']:4;
+        $where['layer'] = 0;
+        $where['types'] = $type;
+        $info = M('jieqi_article_sort')->where($where)->select();
+        exit(json_encode($info));
+    }
      public function zhangjie(){
         if(IS_POST){
              // var_dump(I());die;
