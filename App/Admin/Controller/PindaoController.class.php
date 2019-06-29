@@ -6,7 +6,7 @@ class PindaoController extends CommonController {
 
   //女频
     public function nvpin(){
-        
+
              $a['layer']=0;
              $a['types']=1;
              $b['types']=1;
@@ -17,15 +17,10 @@ class PindaoController extends CommonController {
             //引入分页类 
             $page = new \Think\Page($count,6); //传入一个总条数，和每页显示的条数
             //引入数据
-            $arr = $model->where($a)->order('sortid asc')->limit($page->firstRow.','.$page->listRows)->select();
+            $arr = $model->where($a)->order('sortnum desc')->limit($page->firstRow.','.$page->listRows)->select();
             //分页
-            
             $btn = $page->show();
-
             $info=M("jieqi_article_sort")->where($b)->select();
-
-            
-
             // var_dump($info);die;
             //分配数据
             $this->assign('info',$info);
@@ -33,11 +28,7 @@ class PindaoController extends CommonController {
             $this->assign('btn',$btn);          //分页
             $this->assign('shu',$count);        //总条数   
             $this->display();   
-        
-        
     }
-
-
     //男频
     public function nanpin(){
         
@@ -51,7 +42,7 @@ class PindaoController extends CommonController {
             //引入分页类 
             $page = new \Think\Page($count,6); //传入一个总条数，和每页显示的条数
             //引入数据
-            $arr = $model->where($a)->order('sortid asc')->limit($page->firstRow.','.$page->listRows)->select();
+            $arr = $model->where($a)->order('sortnum desc')->limit($page->firstRow.','.$page->listRows)->select();
             //分页
             
             $btn = $page->show();
@@ -82,7 +73,7 @@ class PindaoController extends CommonController {
             //引入分页类 
             $page = new \Think\Page($count,6); //传入一个总条数，和每页显示的条数
             //引入数据
-            $arr = $model->where($a)->order('sortid asc')->limit($page->firstRow.','.$page->listRows)->select();
+            $arr = $model->where($a)->order('sortnum desc')->limit($page->firstRow.','.$page->listRows)->select();
             //分页
             
             $btn = $page->show();
@@ -234,7 +225,8 @@ class PindaoController extends CommonController {
                   $a['imgurl']=$b;
                  $a['shortname']=$_POST['caption'];
                   $a['description']=$_POST['description'];
-              
+                  $a['sortnum'] = $_POST['sortnum'];
+
                
                 // $a['images']=$b;
                 // var_dump($a);die;
@@ -281,7 +273,8 @@ class PindaoController extends CommonController {
                  $a['layer']=$_POST['layer'];
                  $a['shortname']=$_POST['caption'];
                  $a['types']=$_POST['types'];
-              
+                 $a['sortnum']=$_POST['sortnum'];
+
                
                 // $a['images']=$b;
                 // var_dump($a);die;
@@ -354,6 +347,7 @@ class PindaoController extends CommonController {
                  $a['sortid']=$_POST['sortid'];
                  $a['shortname']=$_POST['caption'];
                  $a['description']=$_POST['description'];
+                 $a['sortnum']=$_POST['sortnum'];
 
               
                
@@ -396,21 +390,10 @@ class PindaoController extends CommonController {
             if(empty($_POST['caption'])){
                     echo '<script>alert("修改失败：请填写二级栏目");history.go(-1)</script>';die;
                  }
-
-             
-
-               
-
-                 $a['sortid']=$_POST['sortid'];
-                 $a['shortname']=$_POST['caption'];
-
-               
-
-              
-               
-                // $a['images']=$b;
-                 // var_dump($a);die;
-                $sql=M('jieqi_article_sort')->save($a);
+                 $a['sortid'] = $_POST['sortid'];
+                 $a['shortname'] = $_POST['caption'];
+                 $a['sortnum'] = $_POST['sortnum'];
+                 $sql=M('jieqi_article_sort')->save($a);
                  if ($sql> 0){
                     if($_POST['type']==1){
                             echo '<script>alert("修改成功");window.parent.location.reload()</script>';
