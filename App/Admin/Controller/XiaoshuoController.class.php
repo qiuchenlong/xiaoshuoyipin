@@ -36,12 +36,7 @@ class XiaoshuoController extends CommonController {
             $this->assign('arr',$arr);
             $this->display(); 
         }else{
-
-            if(session('user_id')>0){
-                $pai='did desc';
-            }else{
-                $pai='articleid desc';
-            }
+            $pai='articleid desc';
             $model =M("jieqi_article_article");
             //查出总条数 
             $count = $model->count();
@@ -50,9 +45,7 @@ class XiaoshuoController extends CommonController {
             //引入数据
             $arr = $model->order($pai)->limit($page->firstRow.','.$page->listRows)->select();
             //分页
-            
             $btn = $page->show();
-
             foreach ($arr as $k => $v) {
                 $a['sortid']=$v['sortid'];
                 $info=M("jieqi_article_sort")->where($a)->find();
