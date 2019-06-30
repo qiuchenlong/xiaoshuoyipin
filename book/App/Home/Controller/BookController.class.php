@@ -235,21 +235,18 @@ class BookController extends Controller{
 
 }
 
-//小说分类 2级分类
+    /**
+     * dudj修改
+     * 按照排序进行排序和后台保持一致
+     * 小说分类 2级分类
+     */
 	public function fenlei(){ 
 		$Model = M();
-		
         $pindao=$_REQUEST['pindao'];
-		
-	
-		$data = $Model->Query("SELECT imgurl,sortid,shortname FROM jieqi_article_sort  where `types`=".$pindao." and layer=0 order by sortid desc  ");
-		   
-
+		$data = $Model->Query("SELECT imgurl,sortid,shortname FROM jieqi_article_sort  where `types`=".$pindao." and layer=0 order by sortnum desc");
 		$data = array($data);
 		echo getSuccessJson($data,'操作成功'); 
-
-
-}
+    }
 
 
 	//书单
