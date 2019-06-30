@@ -1526,18 +1526,15 @@ public function czedit(){
 //    $this->display();
 // }
 
-
+    /**
+     * 添加章节 更新小说
+     */
 public function upchapter()
 {
-        
     $Model = M('');
     $xiaoid=I('id');
-
     if(IS_POST){
-        // $res = M('jieqi_article_chapter')->where('chapterid',155318)->find();
-        // var_dump($res);die;
         set_time_limit(0);
-
         //上传图片
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     553145728 ;// 设置附件上传大小
@@ -1546,9 +1543,8 @@ public function upchapter()
         $upload->savePath  =     ''; // 设置附件上传（子）目录
         // 上传文件 
         $info   =   $upload->upload();
-
         if(!$info) { // 上传错误提示错误信息
-            $this->error($upload->getError()); die;
+            echo '<script>alert("'.$upload->getError().'");window.parent.location.reload()</script>';
         } else { // 上传成功
             $b='text/'.$info['images']['savename'];
         }
@@ -1573,21 +1569,15 @@ public function upchapter()
             $pc=ltrim($data,"#");
             $arr=explode("#",$pc);
             foreach ($arr as $k => $v) {
-
-                // var_dump($arr);die;
                 $xiao=explode("\r\n",$v);
-               
-
                 if($xiao>0){
                     $us['articleid']=I('id');
                     $xx=M('jieqi_article_article')->where($us)->find();
-
                     //查询章节是否已存在
                     $chaz['articleid']=I('id');
                     $chaz['chaptername']=$xiao[0];
                     $chazhangjie=M('jieqi_article_chapter')->where($chaz)->find();
-
-                    // if($chazhangjie==null){
+                     if($chazhangjie==null){
                         $x['articleid']=I('id');
                         $x['saleprice']=I('jiage');
                         $x['articlename']=$xx['articlename'];
@@ -1599,23 +1589,18 @@ public function upchapter()
                         $x['did']=I('did');
                         $x['lastupdate']=date('Y-m-d H:i:s');
                         $x['texts']='Public/'.$b;
-
-                        $xiaoshuo=M('jieqi_article_chapter')->add($x);   
-                    // }
+                        $xiaoshuo=M('jieqi_article_chapter')->add($x);
+                     }
                 }
             }
-
             if($xiaoshuo > 0){
                 //更新书本的信息
                 $yy['articleid']=I('id');
                 $xxx=M('jieqi_article_chapter')->where($yy)->order('chapterid desc')->select();
-
                 $geng['lastchapter']=$xxx[0]['chaptername'];
-  
                 $geng['lastupdate']=date('Y-m-d H:i:s');
                 $us['articleid']=I('id');
                 M('jieqi_article_article')->where($us)->save($geng);
-                  
                 echo '<script>alert("添加成功");window.parent.location.reload()</script>';die;
             }else{
                  echo '<script>alert("所提交的章节内容没变化,更新失败");window.parent.location.reload()</script>';
