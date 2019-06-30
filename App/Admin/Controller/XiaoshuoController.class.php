@@ -1651,9 +1651,8 @@ public function upchapter()
             $upload->savePath  =     ''; // 设置附件上传（子）目录
              // 上传文件
             $info   =   $upload->upload();
-             // var_dump($info);die;
             if(!$info) {// 上传错误提示错误信息
-                $this->error($upload->getError()); die;
+                echo '<script>alert('.$upload->getError().');</script>';
             }else{// 上传成功
                 // $this->success('上传成功！');
                 $b='text/'.$info['images']['savename'];
