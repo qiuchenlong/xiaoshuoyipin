@@ -1652,7 +1652,7 @@ public function upchapter()
              // 上传文件
             $info   =   $upload->upload();
             if(!$info) {// 上传错误提示错误信息
-                echo '<script>alert('.$upload->getError().');</script>';
+                echo '<script>alert("'.$upload->getError().'");window.parent.location.reload();</script>';
             }else{// 上传成功
                 // $this->success('上传成功！');
                 $b='text/'.$info['images']['savename'];
