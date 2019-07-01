@@ -837,7 +837,7 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
 
        if($_REQUEST['sortid'])//分类
        {
-     $where=$where." and  t.fenlei  like '%".$_REQUEST['sortid']."%'";
+     $where=$where." and  t.sortid  like '%".$_REQUEST['sortid']."%'";
        }
        if($_REQUEST['articletype'])//是否已完结
        {
