@@ -749,7 +749,7 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
 	    }
 	    $biaoqian=$_REQUEST['biaoqian'];
 		$Model = M();
-		$data = $Model->Query("SELECT t.author,t.images,t.articlename,t.intro,t.articleid,t.size,t1.shortname FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid =t1.sortid where biaoqian like '%".$biaoqian."%'  order by t.$paixu desc limit $page,10");
+		$data = $Model->Query("SELECT t.author,t.images,t.articlename,t.intro,t.articleid,t.size,t1.shortname FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid =t1.sortid where t.typeid like '%".$biaoqian."%'  order by t.$paixu desc limit $page,10");
             foreach ($data as $key => $value) {
 		    	$gen=floor($value['articleid']/1000);
 		    	$data[$key]['imagess']=$gen.'/'.$value['articleid'].'/'.$value['articleid'].'s.jpg';
