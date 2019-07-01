@@ -843,6 +843,10 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
        {
      $where=$where." and  t.articletype =".$_REQUEST['articletype']."";
        }
+       if($_REQUEST['articletype'])//是否已完结
+       {
+     $where=$where." and  t.typeid =".$_REQUEST['typeid']."";
+       }
 
 		if($_REQUEST['page'])
 		{
