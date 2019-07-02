@@ -909,7 +909,7 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
         }else{
             $z = 0;
         }
-		$data = $Model->Query("SELECT chapterid,articlename,chaptername,attachment FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $z,1;");
+		$data = $Model->Query("SELECT chapterid,articlename,chaptername,attachment,web_url FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $z,1;");
         //获取章节数
 		$shuliang = $Model->Query("SELECT COUNT(*) as count FROM jieqi_article_chapter where articleid =".$articleid.";");
         //随机获取广告
@@ -924,6 +924,7 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
             'gotos' => $result[0]['gotos'],
             'content' => $result[0]['content'],
             'title' => $result[0]['title'],
+            'web_url' => $result[0]['web_url'],
         ];
         $res = array_merge($data[0],$dataRes);
         echo getSuccessJson($res,'操作成功');
