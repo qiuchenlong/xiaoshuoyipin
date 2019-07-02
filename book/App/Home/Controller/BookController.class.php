@@ -436,8 +436,7 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
 
 		$Model = M();
 
-		$data = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.saleprice,t.salenum,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype,t.text,t.duanping FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.articleid=".$id.";");
-
+		$data = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.saleprice,t.salenum,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype,t.text,t.duanping,t.collectvirtual FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.articleid=".$id.";");
         $data[0][lasttime]=date("Y-m-d H:i",$data[0]['lastupdate']);
         $gen=floor($data[0]['articleid']/1000);
         $data[0][imagess]=$gen.'/'.$data[0]['articleid'].'/'.$data[0]['articleid'].'s.jpg';
@@ -464,8 +463,6 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
         }else{
             $data[0]['pingluns']=$pingluns[0]['count'];            
         }
-
-
         //收藏数量
         $shoucangs = $Model->Query("SELECT COUNT(*) AS count FROM jieqi_article_bookcase where flag=0 and articleid=".$id.";");
         if(!$shoucangs){
@@ -473,8 +470,9 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
         }else{
             $data[0]['shoucangs']=$shoucangs[0]['count'];            
         }
-        
-
+        //dudj修改 将收藏真实值和虚拟值累加
+		$data[0]['shoucangs'] += $data[0]['collectvirtual'];
+		unset($data[0]['collectvirtual']);
         $suodudata = $Model->Query("SELECT t1.shortname,t.images,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid order by t.allvisit limit 0,4;");
 
         foreach ($suodudata as $key => $value) {
