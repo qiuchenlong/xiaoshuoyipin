@@ -296,7 +296,10 @@ class XiaoshuoController extends CommonController {
         echo json_encode($data); 
     }
 
-
+    /**
+     * 新增小说
+     * dudj 修改 添加收藏虚拟值
+     */
     public function add()
     {
         $f['layer']=0;
@@ -402,6 +405,7 @@ class XiaoshuoController extends CommonController {
                 $add['keywords']=I('keywords');
                 $add['shang']=I('shang');
                 $add['images']=$b;
+                $add['collectvirtual']=I('collectvirtual');
 
                 $add['saleprice']=I('saleprice');
                 $add['lastupdate']=date("Y-m-d H:i:s");
@@ -619,6 +623,7 @@ class XiaoshuoController extends CommonController {
         $add['shang']=I('shang');
         $add['saleprice']=I('saleprice');
         $add['lastupdate']=date("Y-m-d H:i:s");
+        $add['collectvirtual'] = I('collectvirtual');
 
         // var_dump($add);die;
 
