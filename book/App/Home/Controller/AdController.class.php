@@ -40,23 +40,21 @@ class AdController extends Controller{
 	}
 
 
-
-
-	 public function bookad(){
-	 	$path=2;
-	 	$bid=1;//$_REQUEST['bookid'];
-		$Model = M();
-		$count = $Model->Query("select COUNT(*) AS count from book_ad where path='".$path."' and bookid like '%".$bid."%' ");
-		$counts=$count[0]['count'];
-
-		$z=rand(0,$counts);
-
-		$result = $Model->Query("select * from book_ad where path='".$path."' and bookid like '%".$bid."%' order by id  desc limit $z,1");
+    /**
+     * dudj 修改 获取广告信息
+     */
+    public function bookad(){
+        $path = 2;
+        $bid = 1;
+		$model = M('bookAd');
+        $where['path'] = $path;
+        $map['bookid'] = ["like",$bid];
+		$count = $model->where($map)->where($where)->count()-1;
+        $start = rand(0,$count);
+        $result = $model->where($map)->where($where)->limit("$start,1")->order('id desc')->select();
 		$result = array($result[0]);
 		echo getSuccessJson($result);
 	}
-
-
 
 //书评广场
 	public function bounty(){ 
