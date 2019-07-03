@@ -53,7 +53,7 @@ class AdController extends Controller{
         $start = rand(0,$count);
         $result = $model->where($map)->where($where)->limit("$start,1")->order('id desc')->select();
 		$result = array($result[0]);
-		echo getSuccessJson($result);
+		echo getSuccessJson($result,'操作成功');
 	}
 
 //书评广场
