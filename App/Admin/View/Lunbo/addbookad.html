@@ -15,59 +15,45 @@
     <div class="register-wrap clearfix">
 <div class="page-container"> 
     <div class="title"><h2>添加阅读广告</h2></div>
-	<form class="form form-horizontal"action="<{:U('add')}>" method="post" enctype="multipart/form-data"> 
+	<form class="form form-horizontal"action="<{:U('addbookad')}>" method="post" enctype="multipart/form-data">
     <div class="row cl"> 
       <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片：</label> 
             <div class="formControls col-xs-8 col-sm-9">   
-                    <input type="file" class="add_img" style="opacity: 0;position:absolute;top:0px;left:0px;width: 100px;height:100px;" value="" name="images"  onchange="file(this)" />  
-                    <img src="__ROOT__/Uploads/images/timg.jpg" style="width: 100px;height:100px;border:1px solid #eaeaea;" id="pic_master_img"/>   
-            </div> 
+                <input type="file" class="add_img" name="images"/>
+            </div>
         </div><br>
-
-       
-  
-
       <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
       <div class="formControls col-xs-8 col-sm-9">
         <input type="text" class="input-text" value="<{$v.title}>" placeholder="" id="" name="title">
         <input type="hidden" class="input-text" value="0" placeholder="" id="" name="path">
-        
-      </div>  
+      </div>
     </div> 
-
-     <div class="row cl"> 
+     <div class="row cl">
       <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型：</label>
       <div class="formControls col-xs-8 col-sm-9">
           <select  class="input-text" name="gotos" id="b">
             <option value ="1">广告</option>
             <!-- <option value ="0">书籍</option> -->
             <option value="2">网站</option>
-           
-          </select>         
-        
-      </div>  
+          </select>
+      </div>
     </div> 
    <div class="row cl"><label class="form-label col-xs-4 col-sm-2"><span class="c-red"></span>搜索书名或作者名：</label><div class="formControls col-xs-8 col-sm-9">
     <input type="text" id="shu" onBlur="user()"><span id="user"></span><br><span id="user"></span>
     <!-- <input type="hidden" name="acid" value="" id="acid" /> -->
   </div></div> 
-
- <div class="row cl"> 
-      <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>方式：</label>
-      <div class="formControls col-xs-8 col-sm-9">
-          <select  class="input-text" name="path" id="lunbo">
-            <option value ="1">底部广告</option>
-            <option value ="2">翻页广告</option>
-           
-           </select>
-
-      </div>  
-
- </div> 
+     <div class="row cl">
+          <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>方式：</label>
+          <div class="formControls col-xs-8 col-sm-9">
+              <select  class="input-text" name="path" id="lunbo">
+                <option value ="1">底部广告</option>
+                <option value ="2">翻页广告</option>
+               </select>
+          </div>
+     </div>
   
-
-    <div class="row cl"> 
+    <div class="row cl">
       <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>连接：</label>
       <div class="formControls col-xs-8 col-sm-9">
         <input type="text" class="input-text" value="<{$v.weburl}>" placeholder="" id="di" name="weburl">
@@ -81,11 +67,6 @@
             </div>
         </div>
 
-    
-
-    
-
-   
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
@@ -147,111 +128,6 @@ var end = {
 };
 jeDate(start);
 jeDate(end);
-/*提交数据*/
-$("#form-article-add").validate({ 
-    rules:{ 
-        name:{
-            required:true,
-            minlength:3, 
-            maxlength:50
-        },
-        summary:"required",
-        kucun:{
-            required:true,
-            digits:true
-        },
-        weight:{
-            required:true,
-            number:true
-        },
-        price:{
-            required:true,
-            number:true
-        },
-        content:"required",
-        groupPrice:{
-            required:true,
-            number:true
-        },
-       groupSize:{
-            required:true,
-            digits:true
-        },
-       groupValidHours:{
-           required:true,
-            digits:true
-        }
-
-    },
-     messages:{
-        name:{
-            required:"产品名称不能为空", 
-            minlength:"请输入不少于3个字符",
-            maxlength:"请输入不多于50个字符"   
-        },
-        summary:"商品简介不能为空",
-        kucun:{
-            required:"请输入商品库存量",
-            digits:"请输入数字"
-        },
-        weight:{ 
-            required:"请输入商品重量",
-            number:"请正确输入商品重量数值"
-        }, 
-        price:{
-            required:"请输入商品价格",
-            number:"请正确输入价格"
-        },
-        content:"请输入商品内容",
-        groupPrice:{
-            required:"请输入拼团折扣",
-            number:"请正确输入折扣"
-        },
-       groupSize:{
-            required:"请输入拼团人数",
-            digits:"请输入正整数"
-        },
-       groupValidHours:{
-           required:"请输入拼团人数",
-            digits:"请输入正整数"
-}
-
-    }, 
-    submitHandler:function(form){    
-           $("form").ajaxSubmit({   
-            url : "<{:U('Goods/add')}>",  
-            type : "post",   
-            dataType : 'json',   
-            success : function(data) {    
-                 layer.msg('<span style="color:#1C86EE">'+data.msg+'</span>',{icon:16}); 
-                 setTimeout(function(){ 
-                    window.parent.location.reload(); 
-                 },1000);  
-            },  
-            error : function(data) {    
-                alert("error:" + data.responseText);   
-            }  
-        });  
-    }
-}); 
-
-
-
-/*提交数据*/ 
-// $("#submit_ok").click(function() {    
-//         $("#form-article-add").ajaxSubmit({  
-//             url : "<{:U('Orders/add')}>",  
-//             type : "post",  
-//             dataType : 'json',  
-//             success : function(data) {  
-//                 alert("设置成功！");   
-//             },  
-//             error : function(data) {   
-//                 alert("error:" + data.responseText);  
-//             }  
-//         });  
-//     });  
-
 //编辑器
 function kedit(kedit){
        var editor = KindEditor.create(kedit,{
