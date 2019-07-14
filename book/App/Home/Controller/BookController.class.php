@@ -99,7 +99,7 @@ class BookController extends Controller{
 
 	    foreach ($data as $key => $value) {
 
-        	$xiaoshu = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$value['id']."%';");
+        	$xiaoshu = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$value['id']."%' and t.typeid=$pindao;");
 
 			$sum = count($xiaoshu);
 
@@ -121,7 +121,7 @@ class BookController extends Controller{
                 $xiaoshu = $container;
             }
 
-            $xiaoshu3 = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$value['id']."%' limit 4,300000;");
+            $xiaoshu3 = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$value['id']."%' and t.typeid=$pindao limit 4,300000;");
 
             $sum = count($xiaoshu3);
 
@@ -153,7 +153,7 @@ class BookController extends Controller{
 
 		$data2 = $Model->Query("SELECT * FROM jieqi_article_fenlei  where pindao=".$pindao." order by paixu limit 1,1 ");
 
-		$xiaoshu1 = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$data1[0]['id']."%';");
+		$xiaoshu1 = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$data1[0]['id']."%' and t.typeid=$pindao;");
 
 		$sum = count($xiaoshu1);
 
@@ -178,7 +178,7 @@ class BookController extends Controller{
 		$data1[0]['xiaoshuo']=$xiaoshu1;
 
 
-		$xiaoshu2 = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$data2[0]['id']."%';");
+		$xiaoshu2 = $Model->Query("SELECT t1.shortname,t.images,t.authorid,t.author,t.keywords,t.lastchapter,t.lastupdate,t.articlename,t.saleprice,t.intro,t.articleid,t.size,t.sortid,t.allvisit,t.articletype FROM jieqi_article_article t inner join jieqi_article_sort t1 on t.sortid=t1.sortid where t.biaoqian like '%".$data2[0]['id']."%' and t.typeid=$pindao;");
 
 		$sum = count($xiaoshu2);
 
