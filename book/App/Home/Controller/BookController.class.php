@@ -600,10 +600,10 @@ $data = $Model->Query("SELECT saleprice FROM jieqi_article_article where article
 	    }
 
 		$Model = M();
-		$data = $Model->Query("SELECT chapterid,articleid,chaptername,texts FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $page,15 ;");
+		$data = $Model->Query("SELECT chapterid,articleid,chaptername,attachment FROM jieqi_article_chapter where articleid =".$articleid." order by chapterid limit $page,15 ;");
 		// var_dump($data);
 		foreach ($data as $key => $value) {
-			$data[$key]['paixu']=$key;
+			$data[$key]['paixu']=$key + $page;
                       
                        if($key<100)
             {
