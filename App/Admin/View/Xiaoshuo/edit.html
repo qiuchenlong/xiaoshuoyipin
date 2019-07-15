@@ -140,7 +140,7 @@
             <select  class="input-text" onChange="zifenlei(this.value)" name="fenleis" id="b">
                <option value ="0">--请选择频道--</option>
                <foreach name="fenlei" item="fl" >
-                   <option <if condition="$fl.sortid eq $v.fenlei">selected</if> value ="<{$fl.sortid}>"><{$fl.shortname}></option>
+                   <option <if condition="$fl.sortid eq $v.sortid">selected</if> value ="<{$fl.sortid}>"><{$fl.shortname}></option>
                </foreach>
 
             </select>

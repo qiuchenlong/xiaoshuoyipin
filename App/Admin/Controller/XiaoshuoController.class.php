@@ -613,7 +613,8 @@ class XiaoshuoController extends CommonController {
         $add['lianzai']=I('lianzai');
         $add['ffee']=I('ffee');
         $add['wanjie']=I('wanjie');
-        $add['sortid']=$sorts;
+        //dudj 修改 sortid 为一级分类
+        $add['sortid']=I('fenleis');
 
         $add['biaoqian']=$biaoqians;
         $add['intro']=I('intro');
