@@ -647,7 +647,7 @@ class XiaoshuoController extends CommonController {
         $this->assign('pin3',$pin3);
         $this->assign('pin4',$pin4);
         $this->assign('fenlei',$fenlei);
-        $this->display();  
+        $this->display();
         }
     }
 
