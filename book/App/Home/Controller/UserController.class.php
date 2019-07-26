@@ -261,13 +261,13 @@ $Model = M();
        "userheadimg"=>$images,
        "sumbuserheadimg"=>$sumbimages
       );
-      $id = myinsert('user',$insertArr);
+      $id = myinsert('jieqi_system_users',$insertArr);
     
     $insertC = array(
        "user_id"=>$id
     );
 
-        myinsert('core',$insertC);
+        //myinsert('core',$insertC);
       echo '{"code":"200","msg":"更新成功","id":"'.$id.'"}';
     }
 
