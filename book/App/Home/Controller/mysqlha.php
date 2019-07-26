@@ -103,7 +103,7 @@
 		$sql = "insert into ".$table."(".$keys.") values(".$values.")";//sql的插入语句  格式：insert into 表(多个字段)values(多个值)
 		$Model = M();
 		$result = $Model->execute($sql);//调用类自身的query(执行)方法执行这条sql语句  注：$this指代自身
-		return mysql_insert_id();
+		return mysqli_insert_id();
 	}
 
 	/**
