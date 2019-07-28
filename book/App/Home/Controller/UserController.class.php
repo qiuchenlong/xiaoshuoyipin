@@ -262,9 +262,9 @@ $Model = M();
          "intro"=>"",
          "setting"=>"",
          "badges"=>"",
-         "uname"=>"",
-         "name"=>"",
-         "email"=>"",
+         "uname"=>$name,
+         "name"=>$name,
+         "email"=>$name,
 
          //"username"=>$name,
        //"userheadimg"=>$images,
