@@ -265,6 +265,7 @@ $Model = M();
          "uname"=>$name,
          "name"=>$name,
          "email"=>$name,
+         "images"=>$_POST['images'],
 
          //"username"=>$name,
        //"userheadimg"=>$images,
