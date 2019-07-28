@@ -257,9 +257,18 @@ $Model = M();
       $insertArr = array(
          "openid"=>$openid,
          "sex"=>$sex,
-         "username"=>$name,
-       "userheadimg"=>$images,
-       "sumbuserheadimg"=>$sumbimages
+         "mobile"=>"",
+         "sign"=>"",
+         "intro"=>"",
+         "setting"=>"",
+         "badges"=>"",
+         "uname"=>"",
+         "name"=>"",
+         "email"=>"",
+
+         //"username"=>$name,
+       //"userheadimg"=>$images,
+       //"sumbuserheadimg"=>$sumbimages
       );
       $id = myinsert('jieqi_system_users',$insertArr);
     
@@ -267,8 +276,13 @@ $Model = M();
        "user_id"=>$id
     );
 
+
+        // 查询数据库user
+        $users = $Model->query("select * from jieqi_system_users where uid=".$id);
+        $user = json_encode($users[0], JSON_FORCE_OBJECT);
+
         //myinsert('core',$insertC);
-      echo '{"code":"200","msg":"更新成功","id":"'.$id.'"}';
+      echo '{"code":"200","msg":"更新成功","uid":"'.$id.'", "result": '.$user.', "openid": '.$openid.'}';
     }
 
 

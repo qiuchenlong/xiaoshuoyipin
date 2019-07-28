@@ -103,7 +103,27 @@
 		$sql = "insert into ".$table."(".$keys.") values(".$values.")";//sql的插入语句  格式：insert into 表(多个字段)values(多个值)
 		$Model = M();
 		$result = $Model->execute($sql);//调用类自身的query(执行)方法执行这条sql语句  注：$this指代自身
-		return mysqli_insert_id();
+
+        if ($result == 1) {
+
+        } else {
+            foreach($arr as $key=>$value) {
+                if ($key == "openid") {
+                    $sql = "select * from ".$table." where ".$key."=\"".$value."\"";
+                }
+            }
+            $Model2 = M();
+            $result2 = $Model2->query($sql);
+            foreach($result2 as $k=>$v) {
+                if ($k == 0) {
+                    return $v["uid"];
+                }
+            }
+        }
+
+
+		//return mysqli_insert_id();
+		return $Model->getLastInsID();
 	}
 
 	/**
