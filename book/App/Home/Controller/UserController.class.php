@@ -282,7 +282,7 @@ $Model = M();
         $user = json_encode($users[0], JSON_FORCE_OBJECT);
 
         //myinsert('core',$insertC);
-      echo '{"code":"200","msg":"更新成功","uid":"'.$id.'", "result": '.$user.', "openid": '.$openid.'}';
+      echo '{"code":"200","msg":"更新成功","uid":"'.$id.'", "result": '.$user.'}';
     }
 
 
